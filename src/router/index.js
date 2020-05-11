@@ -3,7 +3,10 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
 import signin from '../components/authentification/signin'
 import signup from '../components/authentification/signup'
-import UserProfil from '../views/UserProfil'
+import UserProfil from '../components/dashboard/profilUser/UserProfil'
+import ClientAdmin from '../components/dashboard/profilUser/ClientAdmin'
+import EmployeAdmin from '../components/dashboard/profilUser/EmployeAdmin'
+import NewEmploye from '../components/dashboard/profilUser/NewEmployeAccount'
 
 Vue.use(VueRouter)
 
@@ -13,9 +16,29 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: '/editUser',
+        path: '/clients',
+        name: 'clients',
+        component: ClientAdmin
+      },
+      {
+        path: '/employes',
+        name: 'edit',
+        component: EmployeAdmin
+      },
+      {
+        path: '/editemploye',
         name: 'edit',
         component: UserProfil
+      },
+      {
+        path: '/editemploye',
+        name: 'edit',
+        component: UserProfil
+      },
+      {
+        path: '/newemploye',
+        name: 'newAccount',
+        component: NewEmploye
       }
     ]
   },

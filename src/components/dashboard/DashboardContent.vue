@@ -1,8 +1,8 @@
 <template>
   <div class="text-white">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
-        <div class="col-2"></div>
+        <div class="col-5"></div>
         <div class="col">
           <router-view></router-view>
         </div>
