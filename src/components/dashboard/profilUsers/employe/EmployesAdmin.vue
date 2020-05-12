@@ -103,6 +103,9 @@
               </table>
             </div>
           </div>
+          <div class="card-footer d-flex flex-row-reverse">
+            <router-link to="/newemploye"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+          </div>
         </div>
       </div>
     </div>
