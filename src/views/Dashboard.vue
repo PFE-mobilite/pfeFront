@@ -95,7 +95,7 @@ export default {
   }
 
   .current{
-    background-color: #f44336;
+    background-color: #28a745;
     border-radius: 7px;
     box-shadow: 2px 5px 10px #111111;
     transition: all .3s;

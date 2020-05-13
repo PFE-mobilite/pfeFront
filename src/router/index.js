@@ -3,10 +3,12 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
 import signin from '../components/authentification/signin'
 import signup from '../components/authentification/signup'
-import UserProfil from '../components/dashboard/profilUser/UserProfil'
-import ClientAdmin from '../components/dashboard/profilUser/ClientAdmin'
-import EmployeAdmin from '../components/dashboard/profilUser/EmployeAdmin'
-import NewEmploye from '../components/dashboard/profilUser/NewEmployeAccount'
+import UserProfil from '../components/dashboard/profilUsers/employe/EditEmployeProfil'
+import ClientList from '../components/dashboard/profilUsers/clients/ClientsList'
+import EmployeList from '../components/dashboard/profilUsers/employe/EmployesAdmin'
+import NewEmploye from '../components/dashboard/profilUsers/employe/NewEmployeAccount'
+import NewClient from '../components/dashboard/profilUsers/clients/NewClientAccount'
+import EditClient from '../components/dashboard/profilUsers/clients/EditClientProfilContainer'
 
 Vue.use(VueRouter)
 
@@ -17,28 +19,33 @@ const routes = [
     children: [
       {
         path: '/clients',
-        name: 'clients',
-        component: ClientAdmin
+        name: 'clientslist',
+        component: ClientList
       },
       {
         path: '/employes',
-        name: 'edit',
-        component: EmployeAdmin
+        name: 'employeList',
+        component: EmployeList
       },
       {
         path: '/editemploye',
-        name: 'edit',
+        name: 'editclient',
         component: UserProfil
       },
       {
-        path: '/editemploye',
+        path: '/editclient',
         name: 'edit',
-        component: UserProfil
+        component: EditClient
       },
       {
         path: '/newemploye',
         name: 'newAccount',
         component: NewEmploye
+      },
+      {
+        path: '/newclient',
+        name: 'newClient',
+        component: NewClient
       }
     ]
   },

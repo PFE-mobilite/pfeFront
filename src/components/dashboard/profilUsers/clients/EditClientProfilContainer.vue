@@ -1,27 +1,27 @@
 <template>
-  <div id="userprofil">
+  <div id="clientProfil">
     <div class="container-fluid">
       <div class="row">
         <div class="col"><EditProfil></EditProfil></div>
-         <div class="col-3"><UserCard></UserCard></div>
+        <div class="col-3"><ClientProfilminiCard></ClientProfilminiCard></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import UserCard from '../UserCard.vue'
-import EditProfil from './EditEmployeProfilCard'
+import ClientProfilminiCard from '../clients/ClientProfilminiCard'
+import EditProfil from '../clients/EditProfilCard'
 export default {
   components: {
-    UserCard,
+    ClientProfilminiCard,
     EditProfil
   }
 }
 </script>
 
 <style scoped>
-  #userprofil{
+  #clientProfil{
     height: 100vh;
     background-color: #0d152c;
   }

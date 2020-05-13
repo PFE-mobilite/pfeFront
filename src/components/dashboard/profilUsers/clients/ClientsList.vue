@@ -11,11 +11,11 @@
               <table class=" table table-dark table-hover text-center">
                 <thead>
                 <tr class="text-muted">
-                  <th>Nom</th>
-                  <th>Prenom</th>
+                  <th>Société</th>
+                  <th>Raison Social</th>
+                  <th>Nom Representant</th>
+                  <th>Prenom Representant</th>
                   <th>Email</th>
-                  <th>Date-recrutement</th>
-                  <th>Diplome</th>
                   <th>Poste</th>
                   <th>Service</th>
                   <th>Valeur_HJ</th>
@@ -35,7 +35,7 @@
                   <td>20$/heure</td>
                   <td>avatar</td>
                   <td>
-                    <a href="/editemploye"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/editclient"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -50,7 +50,7 @@
                   <td>20$/heure</td>
                   <td>avatar</td>
                   <td>
-                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/editclient"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>

@@ -10,7 +10,7 @@
          </div>
          <div class="row">
            <div class="col-md-12 pr-md-1">
-             <h6 class="display-6 text-center text-white">john down</h6>
+             <h6 class="display-6 text-center text-white">Employe</h6>
              <p class="text-white">
                Ceo/Co-Founder
              </p>
