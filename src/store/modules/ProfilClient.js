@@ -1,3 +1,4 @@
+import DumbClient from '../../data/DumbClient'
 const state = {
   client1: {
     societe: '',
@@ -9,12 +10,8 @@ const state = {
 }
 
 const mutations = {
-  'SET_CLIENT' (state) {
-    state.client1.societe = ''
-    state.client1.raison_social = ''
-    state.client1.nom = ''
-    state.client1.prenom = ''
-    state.client1.email = ''
+  'SET_CLIENT' (state, DumbClient) {
+    state.client1 = DumbClient
   },
   'EDIT_CLIENT' (state, client) {
     state.client1 = client
@@ -22,8 +19,8 @@ const mutations = {
 }
 
 const actions = {
-  setclient: ({ commit }) => {
-    commit('SET_CLIENT')
+  initCLient: ({ commit }) => {
+    commit('SET_CLIENT', DumbClient)
   },
   editclient: ({ commit }, client) => {
     commit('EDIT_CLIENT', client)

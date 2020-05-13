@@ -5,17 +5,20 @@
         <div class="card-body text-center mt-4">
           <div class="row">
             <div class="col-md-12 pr-md-1">
-              <b-avatar variant="info" size="4rem"></b-avatar>
+              <b-avatar variant="info" size="6rem"></b-avatar>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 pr-md-1">
-              <h6 class="display-6 text-center text-white"></h6>
+              <h6 class="display-6 text-center text-white mt-3">{{client.nom}} {{client.prenom}}</h6>
               <p class="text-white">
-                {{client.nom}}
+                  {{client.email}}
               </p>
-              <h6 class="display-6 text-center text-white">About me</h6>
-              <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, perferendis.</p>
+              <br>
+              <br>
+              <br>
+              <br>
+              <h4 class="display-6 text-center text-white">{{client.societe}}</h4>
             </div>
           </div>
         </div>

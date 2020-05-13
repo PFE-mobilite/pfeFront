@@ -16,6 +16,10 @@ export default {
   components: {
     ClientProfilminiCard,
     EditProfil
+  },
+  created () {
+    this.$store.dispatch('initCLient')
+    console.log('hiii ')
   }
 }
 </script>
