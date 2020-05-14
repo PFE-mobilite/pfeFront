@@ -9,12 +9,6 @@
           <div class="card-body mx-5">
             <div class="row mx-3">
               <div class="col-md-12">
-                <label for="">Société</label>
-                <input type="text" class="form-control" placeholder="Société" v-model="client.societe">
-              </div>
-            </div>
-            <div class="row mx-3">
-              <div class="col-md-12">
                 <label for="">Raison Social</label>
                 <input type="text" class="form-control" placeholder="Raison social" v-model="client.raison_social">
               </div>
@@ -55,7 +49,6 @@ export default {
   data () {
     return {
       client: {
-        societe: '',
         raison_social: '',
         nom: '',
         prenom: '',
@@ -71,7 +64,6 @@ export default {
   computed: {
     edit () {
       const clientmodifier = {
-        societe: this.client.societe,
         raison_social: this.client.raison_social,
         nom: this.client.nom,
         prenom: this.client.prenom,

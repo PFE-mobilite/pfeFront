@@ -19,7 +19,6 @@ export default {
   },
   created () {
     this.$store.dispatch('initCLient')
-    console.log('hiii ')
   }
 }
 </script>

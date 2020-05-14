@@ -8,58 +8,46 @@
           </div>
           <div class="card-body">
             <div class="row">
+              <div class="col-md-6 pr-md-1">
+                <label for="">Nom</label>
+                <input type="text" class="form-control" placeholder="Nom" v-model="employe.nom">
+              </div>
+              <div class="col-md-6 pl-md-1">
+                <label for="">Prenom</label>
+                <input type="text" class="form-control" placeholder="Prenom" v-model="employe.prenom">
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-5 pr-md-1">
-                <label for="">Company</label>
-                <input type="text" class="form-control" placeholder="Company">
+                <label for="">Email</label>
+                <input type="email" class="form-control" placeholder="Email" v-model="employe.email">
               </div>
               <div class="col-md-3 pr-md-1">
-                <label for="">Username</label>
-                <input type="text" class="form-control" placeholder="Username">
+                <label for="">Poste</label>
+                <input type="text" class="form-control" placeholder="Poste" v-model="employe.poste">
               </div>
               <div class="col-md-4 pr-md-1">
-                <label for="">Email</label>
-                <input type="Email" class="form-control" placeholder="Email">
+                <label for="">Servie</label>
+                <input type="text" class="form-control" placeholder="Service" v-model="employe.service">
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
-                <label for="">Firstname</label>
-                <input type="text" class="form-control" placeholder="Firstname">
+                <label for="">Diplome</label>
+                <input type="text" class="form-control" placeholder="Diplome" v-model="employe.diplome">
               </div>
-              <div class="col-md-6 pl-md-1">
-                <label for="">LastName</label>
-                <input type="text" class="form-control" placeholder="LastName">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label for="">Adresse</label>
-                <input type="text" class="form-control" placeholder="Adresse">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4 pr-md-1">
-                <label for="">City</label>
-                <input type="text" class="form-control" placeholder="City">
-              </div>
-              <div class="col-md-4 px-md-1">
-                <label for="">Country</label>
-                <input type="text" class="form-control" placeholder="Country">
-              </div>
-              <div class="col-md-4 pl-md-1">
-                <label for="">Postal Code</label>
-                <input type="text" class="form-control" placeholder="Postal Code">
+              <div class="col-md-6 px-md-1">
+                <label for="">Date de recrutement</label>
+                <input type="date" class="form-control" placeholder="Date de recrutement" v-model="employe.date_recrutement">
               </div>
             </div>
             <div class="row">
               <div class="col-md-8">
-                <label for="">About me</label>
-                <textarea rows="4" cols="80" placeholder="Here can be your description" class="form-control"></textarea>
+                <label for="">Valeur H/J</label>
+                <input type="number" class="form-control" placeholder="Valeur H/J" v-model="employe.valeur_HJ">
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-3 col-md-9 mt-2 px-3">
-                <button type="button" class="btn btn-outline-success btn-lg btn-block">Save</button>
+              <div class="col-md-4 mt-4">
+                  <button type="button" class="btn btn-outline-success btn-block mt-2" @click="edit()" >Save</button>
               </div>
             </div>
           </div>
@@ -68,6 +56,46 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  data () {
+    return {
+      employe: {
+        nom: '',
+        prenom: '',
+        email: '',
+        poste: '',
+        service: '',
+        diplome: '',
+        date_recrutement: '',
+        valeur_HJ: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      modifierEmployeProfil: 'editEmploye'
+    })
+  },
+  computed: {
+    edit () {
+      const employemodifier = {
+        nom: this.employe.nom,
+        prenom: this.employe.prenom,
+        email: this.employe.email,
+        poste: this.employe.poste,
+        service: this.employe.service,
+        diplome: this.employe.diplome,
+        date_recrutement: this.employe.date_recrutement,
+        valeur_HJ: this.employe.valeur_HJ
+      }
+      return this.modifierEmployeProfil(employemodifier)
+    }
+  }
+}
+</script>
 
 <style scoped>
   .card-edit{

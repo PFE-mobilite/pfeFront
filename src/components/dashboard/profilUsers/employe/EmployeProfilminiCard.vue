@@ -3,19 +3,24 @@
    <div class="row">
      <div class="card card-userprofil">
        <div class="card-body text-center mt-4">
-         <div class="row">
-           <div class="col-md-12 pr-md-1">
-             <b-avatar variant="info" size="4rem"></b-avatar>
+         <div class="card-body text-center mt-4">
+           <div class="row">
+             <div class="col-md-12 pr-md-1">
+               <b-avatar variant="info" size="6rem"></b-avatar>
+             </div>
            </div>
-         </div>
-         <div class="row">
-           <div class="col-md-12 pr-md-1">
-             <h6 class="display-6 text-center text-white">Employe</h6>
-             <p class="text-white">
-               Ceo/Co-Founder
-             </p>
-             <h6 class="display-6 text-center text-white">About me</h6>
-             <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, perferendis.</p>
+           <div class="row">
+             <div class="col-md-12 pr-md-1">
+               <h6 class="display-6 text-center text-white mt-3">{{employe.nom}} {{employe.prenom}}</h6>
+               <p class="text-white">
+                 {{employe.email}}
+               </p>
+               <br>
+               <br>
+               <br>
+               <br>
+               <h4 class="display-6 text-center text-white">{{employe.poste}}</h4>
+             </div>
            </div>
          </div>
        </div>
@@ -32,6 +37,18 @@
    </div>
  </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({
+      employe: 'employe'
+    })
+  }
+}
+
+</script>
 
 <style>
   .card-userprofil{

@@ -18,7 +18,7 @@
               <br>
               <br>
               <br>
-              <h4 class="display-6 text-center text-white">{{client.societe}}</h4>
+              <h4 class="display-6 text-center text-white">{{client.raison_social}}</h4>
             </div>
           </div>
         </div>
@@ -43,7 +43,6 @@ export default {
       client: 'client'
     })
   }
-
 }
 </script>
 <style>

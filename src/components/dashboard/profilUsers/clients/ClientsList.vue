@@ -3,15 +3,14 @@
     <div class="row">
       <div class="col">
         <div class="card card-display-all">
-          <div class="card-header text-white">
+          <div class="card-header text-info font-weight-bold">
             Clients
           </div>
           <div class="card-body">
             <div class="row align-items-center">
-              <table class=" table table-dark table-hover text-center">
+              <table class=" table table-striped table-hover text-center">
                 <thead>
                 <tr class="text-muted">
-                  <th>Société</th>
                   <th>Raison Social</th>
                   <th>Nom Representant</th>
                   <th>Prenom Representant</th>
@@ -25,7 +24,6 @@
                 </thead>
                 <tbody>
                 <tr>
-                  <td>john</td>
                   <td>doe</td>
                   <td>John_deo@gmail.com</td>
                   <td>12/01/2020</td>
@@ -40,7 +38,6 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>john</td>
                   <td>doe</td>
                   <td>John_deo@gmail.com</td>
                   <td>12/01/2020</td>
@@ -55,7 +52,6 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>john</td>
                   <td>doe</td>
                   <td>John_deo@gmail.com</td>
                   <td>12/01/2020</td>
@@ -70,7 +66,6 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>john</td>
                   <td>doe</td>
                   <td>John_deo@gmail.com</td>
                   <td>12/01/2020</td>
@@ -85,7 +80,6 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>john</td>
                   <td>doe</td>
                   <td>John_deo@gmail.com</td>
                   <td>12/01/2020</td>
@@ -115,7 +109,7 @@
 <style scoped>
   .card-display-all{
     margin-top: 50px;
-    background: #0d152c;
+    background: white;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

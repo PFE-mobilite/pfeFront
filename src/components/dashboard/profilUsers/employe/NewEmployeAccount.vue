@@ -53,6 +53,9 @@
                   <label for="">valeur HJ</label>
                   <input type="number" class="form-control" placeholder="Valeur">
                 </div>
+                <div class="row d-flex flex-row-reverse mt-3">
+                  <button type="button" class="btn btn-outline-success">Ajouter</button>
+                </div>
               </div>
             </div>
           </div>

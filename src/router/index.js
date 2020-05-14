@@ -3,12 +3,14 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
 import signin from '../components/authentification/signin'
 import signup from '../components/authentification/signup'
-import UserProfil from '../components/dashboard/profilUsers/employe/EditEmployeProfil'
+import EditEmploye from '../components/dashboard/profilUsers/employe/EditEmployeProfilContainer'
 import ClientList from '../components/dashboard/profilUsers/clients/ClientsList'
-import EmployeList from '../components/dashboard/profilUsers/employe/EmployesAdmin'
+import EmployeList from '../components/dashboard/profilUsers/employe/EmployeList'
 import NewEmploye from '../components/dashboard/profilUsers/employe/NewEmployeAccount'
 import NewClient from '../components/dashboard/profilUsers/clients/NewClientAccount'
 import EditClient from '../components/dashboard/profilUsers/clients/EditClientProfilContainer'
+import MaterielsList from '../components/dashboard/materiel/MaterielsList'
+import NewMateriel from '../components/dashboard/materiel/NewMateriel'
 
 Vue.use(VueRouter)
 
@@ -30,7 +32,7 @@ const routes = [
       {
         path: '/editemploye',
         name: 'editclient',
-        component: UserProfil
+        component: EditEmploye
       },
       {
         path: '/editclient',
@@ -46,6 +48,16 @@ const routes = [
         path: '/newclient',
         name: 'newClient',
         component: NewClient
+      },
+      {
+        path: '/materiels',
+        name: 'materiels',
+        component: MaterielsList
+      },
+      {
+        path: '/newmateriel',
+        name: 'addmateriels',
+        component: NewMateriel
       }
     ]
   },

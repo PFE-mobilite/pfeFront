@@ -10,12 +10,15 @@
 </template>
 
 <script>
-import UserCard from '../UserCard.vue'
+import UserCard from './EmployeProfilminiCard.vue'
 import EditProfil from './EditEmployeProfilCard'
 export default {
   components: {
     UserCard,
     EditProfil
+  },
+  created () {
+    this.$store.dispatch('initEmploye')
   }
 }
 </script>

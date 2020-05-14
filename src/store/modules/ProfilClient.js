@@ -1,7 +1,6 @@
-import DumbClient from '../../data/DumbClient'
+import DumbClient from '../../data/DumbClientInfo'
 const state = {
   client1: {
-    societe: '',
     raison_social: '',
     nom: '',
     prenom: '',
