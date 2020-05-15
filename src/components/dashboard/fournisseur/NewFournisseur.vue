@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="card card-add-mat">
+        <div class="card card-add-fournisseur">
           <div class="card-header text-white">
             Ajouter Materiel
           </div>
@@ -10,33 +10,17 @@
             <div class="row">
               <div class="col ml-5 align-items-center mx-5">
                 <div class="row mx-5">
-                  <label for="">Type</label>
-                  <input type="text" class="form-control" placeholder="Type" v-model="materiel.type">
+                  <label for="">libelle</label>
+                  <input type="text" class="form-control" placeholder="libelle" v-model="fournisseur.type">
                 </div>
                 <div class="row mx-5">
-                  <label for="">Marque</label>
-                  <input type="text" class="form-control" placeholder="Marque" v-model="materiel.marque">
-                </div>
-                <div class="row mx-5">
-                  <label for="">Reference</label>
-                  <input type="text" class="form-control" placeholder="Reference" v-model="materiel.reference">
-                </div>
-                <div class="row mx-5">
-                  <label for="">Prix</label>
-                  <input type="number" class="form-control" placeholder="Prix" v-model="materiel.prix">
-                </div>
-                <div class="row mx-5">
-                  <label for="">Prix_achat</label>
-                  <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prix_achat">
-                </div>
-                <div class="row mx-5">
-                  <label for="">Fournisseur</label>
-                  <input type="text" class="form-control" placeholder="Fournisseur" v-model="materiel.fournisseur">
+                  <label for="">Email</label>
+                  <input type="text" class="form-control" placeholder="Email" v-model="fournisseur.email">
                 </div>
                 <div class="row mx-4">
                   <div class="col-md-8 ml-2">
-                  <label for="">Description</label>
-                  <textarea rows="4" cols="10" class="form-control" placeholder="description" v-model="materiel.description"></textarea>
+                    <label for="">Description</label>
+                    <textarea rows="4" cols="10" class="form-control" placeholder="description" v-model="fournisseur.description"></textarea>
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
@@ -67,14 +51,11 @@
 export default {
   data () {
     return {
-      materiel: {
-        type: '',
-        marque: '',
-        reference: '',
-        prix: '',
-        prix_achat: '',
-        fournisseur: '',
-        description: ''
+      fournisseur: {
+        libelle: '',
+        email: '',
+        Description: '',
+        logo: ''
       }
     }
   }
@@ -82,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-  .card-add-mat{
+  .card-add-fournisseur{
     margin-top: 50px;
     background: #0d152c;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

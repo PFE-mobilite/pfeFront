@@ -11,6 +11,10 @@ import NewClient from '../components/dashboard/profilUsers/clients/NewClientAcco
 import EditClient from '../components/dashboard/profilUsers/clients/EditClientProfilContainer'
 import MaterielsList from '../components/dashboard/materiel/MaterielsList'
 import NewMateriel from '../components/dashboard/materiel/NewMateriel'
+import EditMateriel from '../components/dashboard/materiel/EditMateriel'
+import FournisseurList from '../components/dashboard/fournisseur/FournisseurList'
+import NewFournisseur from '../components/dashboard/fournisseur/NewFournisseur'
+import EditFournisseur from '../components/dashboard/fournisseur/EditFournisseur'
 
 Vue.use(VueRouter)
 
@@ -58,6 +62,26 @@ const routes = [
         path: '/newmateriel',
         name: 'addmateriels',
         component: NewMateriel
+      },
+      {
+        path: '/editmateriel',
+        name: 'editmateriels',
+        component: EditMateriel
+      },
+      {
+        path: '/fournisseurs',
+        name: 'fournisseur',
+        component: FournisseurList
+      },
+      {
+        path: '/newfournisseur',
+        name: 'newfournisseur',
+        component: NewFournisseur
+      },
+      {
+        path: '/editfournisseur',
+        name: 'editfournisseur',
+        component: EditFournisseur
       }
     ]
   },

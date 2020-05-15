@@ -113,7 +113,7 @@
 </template>
 <style scoped>
   .card-display-all{
-    margin-top: 50px;
+    margin-top: 70px;
     background: white;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
