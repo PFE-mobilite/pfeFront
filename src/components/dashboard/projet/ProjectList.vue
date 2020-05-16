@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="card card-display-all-fourni">
+        <div class="card card-display-all-proj">
           <div class="card-header text-info font-weight-bold">
-            Fournisseur Materiel
+            Projets
           </div>
           <div class="card-body">
             <div class="row align-items-center">
@@ -83,7 +83,7 @@
 </template>
 
 <style scoped>
-  .card-display-all-fourni{
+  .card-display-all-proj{
     margin-top: 70px;
     background: white;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

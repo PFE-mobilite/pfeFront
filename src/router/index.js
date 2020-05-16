@@ -12,9 +12,14 @@ import EditClient from '../components/dashboard/profilUsers/clients/EditClientPr
 import MaterielsList from '../components/dashboard/materiel/MaterielsList'
 import NewMateriel from '../components/dashboard/materiel/NewMateriel'
 import EditMateriel from '../components/dashboard/materiel/EditMateriel'
-import FournisseurList from '../components/dashboard/fournisseur/FournisseurList'
+import FournisseurChoix from '../components/dashboard/fournisseur/FournisseurChoixContainer'
+import FournisseurMList from '../components/dashboard/fournisseur/FournisseurList'
 import NewFournisseur from '../components/dashboard/fournisseur/NewFournisseur'
 import EditFournisseur from '../components/dashboard/fournisseur/EditFournisseur'
+import ProjetList from '../components/dashboard/projet/ProjectList'
+import ServiceHebergement from '../components/dashboard/ServiceHebergement/ServiceHeberList.vue'
+import NewServiceH from '../components/dashboard/ServiceHebergement/NewServiceH'
+import EditServiceH from '../components/dashboard/ServiceHebergement/EditServiceH'
 
 Vue.use(VueRouter)
 
@@ -71,7 +76,12 @@ const routes = [
       {
         path: '/fournisseurs',
         name: 'fournisseur',
-        component: FournisseurList
+        component: FournisseurChoix
+      },
+      {
+        path: '/fournisseur-mat-list',
+        name: 'fournisseurMateriel',
+        component: FournisseurMList
       },
       {
         path: '/newfournisseur',
@@ -82,6 +92,26 @@ const routes = [
         path: '/editfournisseur',
         name: 'editfournisseur',
         component: EditFournisseur
+      },
+      {
+        path: '/projets',
+        name: 'projets',
+        component: ProjetList
+      },
+      {
+        path: '/service-hebergement',
+        name: 'servicehebergemenet',
+        component: ServiceHebergement
+      },
+      {
+        path: '/new-service-internet',
+        name: 'addservicehebergemenet',
+        component: NewServiceH
+      },
+      {
+        path: '/edit-service-internet',
+        name: 'editservicehebergemenet',
+        component: EditServiceH
       }
     ]
   },
