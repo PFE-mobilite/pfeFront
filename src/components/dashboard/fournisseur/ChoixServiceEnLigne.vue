@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-info btn-block">VOIR LISTE</button>
+          <router-link to="/fournisseur-ligne-list"><button class="btn btn-info btn-block">VOIR LISTE</button></router-link>
         </div>
       </div>
     </div>

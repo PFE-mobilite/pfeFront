@@ -9,11 +9,11 @@
             <div class=" col-xl-2 col-lg-2 col-md-3 sidebar bg-dark fixed-top">
               <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Mobelite</a>
               <ul class="navbar-nav flex-column mt-4">
-                <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+                <router-link to="/recapDisplay"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li></router-link>
                 <router-link to="/employes"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Employes</a></li></router-link>
                 <router-link to="/clients"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Clients</a></li></router-link>
                 <router-link to="/projets"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-wrench text-light fa-lg mr-3"></i>Projets</a></li></router-link>
-                <router-link to="/service-hebergement"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-cloud-upload-alt text-light fa-lg mr-3"></i>S.Hébergement</a></li></router-link><i class=""></i>
+                <router-link to="/service-hebergement"><li class="nav-item"><a href="#" class="nav-link text-white p-2 mb-2 sidebar-link"><i class="fas fa-cloud-upload-alt text-light fa-lg mr-3"></i>S.Hébergement</a></li></router-link><i class=""></i>
                 <router-link to="/materiels"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox text-light fa-lg mr-3"></i>Materiels</a></li></router-link>
                 <router-link to="/fournisseurs"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-people-carry text-light fa-lg mr-3"></i>Fournisseurs</a></li></router-link>
                 <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-table text-light fa-lg mr-3"></i>Tables</a></li>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
+import recapDisplay from '../components/dashboard/dashboardLayout/recapDisplay'
 import signin from '../components/authentification/signin'
 import signup from '../components/authentification/signup'
 import EditEmploye from '../components/dashboard/profilUsers/employe/EditEmployeProfilContainer'
@@ -13,9 +14,12 @@ import MaterielsList from '../components/dashboard/materiel/MaterielsList'
 import NewMateriel from '../components/dashboard/materiel/NewMateriel'
 import EditMateriel from '../components/dashboard/materiel/EditMateriel'
 import FournisseurChoix from '../components/dashboard/fournisseur/FournisseurChoixContainer'
-import FournisseurMList from '../components/dashboard/fournisseur/FournisseurList'
-import NewFournisseur from '../components/dashboard/fournisseur/NewFournisseur'
-import EditFournisseur from '../components/dashboard/fournisseur/EditFournisseur'
+import FournisseurMList from '../components/dashboard/fournisseur/fournisseurMaterriel/FournisseurListM'
+import NewFournisseur from '../components/dashboard/fournisseur/fournisseurMaterriel/NewFournisseurM'
+import EditFournisseur from '../components/dashboard/fournisseur/fournisseurMaterriel/EditFournisseurM'
+import FournisseurLlist from '../components/dashboard/fournisseur/fournisseurEnLigne/FournisseurHList'
+import NewFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/NewFournisseurL'
+import EditFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/EditFournisseurH'
 import ProjetList from '../components/dashboard/projet/ProjectList'
 import ServiceHebergement from '../components/dashboard/ServiceHebergement/ServiceHeberList.vue'
 import NewServiceH from '../components/dashboard/ServiceHebergement/NewServiceH'
@@ -28,6 +32,11 @@ const routes = [
     path: '/admin',
     component: Dashboard,
     children: [
+      {
+        path: '/recapDisplay',
+        name: 'display',
+        component: recapDisplay
+      },
       {
         path: '/clients',
         name: 'clientslist',
@@ -77,6 +86,21 @@ const routes = [
         path: '/fournisseurs',
         name: 'fournisseur',
         component: FournisseurChoix
+      },
+      {
+        path: '/fournisseur-ligne-list',
+        name: 'fournisseurL',
+        component: FournisseurLlist
+      },
+      {
+        path: '/add-fournisseur-ligne',
+        name: 'newfournisseurL',
+        component: NewFournisseurL
+      },
+      {
+        path: '/edit-fournisseur-ligne',
+        name: 'editfournisseurL',
+        component: EditFournisseurL
       },
       {
         path: '/fournisseur-mat-list',
