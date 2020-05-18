@@ -24,6 +24,7 @@ import ProjetList from '../components/dashboard/projet/ProjectList'
 import ServiceHebergement from '../components/dashboard/ServiceHebergement/ServiceHeberList.vue'
 import NewServiceH from '../components/dashboard/ServiceHebergement/NewServiceH'
 import EditServiceH from '../components/dashboard/ServiceHebergement/EditServiceH'
+import ClientAccount from '../views/Client.vue'
 
 Vue.use(VueRouter)
 
@@ -148,6 +149,10 @@ const routes = [
     path: '/Registration',
     name: 'signup',
     component: signup
+  },
+  {
+    path: '/clientAccount',
+    component: ClientAccount
   }
 ]
 
