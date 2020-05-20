@@ -5,6 +5,7 @@
       </div>
       <div class="col px-0">
         <TopNavbarClient></TopNavbarClient>
+        <router-view></router-view>
       </div>
     </div>
 </template>

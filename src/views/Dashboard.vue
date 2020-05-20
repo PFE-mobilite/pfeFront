@@ -70,9 +70,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   body, html {
-    background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)), url("../assets/opg.jpg") no-repeat fixed center /cover;
+    background-color: #eeeeee;
   }
 
   .bottom-border{
