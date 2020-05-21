@@ -26,6 +26,7 @@ import NewServiceH from '../components/dashboard/ServiceHebergement/NewServiceH'
 import EditServiceH from '../components/dashboard/ServiceHebergement/EditServiceH'
 import ClientAccount from '../views/Client.vue'
 import ProfileClient from '../components/clientAccount/ProfileClient'
+import ProjectSection from '../components/clientAccount/ProjetSection'
 
 Vue.use(VueRouter)
 
@@ -159,6 +160,11 @@ const routes = [
         path: '/profile-client',
         name: 'ProfileClient',
         component: ProfileClient
+      },
+      {
+        path: '/projets-client',
+        name: 'ProjectSection',
+        component: ProjectSection
       }
     ]
   }
