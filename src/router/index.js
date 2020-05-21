@@ -27,10 +27,18 @@ import EditServiceH from '../components/dashboard/ServiceHebergement/EditService
 import ClientAccount from '../views/Client.vue'
 import ProfileClient from '../components/clientAccount/ProfileClient'
 import ProjectSection from '../components/clientAccount/ProjetSection'
+import Redirection from '../views/Redirectiondefault'
+import Employe from '../views/Employe'
+import EmployeProfile from '../components/employeAccount/EmployeProfile'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'redirection',
+    component: Redirection
+  },
   {
     path: '/admin',
     component: Dashboard,
@@ -165,6 +173,17 @@ const routes = [
         path: '/projets-client',
         name: 'ProjectSection',
         component: ProjectSection
+      }
+    ]
+  },
+  {
+    path: '/employeAccount',
+    component: Employe,
+    children: [
+      {
+        path: '/profile-employe',
+        name: 'EmployeProfile',
+        component: EmployeProfile
       }
     ]
   }

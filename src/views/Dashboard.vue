@@ -6,7 +6,7 @@
         <div class="container-fluid">
           <div class="row ">
             <!--sidebar-->
-            <div class=" col-xl-2 col-lg-2 col-md-3 sidebar bg-dark fixed-top">
+            <div class=" col-xl-2 col-lg-2 col-md-3 sidebar  fixed-top">
               <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Mobelite</a>
               <ul class="navbar-nav flex-column mt-4">
                 <router-link to="/recapDisplay"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li></router-link>
@@ -22,7 +22,7 @@
             </div>
             <!--mysidebar-->
             <!--top-nav-->
-            <div class="col-xl-10 col-lg-10  col-md-9 ml-auto bg-dark fixed-top py-2 top-navbar show">
+            <div class="col-xl-10 col-lg-10  col-md-9 ml-auto topnav fixed-top py-2 top-navbar show">
               <div class="row align-items-center">
                 <div class="col-md-4 ">
                   <h4 class="text-light text-uppercase mb-0">dashboard</h4>
@@ -31,7 +31,7 @@
                   <form action="">
                     <div class="input-group">
                       <input type="text" class="form-control search-input" placeholder="Search...">
-                      <button type="button" class="btn btn-white search-button"><i class="fas fa-search text-danger"></i></button>
+                      <button type="button" class="btn btn-white search-button"><i class="fas fa-search text-secondary"></i></button>
                     </div>
                   </form>
                 </div>
@@ -39,7 +39,7 @@
                   <ul class="navbar-nav">
                     <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-comments text-muted fa-lg"></i> </a> </li>
                     <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-bell text-muted fa-lg"></i> </a> </li>
-                    <li class="nav-item ml-md-auto "><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-danger fa-lg"></i> </a> </li>
+                    <li class="nav-item ml-md-auto "><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-secondary fa-lg"></i> </a> </li>
                   </ul>
                 </div>
               </div>
@@ -80,6 +80,12 @@ export default {
     border-bottom: 1px groove #eeeeee;
 
   }
+  .sidebar{
+    background-color: #2f4050;
+  }
+  .topnav{
+    background-color: #2f4050;
+  }
 
   .sidebar-link{
     transition: all .4s;
@@ -116,7 +122,7 @@ export default {
   .search-input:focus{
     background: transparent;
     box-shadow: none;
-    border-bottom: 2px solid #dc3545 ;
+    border-bottom: 2px solid white ;
 
   }
 

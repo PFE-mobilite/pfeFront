@@ -6,26 +6,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 mt-5 mx-4"><PersonnalInfoCard></PersonnalInfoCard></div>
-      <div class="col-md-6 mt-5 mx-4"><NotificationPersonnal></NotificationPersonnal></div>
+      <div class="col-md-4 mt-5 mx-4"></div>
+      <div class="col-md-6 mt-5 mx-4"></div>
       <div class="col-md-2 mx-4"></div>
     </div>
   </div>
 </template>
 
 <script>
-import PersonnalInfoCard from './PersonnalInfoCard'
-import NotificationPersonnal from './NotificationPersonnal'
-export default {
-  components: {
-    PersonnalInfoCard,
-    NotificationPersonnal
-  },
-  created () {
-    this.$store.dispatch('initNotification')
-  }
-
-}
 </script>
 
 <style scoped>
