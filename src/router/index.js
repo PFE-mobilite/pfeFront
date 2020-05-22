@@ -30,6 +30,7 @@ import ProjectSection from '../components/clientAccount/ProjetSection'
 import Redirection from '../views/Redirectiondefault'
 import Employe from '../views/Employe'
 import EmployeProfile from '../components/employeAccount/EmployeProfile'
+import Welcome from '../views/WelcomeDefault'
 
 Vue.use(VueRouter)
 
@@ -153,7 +154,7 @@ const routes = [
   {
     path: '/login',
     name: 'signin',
-    component: signin
+    component: Welcome
   },
   {
     path: '/Registration',

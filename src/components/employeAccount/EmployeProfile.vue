@@ -6,14 +6,20 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 mt-5 mx-4"></div>
-      <div class="col-md-6 mt-5 mx-4"></div>
-      <div class="col-md-2 mx-4"></div>
+      <div class="col-md-1 mt-5 mx-4"></div>
+      <div class="col-md-8 mt-5 mx-4"><PersonnalInfoEmp></PersonnalInfoEmp></div>
+      <div class="col-md-3 mx-4"></div>
     </div>
   </div>
 </template>
 
 <script>
+import PersonnalInfoEmp from './PersonnalInfoEmploye'
+export default {
+  components: {
+    PersonnalInfoEmp
+  }
+}
 </script>
 
 <style scoped>
