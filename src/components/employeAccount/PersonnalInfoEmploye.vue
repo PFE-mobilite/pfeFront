@@ -90,7 +90,7 @@ export default {
         email: 'kaisska@gmail.com',
         poste: 'batal',
         service: 'webservice',
-        diplome: 'LICENCE',
+        diplome: 'licence',
         date_recrutement: '12/05/2020',
         valeur_HJ: '20$'
       }

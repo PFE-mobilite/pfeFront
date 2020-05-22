@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard'
 import recapDisplay from '../components/dashboard/dashboardLayout/recapDisplay'
-import signin from '../components/authentification/signin'
 import signup from '../components/authentification/signup'
 import EditEmploye from '../components/dashboard/profilUsers/employe/EditEmployeProfilContainer'
 import ClientList from '../components/dashboard/profilUsers/clients/ClientsList'
@@ -30,6 +29,9 @@ import ProjectSection from '../components/clientAccount/ProjetSection'
 import Redirection from '../views/Redirectiondefault'
 import Employe from '../views/Employe'
 import EmployeProfile from '../components/employeAccount/EmployeProfile'
+import AchatDemande from '../components/employeAccount/DemandeAchat'
+import ListComMateriel from '../components/employeAccount/ListComMateriel'
+import ListServiceHebergement from '../components/employeAccount/ListServiceHebergement'
 import Welcome from '../views/WelcomeDefault'
 
 Vue.use(VueRouter)
@@ -185,6 +187,22 @@ const routes = [
         path: '/profile-employe',
         name: 'EmployeProfile',
         component: EmployeProfile
+      },
+      {
+        path: '/employe-achat-materiel',
+        component: AchatDemande,
+        children: [
+          {
+            path: '/employe-achat-materiel-list',
+            name: 'ListComMateriel',
+            component: ListComMateriel
+          },
+          {
+            path: '/employe-achat-ser-list',
+            name: 'ListComservice',
+            component: ListServiceHebergement
+          }
+        ]
       }
     ]
   }
