@@ -29,7 +29,7 @@
                   <td>20$</td>
                   <td>Mytek</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/employe-edit-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -41,7 +41,7 @@
                   <td>20$</td>
                   <td>Mytek</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/employe-edit-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -53,7 +53,7 @@
                   <td>20$</td>
                   <td>Mytek</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/employe-edit-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -65,7 +65,7 @@
                   <td>20$</td>
                   <td>Mytek</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/employe-edit-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -77,7 +77,7 @@
                   <td>20$</td>
                   <td>Mytek</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/employe-edit-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/newmateriel"><button type="button" class="btn btn-color  text-white align-content-end ">Ajouter</button></router-link>
+            <router-link to="/employe-new-mat"><button type="button" class="btn btn-color  text-white align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

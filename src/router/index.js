@@ -31,7 +31,11 @@ import Employe from '../views/Employe'
 import EmployeProfile from '../components/employeAccount/EmployeProfile'
 import AchatDemande from '../components/employeAccount/DemandeAchat'
 import ListComMateriel from '../components/employeAccount/ListComMateriel'
+import EditComMateriel from '../components/employeAccount/EditMateriel'
 import ListServiceHebergement from '../components/employeAccount/ListServiceHebergement'
+import NewServiceCom from '../components/employeAccount/NewServiceCom'
+import EditServiceCom from '../components/employeAccount/EditServiceHebergement'
+import NewMatEmp from '../components/employeAccount/NouveauMateriel'
 import Welcome from '../views/WelcomeDefault'
 
 Vue.use(VueRouter)
@@ -201,6 +205,26 @@ const routes = [
             path: '/employe-achat-ser-list',
             name: 'ListComservice',
             component: ListServiceHebergement
+          },
+          {
+            path: '/employe-new-mat',
+            name: 'newMateriel',
+            component: NewMatEmp
+          },
+          {
+            path: '/employe-edit-mat',
+            name: 'editMateriel',
+            component: EditComMateriel
+          },
+          {
+            path: '/employe-add-serH',
+            name: 'newSerH',
+            component: NewServiceCom
+          },
+          {
+            path: '/employe-edit-serH',
+            name: 'EditSerH',
+            component: EditServiceCom
           }
         ]
       }

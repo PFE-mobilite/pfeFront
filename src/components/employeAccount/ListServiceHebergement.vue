@@ -25,7 +25,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/edit-fournisseur-ligne"><i class="fas fa-eye text-info mr-2"></i></a>
+                    <a href="/employe-edit-serH"><i class="fas fa-eye text-info mr-2"></i></a>
                   </td>
                 </tr>
                 <tr>
@@ -34,7 +34,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/"><i class="fas fa-eye text-info mr-2"></i></a>
+                    <a href="/employe-edit-serH"><i class="fas fa-eye text-info mr-2"></i></a>
                   </td>
                 </tr>
                 <tr>
@@ -69,7 +69,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/add-fournisseur-ligne"><button type="button" class="btn btn-color  text-white  align-content-end ">Ajouter</button></router-link>
+            <router-link to="/employe-add-serH"><button type="button" class="btn btn-color  text-white  align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>
