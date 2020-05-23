@@ -14,8 +14,8 @@ import NewMateriel from '../components/dashboard/materiel/NewMateriel'
 import EditMateriel from '../components/dashboard/materiel/EditMateriel'
 import FournisseurChoix from '../components/dashboard/fournisseur/FournisseurChoixContainer'
 import FournisseurMList from '../components/dashboard/fournisseur/fournisseurMaterriel/FournisseurListM'
-import NewFournisseur from '../components/dashboard/fournisseur/fournisseurMaterriel/NewFournisseurM'
-import EditFournisseur from '../components/dashboard/fournisseur/fournisseurMaterriel/EditFournisseurM'
+import NewFournisseurM from '../components/dashboard/fournisseur/fournisseurMaterriel/NewFournisseurM'
+import EditFournisseurM from '../components/dashboard/fournisseur/fournisseurMaterriel/EditFournisseurM'
 import FournisseurLlist from '../components/dashboard/fournisseur/fournisseurEnLigne/FournisseurHList'
 import NewFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/NewFournisseurL'
 import EditFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/EditFournisseurH'
@@ -102,38 +102,39 @@ const routes = [
       },
       {
         path: '/fournisseurs',
-        name: 'fournisseur',
-        component: FournisseurChoix
-      },
-      {
-        path: '/fournisseur-ligne-list',
-        name: 'fournisseurL',
-        component: FournisseurLlist
-      },
-      {
-        path: '/add-fournisseur-ligne',
-        name: 'newfournisseurL',
-        component: NewFournisseurL
-      },
-      {
-        path: '/edit-fournisseur-ligne',
-        name: 'editfournisseurL',
-        component: EditFournisseurL
-      },
-      {
-        path: '/fournisseur-mat-list',
-        name: 'fournisseurMateriel',
-        component: FournisseurMList
-      },
-      {
-        path: '/newfournisseur',
-        name: 'newfournisseur',
-        component: NewFournisseur
-      },
-      {
-        path: '/editfournisseur',
-        name: 'editfournisseur',
-        component: EditFournisseur
+        component: FournisseurChoix,
+        children: [
+          {
+            path: '/fournisseur-ligne-list',
+            name: 'fournisseurL',
+            component: FournisseurLlist
+          },
+          {
+            path: '/add-fournisseur-ligne',
+            name: 'newfournisseurL',
+            component: NewFournisseurL
+          },
+          {
+            path: '/edit-fournisseur-ligne',
+            name: 'editfournisseurL',
+            component: EditFournisseurL
+          },
+          {
+            path: '/fournisseur-mat-list',
+            name: 'fournisseurMateriel',
+            component: FournisseurMList
+          },
+          {
+            path: '/new-fournisseur-mat',
+            name: 'newfournisseur',
+            component: NewFournisseurM
+          },
+          {
+            path: '/edit-fournisseur-mat',
+            name: 'editfournisseur',
+            component: EditFournisseurM
+          }
+        ]
       },
       {
         path: '/projets',

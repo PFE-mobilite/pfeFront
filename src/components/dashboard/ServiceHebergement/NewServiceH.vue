@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <div class="col mx-5">
         <div class="card card-add-serH">
@@ -54,7 +54,7 @@
             </div>
             <div class="row">
               <div class="col-md-4 mt-4">
-                <button type="button" class="btn btn-outline-success btn-block mt-2">Save</button>
+                <button type="button" class="btn btn-outline-info btn-block mt-2">Save</button>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default {
 
   .card-add-serH{
     margin-top: 50px;
-    background: #0d152c;
+    background: #2f4050;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

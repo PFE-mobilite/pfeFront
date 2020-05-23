@@ -33,7 +33,7 @@
             </div>
             <div class="row mx-3 d-flex flex-row-reverse">
               <div class="col-lg-3 col-md-9 mt-2 px-3">
-                <button type="button" class="btn btn-outline-success btn-lg btn-block" @click="edit()">Save</button>
+                <button type="button" class="btn btn-outline-info  btn-lg btn-block" @click="edit()">Save</button>
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default {
 <style scoped>
   .card-edit-client{
     margin-top: 50px;
-    background: transparent;
+    background: #2f4050;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

@@ -1,6 +1,6 @@
 <template>
-  <div id="clientProfil">
-    <div class="container-fluid">
+  <div>
+    <div class="container-fluid mt-4">
       <div class="row">
         <div class="col"><EditProfil></EditProfil></div>
         <div class="col-3"><ClientProfilminiCard></ClientProfilminiCard></div>
@@ -24,8 +24,4 @@ export default {
 </script>
 
 <style scoped>
-  #clientProfil{
-    height: 100vh;
-    background-color: #0d152c;
-  }
 </style>

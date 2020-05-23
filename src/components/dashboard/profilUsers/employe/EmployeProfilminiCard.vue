@@ -55,7 +55,7 @@ export default {
     margin-top: 50px;
     width: 100vh;
     height: 70vh;
-    background: transparent;
+    background-color: #2f4050;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

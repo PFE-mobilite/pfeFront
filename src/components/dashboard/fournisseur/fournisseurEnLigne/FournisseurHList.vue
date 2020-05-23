@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
     <div class="row">
       <div class="col">
         <div class="card card-display-all-fourniH">
@@ -79,7 +79,6 @@
 
 <style scoped>
   .card-display-all-fourniH{
-    margin-top: 70px;
     background: white;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

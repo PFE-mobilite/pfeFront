@@ -47,7 +47,7 @@
                 <input type="number" class="form-control" placeholder="Valeur H/J" v-model="employe.valeur_HJ">
               </div>
               <div class="col-md-4 mt-4">
-                  <button type="button" class="btn btn-outline-success btn-block mt-2" @click="edit()" >Save</button>
+                  <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit()" >Save</button>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default {
 <style scoped>
   .card-edit{
     margin-top: 50px;
-    background: transparent;
+    background-color: #2f4050;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

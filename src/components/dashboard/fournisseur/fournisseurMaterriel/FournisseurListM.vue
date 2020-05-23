@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
     <div class="row">
       <div class="col">
         <div class="card card-display-all-fourni">
@@ -25,7 +25,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/editfournisseur"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -35,7 +35,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -45,7 +45,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -55,7 +55,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -65,7 +65,7 @@
                   <td>Lorem ipsum dolor sit amet.</td>
                   <td>logo</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/new-fournisseur-mat"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>
@@ -84,7 +84,6 @@
 
 <style scoped>
   .card-display-all-fourni{
-    margin-top: 70px;
     background: white;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
