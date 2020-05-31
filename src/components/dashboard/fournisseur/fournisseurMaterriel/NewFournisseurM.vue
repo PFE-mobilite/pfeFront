@@ -11,7 +11,7 @@
               <div class="col ml-5 align-items-center mx-5">
                 <div class="row mx-5">
                   <label for="">libelle</label>
-                  <input type="text" class="form-control" placeholder="libelle" v-model="fournisseur.type">
+                  <input type="text" class="form-control" placeholder="libelle" v-model="fournisseur.libelle">
                 </div>
                 <div class="row mx-5">
                   <label for="">Email</label>
@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="onSubmitM">Ajouter</button>
                 </div>
               </div>
               <div class="col-3 ml-5 align-items-center">
@@ -48,15 +48,29 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       fournisseur: {
         libelle: '',
         email: '',
-        Description: '',
+        description: '',
         logo: ''
       }
+    }
+  },
+  methods: {
+    onSubmitM () {
+      const formData2 = {
+        libelle: this.fournisseur.libelle,
+        email: this.fournisseur.email,
+        description: this.fournisseur.description,
+        logo: 'blabla'
+      }
+      console.log(formData2)
+      axios.post('http://localhost:8080/api/fournisseurs', formData2, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
     }
   }
 }

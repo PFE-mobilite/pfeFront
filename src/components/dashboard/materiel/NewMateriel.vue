@@ -11,7 +11,7 @@
               <div class="col ml-5 align-items-center mx-5">
                 <div class="row mx-5">
                   <label for="">Type</label>
-                  <input type="text" class="form-control" placeholder="Type" v-model="materiel.type">
+                  <input type="text" class="form-control" placeholder="Type" v-model="materiel.typeMateriel">
                 </div>
                 <div class="row mx-5">
                   <label for="">Marque</label>
@@ -22,16 +22,8 @@
                   <input type="text" class="form-control" placeholder="Reference" v-model="materiel.reference">
                 </div>
                 <div class="row mx-5">
-                  <label for="">Prix</label>
-                  <input type="number" class="form-control" placeholder="Prix" v-model="materiel.prix">
-                </div>
-                <div class="row mx-5">
                   <label for="">Prix_achat</label>
-                  <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prix_achat">
-                </div>
-                <div class="row mx-5">
-                  <label for="">Fournisseur</label>
-                  <input type="text" class="form-control" placeholder="Fournisseur" v-model="materiel.fournisseur">
+                  <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prixAchat">
                 </div>
                 <div class="row mx-4">
                   <div class="col-md-8 ml-2">
@@ -40,7 +32,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="onSubmitM">Ajouter</button>
                 </div>
               </div>
               <div class="col-3 ml-5 align-items-center">
@@ -64,18 +56,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       materiel: {
-        type: '',
+        typeMateriel: '',
         marque: '',
         reference: '',
-        prix: '',
-        prix_achat: '',
-        fournisseur: '',
+        prixAchat: 0,
         description: ''
       }
+    }
+  },
+  methods: {
+    onSubmitM () {
+      const prix = parseFloat(this.materiel.prixAchat)
+      const formData123 = {
+        typeMateriel: this.materiel.typeMateriel,
+        marque: this.materiel.marque,
+        reference: this.materiel.reference,
+        prixAchat: prix,
+        description: this.materiel.description
+      }
+      console.log(formData123)
+      axios.post('http://localhost:8080/api/materiels', formData123, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
     }
   }
 }

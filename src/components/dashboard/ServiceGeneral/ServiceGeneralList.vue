@@ -1,71 +1,65 @@
 <template>
-  <div class="container mt-4">
+  <div class="container">
     <div class="row">
       <div class="col">
-        <div class="card card-display-all-fourni">
+        <div class="card card-display-all-serG">
           <div class="card-header text-info font-weight-bold">
-            Fournisseur Materiel
+            Services Généraux
           </div>
           <div class="card-body">
             <div class="row align-items-center">
               <table class="table table-striped text-center">
                 <thead>
                 <tr class="text-muted">
-                  <th>Libellé</th>
-                  <th>Email</th>
+                  <th>Libélle</th>
                   <th>Description</th>
-                  <th>Logo</th>
+                  <th>Type</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                  <td>mytek</td>
-                  <td>myteck@gmail.com</td>
+                  <td>Lorem</td>
                   <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                  <td>lorem</td>
                   <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
+                  <td>Lorem</td>
                   <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                  <td>lorem</td>
                   <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
+                  <td>Lorem</td>
                   <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                  <td>lorem</td>
                   <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
+                  <td>Lorem</td>
                   <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                  <td>lorem</td>
                   <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
+                  <td>Lorem</td>
                   <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                  <td>lorem</td>
                   <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -74,7 +68,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/new-fournisseur-mat"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/add-service-general"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>
@@ -83,7 +77,8 @@
 </template>
 
 <style scoped>
-  .card-display-all-fourni{
+  .card-display-all-serG{
+    margin-top: 70px;
     background: white;
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);

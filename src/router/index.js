@@ -20,6 +20,8 @@ import FournisseurLlist from '../components/dashboard/fournisseur/fournisseurEnL
 import NewFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/NewFournisseurL'
 import EditFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/EditFournisseurH'
 import ProjetList from '../components/dashboard/projet/ProjectList'
+import ServiceGeneralList from '../components/dashboard/ServiceGeneral/ServiceGeneralList'
+import NewServiceGeneral from '../components/dashboard/ServiceGeneral/NewServiceGeneral'
 import ServiceHebergement from '../components/dashboard/ServiceHebergement/ServiceHeberList.vue'
 import NewServiceH from '../components/dashboard/ServiceHebergement/NewServiceH'
 import EditServiceH from '../components/dashboard/ServiceHebergement/EditServiceH'
@@ -99,6 +101,16 @@ const routes = [
         path: '/editmateriel',
         name: 'editmateriels',
         component: EditMateriel
+      },
+      {
+        path: '/services-generaux',
+        name: 'S.generaux',
+        component: ServiceGeneralList
+      },
+      {
+        path: '/add-service-general',
+        name: 'newS.generaux',
+        component: NewServiceGeneral
       },
       {
         path: '/fournisseurs',

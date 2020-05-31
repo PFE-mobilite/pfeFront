@@ -21,61 +21,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Souris</td>
-                  <td>Havic</td>
-                  <td>n22 model 1</td>
-                  <td>souris laser noir</td>
-                  <td>20$</td>
-                  <td>Mytek</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Souris</td>
-                  <td>Havic</td>
-                  <td>n22 model 1</td>
-                  <td>souris laser noir</td>
-                  <td>20$</td>
-                  <td>Mytek</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Souris</td>
-                  <td>Havic</td>
-                  <td>n22 model 1</td>
-                  <td>souris laser noir</td>
-                  <td>20$</td>
-                  <td>Mytek</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Souris</td>
-                  <td>Havic</td>
-                  <td>n22 model 1</td>
-                  <td>souris laser noir</td>
-                  <td>20$</td>
-                  <td>Mytek</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Souris</td>
-                  <td>Havic</td>
-                  <td>n22 model 1</td>
-                  <td>souris laser noir</td>
-                  <td>20$</td>
-                  <td>Mytek</td>
+                <tr v-for ='materielx in materiels' :key="materielx">
+                  <td>{{materielx.typeMateriel}}</td>
+                  <td>{{materielx.marque}}</td>
+                  <td>{{materielx.reference}}</td>
+                  <td>{{materielx.description}}</td>
+                  <td>{{materielx.prixAchat}}</td>
+                  <td>{{materielx.fournisseur}}</td>
                   <td>
                     <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
@@ -93,6 +45,30 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      materiels: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/materiels').then(response => {
+      const dataImported = response.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const materiel = dataImported[key]
+        this.materiels.push(materiel)
+      }
+      console.log('niggaaaaa')
+      console.log(this.materiels)
+    }
+    ).catch(error => console.log(error))
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all-mat{

@@ -23,22 +23,22 @@
               <div class="col ml-5 align-items-center mr-5">
                 <div class="row">
                   <label for="">Nom</label>
-                  <input type="text" class="form-control" placeholder="Nom">
+                  <input type="text" class="form-control" placeholder="Nom" v-model="client.nom">
                 </div>
                 <div class="row">
                   <label for="">Prenom</label>
-                  <input type="text" class="form-control" placeholder="Prenom">
+                  <input type="text" class="form-control" placeholder="Prenom" v-model="client.prenom">
                 </div>
                 <div class="row">
                   <label for="">Email</label>
-                  <input type="email" class="form-control" placeholder="Email">
+                  <input type="email" class="form-control" placeholder="Email" v-model="client.email">
                 </div>
                 <div class="row">
                   <label for="">Raison Sociale</label>
-                  <input type="text" class="form-control" placeholder="Raison Sociale">
+                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raison_social">
                 </div>
                 <div class="row d-flex flex-row-reverse">
-                  <button type="button" class="btn btn-outline-info mt-3 px-4">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info mt-3 px-4" @click="onSubmitC">Ajouter</button>
                 </div>
               </div>
             </div>
@@ -48,6 +48,35 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      client: {
+        nom: '',
+        prenom: '',
+        email: '',
+        RaisonSociale: ''
+      }
+    }
+  },
+  methods: {
+    onSubmitC () {
+      const formData = {
+        nom: this.employe.nom,
+        prenom: this.employe.prenom,
+        email: this.employe.email,
+        password: 'blibli'
+      }
+      console.log(formData)
+      axios.post('http://localhost:8080/api/?', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('+++++++++++Success+++++++')
+    }
+  }
+}
+</script>
 
 <style scoped>
   .card-edit{

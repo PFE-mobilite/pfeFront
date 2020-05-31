@@ -16,7 +16,7 @@
                 <router-link to="/service-hebergement"><li class="nav-item"><a href="#" class="nav-link text-white p-2 mb-2 sidebar-link"><i class="fas fa-cloud-upload-alt text-light fa-lg mr-3"></i>S.Hébergement</a></li></router-link><i class=""></i>
                 <router-link to="/materiels"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox text-light fa-lg mr-3"></i>Materiels</a></li></router-link>
                 <router-link to="/fournisseurs"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-people-carry text-light fa-lg mr-3"></i>Fournisseurs</a></li></router-link>
-                <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-table text-light fa-lg mr-3"></i>Tables</a></li>
+                <router-link to="/services-generaux"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-table text-light fa-lg mr-3"></i>S.Généraux</a></li></router-link>
                 <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-wrench text-light fa-lg mr-3"></i>Settings</a></li>
               </ul>
             </div>
