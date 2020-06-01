@@ -68,7 +68,7 @@ const routes = [
         component: EmployeList
       },
       {
-        path: '/editemploye',
+        path: '/editemploye/:id',
         name: 'editclient',
         component: EditEmploye
       },

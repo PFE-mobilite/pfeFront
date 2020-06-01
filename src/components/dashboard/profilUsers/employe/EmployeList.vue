@@ -24,79 +24,19 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>john</td>
-                    <td>doe</td>
-                    <td>John_deo@gmail.com</td>
-                    <td>12/01/2020</td>
-                    <td>Master</td>
-                    <td>WEB dev</td>
-                    <td>Equipe1</td>
+                  <tr v-for="employe in employes" :key="employe">
+                    <td>{{employe.nom}}</td>
+                    <td>{{employe.prenom}}</td>
+                    <td>{{employe.email}}</td>
+                    <td>{{employe.date_recrutement}}</td>
+                    <td>{{employe.diplome}}</td>
+                    <td>{{employe.poste}}</td>
+                    <td>{{employe.service}}</td>
                     <td>20$/heure</td>
-                    <td>avatar</td>
+                    <td>{{employe.id}}</td>
                     <td>
-                      <a href="/editemploye"><i class="fas fa-edit text-success mr-2"></i></a>
-                      <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>john</td>
-                    <td>doe</td>
-                    <td>John_deo@gmail.com</td>
-                    <td>12/01/2020</td>
-                    <td>Master</td>
-                    <td>WEB dev</td>
-                    <td>Equipe1</td>
-                    <td>20$/heure</td>
-                    <td>avatar</td>
-                    <td>
-                      <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
-                      <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>john</td>
-                    <td>doe</td>
-                    <td>John_deo@gmail.com</td>
-                    <td>12/01/2020</td>
-                    <td>Master</td>
-                    <td>WEB dev</td>
-                    <td>Equipe1</td>
-                    <td>20$/heure</td>
-                    <td>avatar</td>
-                    <td>
-                      <a href="/userprofil"><i class="fas fa-edit text-success mr-2"></i></a>
-                      <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>john</td>
-                    <td>doe</td>
-                    <td>John_deo@gmail.com</td>
-                    <td>12/01/2020</td>
-                    <td>Master</td>
-                    <td>WEB dev</td>
-                    <td>Equipe1</td>
-                    <td>20$/heure</td>
-                    <td>avatar</td>
-                    <td>
-                      <a href="/userprofil"><i class="fas fa-edit text-success mr-2"></i></a>
-                      <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>john</td>
-                    <td>doe</td>
-                    <td>John_deo@gmail.com</td>
-                    <td>12/01/2020</td>
-                    <td>Master</td>
-                    <td>WEB dev</td>
-                    <td>Equipe1</td>
-                    <td>20$/heure</td>
-                    <td>avatar</td>
-                    <td>
-                      <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
-                      <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                      <router-link to="/editemploye/1"><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
+                      <a href="" @click="deleting(employe.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                     </td>
                   </tr>
                   </tbody>
@@ -111,6 +51,37 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      employes: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/employes').then(response => {
+      const dataImported = response.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const employee = dataImported[key]
+        console.log(employee.date_recrutement)
+        this.employes.push(employee)
+      }
+      console.log('niggaaaaa')
+      console.log(this.employes)
+    }
+    ).catch(error => console.log(error))
+  },
+  methods: {
+    deleting (id) {
+      axios.delete('http://localhost:8080/api/employes/' + id).then(res => console.log(res)).catch(error => console.log(error))
+    }
+  }
+}
+</script>
+
 <style scoped>
   .card-display-all{
     margin-top: 70px;

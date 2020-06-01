@@ -1,6 +1,6 @@
 <template>
   <div id="">
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-4 ">
       <div class="row">
         <div class="col"><EditProfil></EditProfil></div>
          <div class="col-3"><UserCard></UserCard></div>
@@ -19,6 +19,7 @@ export default {
   },
   created () {
     this.$store.dispatch('initEmploye')
+    console.log(this.id)
   }
 }
 </script>

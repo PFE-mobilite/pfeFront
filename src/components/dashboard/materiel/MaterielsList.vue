@@ -60,6 +60,7 @@ export default {
       console.log(dataImported)
       for (const key in dataImported) {
         const materiel = dataImported[key]
+        console.log(materiel.fournisseur)
         this.materiels.push(materiel)
       }
       console.log('niggaaaaa')

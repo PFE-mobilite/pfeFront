@@ -4,7 +4,7 @@
       <div class="col">
         <div class="card card-edit">
           <div class="card-header text-white">
-            Edit Profile
+            Edit Profile {{id}}
           </div>
           <div class="card-body">
             <div class="row">
@@ -47,7 +47,7 @@
                 <input type="number" class="form-control" placeholder="Valeur H/J" v-model="employe.valeur_HJ">
               </div>
               <div class="col-md-4 mt-4">
-                  <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit()" >Save</button>
+                  <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit()">Save</button>
               </div>
             </div>
           </div>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions } from 'vuex'
 export default {
   data () {
@@ -71,15 +72,27 @@ export default {
         diplome: '',
         date_recrutement: '',
         valeur_HJ: ''
-      }
+      },
+      id: this.$route.params.id
     }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/employes/' + this.id).then(res => {
+      console.log(res.data)
+      const employeImported = res.data
+      this.employe.nom = employeImported.nom
+      this.employe.prenom = employeImported.prenom
+      this.employe.email = employeImported.email
+      this.employe.poste = employeImported.poste
+      this.employe.service = employeImported.service
+      this.employe.diplome = employeImported.diplome
+      this.employe.date_recrutement = employeImported.date_recrutement
+    }).catch(error => console.log(error))
   },
   methods: {
     ...mapActions({
       modifierEmployeProfil: 'editEmploye'
-    })
-  },
-  computed: {
+    }),
     edit () {
       const employemodifier = {
         nom: this.employe.nom,
@@ -91,6 +104,9 @@ export default {
         date_recrutement: this.employe.date_recrutement,
         valeur_HJ: this.employe.valeur_HJ
       }
+      console.log(employemodifier)
+      axios.put('http://localhost:8080/api/employes/1', employemodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
       return this.modifierEmployeProfil(employemodifier)
     }
   }
