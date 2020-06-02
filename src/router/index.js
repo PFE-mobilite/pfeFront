@@ -164,7 +164,7 @@ const routes = [
         component: NewServiceH
       },
       {
-        path: '/edit-service-internet',
+        path: '/edit-service-internet/:id',
         name: 'editservicehebergemenet',
         component: EditServiceH
       }

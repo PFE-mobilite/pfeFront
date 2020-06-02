@@ -4,7 +4,7 @@
       <div class="col">
         <div class="card card-edit">
           <div class="card-header text-white">
-            Edit Profile {{id}}
+            Edit Profile
           </div>
           <div class="card-body">
             <div class="row">

@@ -21,7 +21,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for ='materielx in materiels' :key="materielx">
+                <tr v-for ="(materielx,indexx) in materiels" :key="materielx + indexx">
                   <td>{{materielx.typeMateriel}}</td>
                   <td>{{materielx.marque}}</td>
                   <td>{{materielx.reference}}</td>
@@ -57,14 +57,14 @@ export default {
   created () {
     axios.get('http://localhost:8080/api/materiels').then(response => {
       const dataImported = response.data['hydra:member']
+      console.log('test the data imported')
       console.log(dataImported)
       for (const key in dataImported) {
         const materiel = dataImported[key]
+        console.log('test the materiel.fournisseur')
         console.log(materiel.fournisseur)
         this.materiels.push(materiel)
       }
-      console.log('niggaaaaa')
-      console.log(this.materiels)
     }
     ).catch(error => console.log(error))
   }

@@ -20,58 +20,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>serveur email</td>
-                  <td>Amazon cloud</td>
-                  <td>GO SPORT SITE</td>
-                  <td>500$</td>
-                  <td>1 ans</td>
+                <tr v-for="(service,index) in servicesHebergement " :key="service + index">
+                  <td>{{service.typeService}}</td>
+                  <td>{{service.FSI.libelle}}</td>
+                  <td>{{service.projet.libelle}}</td>
+                  <td>{{service.prix}}$</td>
+                  <td>{{service.duree}} mois</td>
                   <td>
-                    <a href="/edit-service-internet"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>serveur email</td>
-                  <td>Amazon cloud</td>
-                  <td>GO SPORT SITE</td>
-                  <td>500$</td>
-                  <td>1 ans</td>
-                  <td>
-                    <a href="/edit-service-internet"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>serveur email</td>
-                  <td>Amazon cloud</td>
-                  <td>GO SPORT SITE</td>
-                  <td>500$</td>
-                  <td>1 ans</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>serveur email</td>
-                  <td>Amazon cloud</td>
-                  <td>GO SPORT SITE</td>
-                  <td>500$</td>
-                  <td>1 ans</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>serveur email</td>
-                  <td>Amazon cloud</td>
-                  <td>GO SPORT SITE</td>
-                  <td>500$</td>
-                  <td>1 ans</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/edit-service-internet/'+ service.id" ><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -87,6 +43,29 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      servicesHebergement: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/service_hebergements').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const serviceHeber = dataImported[key]
+        this.servicesHebergement.push(serviceHeber)
+      }
+      console.log('success and verified')
+      console.log(this.servicesHebergement)
+    }).catch(error => console.log(error))
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all-serH{

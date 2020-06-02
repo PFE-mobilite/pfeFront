@@ -76,7 +76,8 @@ export default {
         date_fin: '',
         fournisseurServiceInternet: '',
         projet: ''
-      }
+      },
+      id: this.$route.params.id
     }
   }
 }
