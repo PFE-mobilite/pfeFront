@@ -28,7 +28,7 @@
                     <td>{{employe.nom}}</td>
                     <td>{{employe.prenom}}</td>
                     <td>{{employe.email}}</td>
-                    <td>{{employe.date_recrutement}}</td>
+                    <td>{{employe.datederecrutement}}</td>
                     <td>{{employe.diplome}}</td>
                     <td>{{employe.poste}}</td>
                     <td>{{employe.service}}</td>
@@ -76,7 +76,10 @@ export default {
   },
   methods: {
     deleting (id) {
-      axios.delete('http://localhost:8080/api/employes/' + id).then(res => console.log(res)).catch(error => console.log(error))
+      axios.delete('http://localhost:8080/api/employes/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
     }
   }
 }

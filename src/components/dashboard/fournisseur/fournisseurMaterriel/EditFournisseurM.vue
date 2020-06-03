@@ -11,7 +11,7 @@
               <div class="col ml-5 align-items-center mx-5">
                 <div class="row mx-5">
                   <label for="">libelle</label>
-                  <input type="text" class="form-control" placeholder="libelle" v-model="fournisseur.type">
+                  <input type="text" class="form-control" placeholder="libelle" v-model="fournisseur.libelle">
                 </div>
                 <div class="row mx-5">
                   <label for="">Email</label>
@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="editnpm ">Save</button>
                 </div>
               </div>
               <div class="col-3 ml-5 align-items-center">
@@ -48,15 +48,39 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       fournisseur: {
         libelle: '',
         email: '',
-        Description: '',
+        description: '',
+        logo: ''
+      },
+      id: this.$route.params.id
+    }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/fournisseurs/' + this.id).then(res => {
+      console.log(res.data)
+      const dataImported = res.data
+      this.fournisseur.libelle = dataImported.libelle
+      this.fournisseur.email = dataImported.email
+      this.fournisseur.description = dataImported.description
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    edit () {
+      const fournisseurM = {
+        libelle: this.fournisseur.libelle,
+        email: this.fournisseur.email,
+        description: this.fournisseur.description,
         logo: ''
       }
+      console.log(fournisseurM)
+      axios.put('http://localhost:8080/api/fournisseurs/' + this.id, fournisseurM, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
     }
   }
 }

@@ -19,49 +19,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                <tr v-for="(fournisseurl,index) in fournisseursL " :key="fournisseurl + index">
+                  <td>{{fournisseurl.libelle}}</td>
+                  <td>{{fournisseurl.adresse}}</td>
+                  <td>{{fournisseurl.email}}</td>
+                  <td>{{fournisseurl.pays}}</td>
                   <td>
-                    <a href="/edit-fournisseur-ligne"><i class="fas fa-eye text-info mr-2"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/"><i class="fas fa-eye text-info mr-2"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/"><i class="fas fa-eye text-info mr-2"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/"><i class="fas fa-eye text-info mr-2"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/"><i class="fas fa-eye text-info mr-2"></i></a>
+                    <a :href="'/edit-fournisseur-ligne/' + fournisseurl.id"><i class="fas fa-eye text-info mr-2"></i></a>
+                    <a href="" @click="onDelete( fournisseurl.id) "><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -76,6 +41,37 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      fournisseursL: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/fournisseur_service_internets').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const fournisseur = dataImported[key]
+        this.fournisseursL.push(fournisseur)
+      }
+      console.log('success and verified')
+      console.log(this.fournisseursL)
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    onDelete (id) {
+      axios.delete('http://localhost:8080/api/fournisseur_service_internets/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all-fourniH{

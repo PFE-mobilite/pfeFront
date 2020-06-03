@@ -19,54 +19,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>mytek</td>
-                  <td>myteck@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                <tr v-for="(fourisseur,index) in fournisseursM " :key="fourisseur + index">
+                  <td>{{fourisseur.libelle}}</td>
+                  <td>{{fourisseur.email}}</td>
+                  <td>{{fourisseur.description}}</td>
+                  <td>{{fourisseur.logo}}</td>
                   <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/edit-fournisseur-mat"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                    <router-link :to="'/edit-fournisseur-mat/' + fourisseur.id"><i class="fas fa-edit text-success mr-2"></i></router-link>
+                    <a href="" @click="onDelete(fourisseur.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -81,6 +41,37 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      fournisseursM: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/fournisseurs').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const fournisseur = dataImported[key]
+        this.fournisseursM.push(fournisseur)
+      }
+      console.log('success and verified')
+      console.log(this.fournisseursM)
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    onDelete (id) {
+      axios.delete('http://localhost:8080/api/fournisseurs/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all-fourni{

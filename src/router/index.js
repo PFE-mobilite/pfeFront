@@ -127,7 +127,7 @@ const routes = [
             component: NewFournisseurL
           },
           {
-            path: '/edit-fournisseur-ligne',
+            path: '/edit-fournisseur-ligne/:id',
             name: 'editfournisseurL',
             component: EditFournisseurL
           },
@@ -142,7 +142,7 @@ const routes = [
             component: NewFournisseurM
           },
           {
-            path: '/edit-fournisseur-mat',
+            path: '/edit-fournisseur-mat/:id',
             name: 'editfournisseur',
             component: EditFournisseurM
           }

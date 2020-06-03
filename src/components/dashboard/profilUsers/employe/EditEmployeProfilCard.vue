@@ -105,7 +105,7 @@ export default {
         valeur_HJ: this.employe.valeur_HJ
       }
       console.log(employemodifier)
-      axios.put('http://localhost:8080/api/employes/1', employemodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/employes/' + this.id, employemodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
       console.log('++++++++Success++++++++++')
       return this.modifierEmployeProfil(employemodifier)
     }

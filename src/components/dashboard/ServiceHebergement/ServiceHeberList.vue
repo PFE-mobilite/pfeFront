@@ -22,7 +22,7 @@
                 <tbody>
                 <tr v-for="(service,index) in servicesHebergement " :key="service + index">
                   <td>{{service.typeService}}</td>
-                  <td>{{service.FSI.libelle}}</td>
+                  <td>{{service.fsi.libelle}}</td>
                   <td>{{service.projet.libelle}}</td>
                   <td>{{service.prix}}$</td>
                   <td>{{service.duree}} mois</td>

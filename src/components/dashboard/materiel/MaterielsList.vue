@@ -27,7 +27,7 @@
                   <td>{{materielx.reference}}</td>
                   <td>{{materielx.description}}</td>
                   <td>{{materielx.prixAchat}}</td>
-                  <td>{{materielx.fournisseur}}</td>
+                  <td>{{materielx.fournisseur ? materielx.fournisseur.libelle  : "null"}}</td>
                   <td>
                     <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>

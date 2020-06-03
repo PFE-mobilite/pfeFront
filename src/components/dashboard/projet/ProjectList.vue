@@ -12,60 +12,22 @@
                 <thead>
                 <tr class="text-muted">
                   <th>Libellé</th>
-                  <th>Email</th>
-                  <th>Description</th>
-                  <th>Logo</th>
+                  <th>Client</th>
+                  <th>TypeProjet</th>
+                  <th>DateDebut</th>
+                  <th>CoutEstime</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
+                <tr v-for="(project,index) in projets " :key="project + index">
+                  <td>{{project.libelle}}</td>
+                  <td>Client</td>
+                  <td>{{project.typeProjet}}</td>
+                  <td>{{project.dateDebut}}$</td>
+                  <td>{{project.coutEstime}}$</td>
                   <td>
-                    <a href="/editfournisseur"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>mytek</td>
-                  <td>mytek@gmail.com</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>logo</td>
-                  <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -81,6 +43,29 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      projets: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/projets').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const projet = dataImported[key]
+        this.projets.push(projet)
+      }
+      console.log('success and verified')
+      console.log(this.projets)
+    }).catch(error => console.log(error))
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all-proj{
