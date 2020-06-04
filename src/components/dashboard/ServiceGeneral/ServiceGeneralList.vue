@@ -11,56 +11,20 @@
               <table class="table table-striped text-center">
                 <thead>
                 <tr class="text-muted">
-                  <th>Libélle</th>
+                  <th>Libelle</th>
                   <th>Description</th>
                   <th>Type</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Lorem</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>lorem</td>
+                <tr v-for="(serviceG,index) in servicesGeneraux " :key="serviceG + index">
+                  <td>{{serviceG.libelle}}</td>
+                  <td>{{serviceG.description}}</td>
+                  <td>{{serviceG.type}}</td>
                   <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lorem</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>lorem</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lorem</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>lorem</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lorem</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>lorem</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lorem</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>lorem</td>
-                  <td>
-                    <a href="/"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                    <a :href="'/edit-service-general/' + serviceG.id"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a href="" @click="onDelete(serviceG.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -75,6 +39,37 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      servicesGeneraux: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/services_generauxes').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const serviceG = dataImported[key]
+        this.servicesGeneraux.push(serviceG)
+      }
+      console.log('success and verified')
+      console.log(this.servicesGeneraux)
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    onDelete (id) {
+      axios.delete('http://localhost:8080/api/services_generauxes/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all-serG{

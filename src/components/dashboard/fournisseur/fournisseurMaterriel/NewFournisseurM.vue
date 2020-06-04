@@ -69,7 +69,7 @@ export default {
         logo: 'blabla'
       }
       console.log(formData2)
-      axios.post('http://localhost:8080/api/fournisseurs', formData2, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/services_generauxes', formData2, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
       console.log('++++++++Success++++++++++')
     }
   }

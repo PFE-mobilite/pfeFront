@@ -25,7 +25,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4" @click="onSubmitSG">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="edit">Ajouter</button>
                 </div>
               </div>
             </div>
@@ -46,18 +46,28 @@ export default {
         libelle: '',
         type: '',
         description: ''
-      }
+      },
+      id: this.$route.params.id
     }
   },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/services_generauxes/' + this.id).then(res => {
+      console.log(res.data)
+      const dataImported = res.data
+      this.serviceGen.libelle = dataImported.libelle
+      this.serviceGen.type = dataImported.type
+      this.serviceGen.description = dataImported.description
+    }).catch(error => console.log(error))
+  },
   methods: {
-    onSubmitSG () {
-      const formDataSG = {
+    edit () {
+      const serviceGen = {
         libelle: this.serviceGen.libelle,
         type: this.serviceGen.type,
         description: this.serviceGen.description
       }
-      console.log(formDataSG)
-      axios.post('http://localhost:8080/api/services_generauxes', formDataSG, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log(serviceGen)
+      axios.put('http://localhost:8080/api/services_generauxes/' + this.id, serviceGen, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
       console.log('++++++++Success++++++++++')
     }
   }

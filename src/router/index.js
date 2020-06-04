@@ -22,6 +22,7 @@ import EditFournisseurL from '../components/dashboard/fournisseur/fournisseurEnL
 import ProjetList from '../components/dashboard/projet/ProjectList'
 import ServiceGeneralList from '../components/dashboard/ServiceGeneral/ServiceGeneralList'
 import NewServiceGeneral from '../components/dashboard/ServiceGeneral/NewServiceGeneral'
+import EditServiceGeneral from '../components/dashboard/ServiceGeneral/EditServiceGeneral'
 import ServiceHebergement from '../components/dashboard/ServiceHebergement/ServiceHeberList.vue'
 import NewServiceH from '../components/dashboard/ServiceHebergement/NewServiceH'
 import EditServiceH from '../components/dashboard/ServiceHebergement/EditServiceH'
@@ -111,6 +112,11 @@ const routes = [
         path: '/add-service-general',
         name: 'newS.generaux',
         component: NewServiceGeneral
+      },
+      {
+        path: '/edit-service-general/:id',
+        name: 'editS.generaux',
+        component: EditServiceGeneral
       },
       {
         path: '/fournisseurs',
