@@ -14,17 +14,17 @@
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Durée</label>
-                <input type="text" class="form-control" placeholder="Durée" v-model="service_hebergement.durée">
+                <input type="number" class="form-control" placeholder="Durée" v-model="service_hebergement.durée">
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Date debut</label>
-                <input type="text" class="form-control" placeholder="Date debut" v-model="service_hebergement.date_debut" >
+                <input type="date" class="form-control" placeholder="Date debut" v-model="service_hebergement.date_debut" >
               </div>
               <div class="col-md-6 px-md-1">
                 <label for="">Date fin</label>
-                <input type="text" class="form-control" placeholder="Date fin" v-model="service_hebergement.date_fin">
+                <input type="date" class="form-control" placeholder="Date fin" v-model="service_hebergement.date_fin">
               </div>
             </div>
             <div class="row">
@@ -109,36 +109,38 @@ export default {
   },
   methods: {
     selectedProjetId (selectedProjet) {
-      console.log('Projets')
-      console.log(this.projets)
-      console.log('selectedProjet')
-      console.log(selectedProjet)
       for (const projet1 of this.projets) {
-        console.log('test il projet1 avant if')
-        console.log(projet1)
         if (projet1.libelle === selectedProjet) {
-          console.log('test il projet1 after if')
-          console.log(projet1)
           this.selectedProjet = projet1.id
-          console.log('test il selected id')
-          console.log(projet1.id)
           return projet1.id
+        }
+      }
+      return null
+    },
+    selectedFournisseurtId (selectedFournisseur) {
+      for (const fournisseur1 of this.fournisseursLignes) {
+        if (fournisseur1.libelle === selectedFournisseur) {
+          this.selectedFournisseur = fournisseur1.id
+          return fournisseur1.id
         }
       }
       return null
     },
     edit () {
       const projet = this.selectedProjetId(this.selectedProjet)
-      const servieEdit = {
-        type: this.service_hebergement.type,
-        duree: this.service_hebergement.durée,
-        prix: this.service_hebergement.prix,
+      const fournisseur = this.selectedFournisseurtId(this.selectedFournisseur)
+      const serviceEdit = {
+        typeService: this.service_hebergement.type,
+        duree: parseInt(this.service_hebergement.durée),
+        prix: parseInt(this.service_hebergement.prix),
         dateDebut: this.service_hebergement.date_debut,
         dateFin: this.service_hebergement.date_fin,
-        fsi: this.service_hebergement.fournisseurServiceInternet,
+        fsi: fournisseur,
         projet
       }
-      console.log(servieEdit)
+      console.log(serviceEdit)
+      axios.put('http://localhost:8080/api/service_hebergements/' + this.id, serviceEdit, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
     }
   }
 }
