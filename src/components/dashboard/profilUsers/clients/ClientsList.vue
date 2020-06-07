@@ -15,81 +15,19 @@
                   <th>Nom Representant</th>
                   <th>Prenom Representant</th>
                   <th>Email</th>
-                  <th>Poste</th>
-                  <th>Service</th>
-                  <th>Valeur_HJ</th>
-                  <th>Photo</th>
+                  <th>Projet</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>doe</td>
-                  <td>John_deo@gmail.com</td>
-                  <td>12/01/2020</td>
-                  <td>Master</td>
-                  <td>WEB dev</td>
-                  <td>Equipe1</td>
-                  <td>20$/heure</td>
-                  <td>avatar</td>
+                <tr v-for="(client,index) in clients" :key="client + index ">
+                  <td>{{client.entreprise.raisonSociale}}</td>
+                  <td>{{client.nom}}</td>
+                  <td>{{client.prenom}}</td>
+                  <td>{{client.email}}</td>
+                  <td>{{client.projet.libelle ? client.projet.libelle : "null"}}</td>
                   <td>
                     <a href="/editclient"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>doe</td>
-                  <td>John_deo@gmail.com</td>
-                  <td>12/01/2020</td>
-                  <td>Master</td>
-                  <td>WEB dev</td>
-                  <td>Equipe1</td>
-                  <td>20$/heure</td>
-                  <td>avatar</td>
-                  <td>
-                    <a href="/editclient"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>doe</td>
-                  <td>John_deo@gmail.com</td>
-                  <td>12/01/2020</td>
-                  <td>Master</td>
-                  <td>WEB dev</td>
-                  <td>Equipe1</td>
-                  <td>20$/heure</td>
-                  <td>avatar</td>
-                  <td>
-                    <a href="/userprofil"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>doe</td>
-                  <td>John_deo@gmail.com</td>
-                  <td>12/01/2020</td>
-                  <td>Master</td>
-                  <td>WEB dev</td>
-                  <td>Equipe1</td>
-                  <td>20$/heure</td>
-                  <td>avatar</td>
-                  <td>
-                    <a href="/userprofil"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>doe</td>
-                  <td>John_deo@gmail.com</td>
-                  <td>12/01/2020</td>
-                  <td>Master</td>
-                  <td>WEB dev</td>
-                  <td>Equipe1</td>
-                  <td>20$/heure</td>
-                  <td>avatar</td>
-                  <td>
-                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -105,6 +43,37 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      clients: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/contacts').then(response => {
+      const dataImported = response.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const client = dataImported[key]
+        this.clients.push(client)
+      }
+      console.log('niggaaaaa')
+      console.log(this.clients)
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    deleting (id) {
+      axios.delete('http://localhost:8080/api/contacts/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
+  }
+}
+</script>
 
 <style scoped>
   .card-display-all{

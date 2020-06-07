@@ -22,12 +22,12 @@
                 <tbody>
                 <tr v-for="(project,index) in projets " :key="project + index">
                   <td>{{project.libelle}}</td>
-                  <td>Client</td>
+                  <td>{{project.contact[0].email}}</td>
                   <td>{{project.typeProjet}}</td>
-                  <td>{{project.dateDebut}}$</td>
+                  <td>{{project.dateDebut}}</td>
                   <td>{{project.coutEstime}}$</td>
                   <td>
-                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/edit-projet/' + project.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/newfournisseur"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/new-projet"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

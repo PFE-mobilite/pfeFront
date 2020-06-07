@@ -1,7 +1,7 @@
 <template>
   <div id="dashboard">
     <nav class="navbar navbar-expand-md navbar-light">
-      <buttom class="navbar-toggler ml-auto mb-2 bg-light" type="buttom" data-toggle="collapse" data-target="#mynavbar" @click="collapsed= !collapsed"><spam class="navbar-toggler-icon"></spam></buttom>
+      <button class="navbar-toggler ml-auto mb-2 bg-light" type="buttom" data-toggle="collapse" data-target="#mynavbar" @click="collapsed= !collapsed"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse show" id="mynavbar" v-show="collapsed">
         <div class="container-fluid">
           <div class="row ">
@@ -37,8 +37,6 @@
                 </div>
                 <div class="col-md-3">
                   <ul class="navbar-nav">
-                    <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-comments text-muted fa-lg"></i> </a> </li>
-                    <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-bell text-muted fa-lg"></i> </a> </li>
                     <li class="nav-item ml-md-auto "><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-secondary fa-lg"></i> </a> </li>
                   </ul>
                 </div>
@@ -115,6 +113,7 @@ export default {
   .search-input {
     background: transparent;
     border: none;
+    color: white;
     border-radius:0;
     border-bottom: 2px solid #999999;
     transition: all .4s;
@@ -122,6 +121,7 @@ export default {
   .search-input:focus{
     background: transparent;
     box-shadow: none;
+    color: white;
     border-bottom: 2px solid white ;
 
   }

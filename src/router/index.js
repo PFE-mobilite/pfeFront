@@ -20,6 +20,8 @@ import FournisseurLlist from '../components/dashboard/fournisseur/fournisseurEnL
 import NewFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/NewFournisseurL'
 import EditFournisseurL from '../components/dashboard/fournisseur/fournisseurEnLigne/EditFournisseurH'
 import ProjetList from '../components/dashboard/projet/ProjectList'
+import NewProjet from '../components/dashboard/projet/NewProjet'
+import EditProjet from '../components/dashboard/projet/EditProjet'
 import ServiceGeneralList from '../components/dashboard/ServiceGeneral/ServiceGeneralList'
 import NewServiceGeneral from '../components/dashboard/ServiceGeneral/NewServiceGeneral'
 import EditServiceGeneral from '../components/dashboard/ServiceGeneral/EditServiceGeneral'
@@ -158,6 +160,16 @@ const routes = [
         path: '/projets',
         name: 'projets',
         component: ProjetList
+      },
+      {
+        path: '/new-projet',
+        name: 'addprojets',
+        component: NewProjet
+      },
+      {
+        path: '/edit-projet/:id',
+        name: 'editprojets',
+        component: EditProjet
       },
       {
         path: '/service-hebergement',

@@ -93,6 +93,11 @@ export default {
   }
   input{
     background: transparent;
+    color: white;
+  }
+  input:focus{
+    background: transparent;
+    color: white;
   }
   textarea{
     background: transparent;
