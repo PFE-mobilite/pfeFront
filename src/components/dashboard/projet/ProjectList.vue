@@ -24,7 +24,7 @@
                   <td>{{project.libelle}}</td>
                   <td>{{project.contact[0].email}}</td>
                   <td>{{project.typeProjet}}</td>
-                  <td>{{project.dateDebut}}</td>
+                  <td>{{project.dateDebut.substring(0, 10)}}</td>
                   <td>{{project.coutEstime}}$</td>
                   <td>
                     <a :href="'/edit-projet/' + project.id"><i class="fas fa-edit text-success mr-2"></i></a>

@@ -13,10 +13,10 @@
                 <tr class="text-muted">
                   <th>Type</th>
                   <th>marque</th>
-                  <th>Reference</th>
                   <th>Desciption</th>
                   <th>Prix_achat</th>
                   <th>Fournisseur</th>
+                  <th>Projet</th>
                   <th></th>
                 </tr>
                 </thead>
@@ -24,12 +24,12 @@
                 <tr v-for ="(materielx,indexx) in materiels" :key="materielx + indexx">
                   <td>{{materielx.typeMateriel}}</td>
                   <td>{{materielx.marque}}</td>
-                  <td>{{materielx.reference}}</td>
                   <td>{{materielx.description}}</td>
                   <td>{{materielx.prixAchat}}</td>
                   <td>{{materielx.fournisseur ? materielx.fournisseur.libelle  : "null"}}</td>
+                  <td>{{materielx.projet ? materielx.projet.libelle  : "non-associée"}}</td>
                   <td>
-                    <a href="/editmateriel"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/edit-materiel/'+ materielx.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/newmateriel"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/new-materiel"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

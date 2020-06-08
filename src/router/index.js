@@ -96,12 +96,12 @@ const routes = [
         component: MaterielsList
       },
       {
-        path: '/newmateriel',
+        path: '/new-materiel',
         name: 'addmateriels',
         component: NewMateriel
       },
       {
-        path: '/editmateriel',
+        path: '/edit-materiel/:id',
         name: 'editmateriels',
         component: EditMateriel
       },

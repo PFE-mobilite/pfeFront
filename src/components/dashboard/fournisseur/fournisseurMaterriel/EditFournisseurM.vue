@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4" @click="editnpm ">Save</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="edit">Save</button>
                 </div>
               </div>
               <div class="col-3 ml-5 align-items-center">
@@ -105,6 +105,9 @@ export default {
     background: transparent;
   }
   label{
+    color: white;
+  }
+  textarea{
     color: white;
   }
   .card-photo-c{

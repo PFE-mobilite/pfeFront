@@ -8,7 +8,7 @@
           </div>
           <div class="card-body">
             <div class="row mx-5">
-              <div class="col ml-5 align-items-center">
+              <div class="col align-items-center">
                 <div class="row mx-5">
                   <label for="">libelle</label>
                   <input type="text" class="form-control" placeholder="libelle" v-model="fournisseurLigne.libelle">

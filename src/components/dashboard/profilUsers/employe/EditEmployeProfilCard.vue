@@ -86,7 +86,7 @@ export default {
       this.employe.poste = employeImported.poste
       this.employe.service = employeImported.service
       this.employe.diplome = employeImported.diplome
-      this.employe.date_recrutement = employeImported.date_recrutement
+      this.employe.date_recrutement = employeImported.datederecrutement.substring(0, 10)
     }).catch(error => console.log(error))
   },
   methods: {
@@ -101,7 +101,7 @@ export default {
         poste: this.employe.poste,
         service: this.employe.service,
         diplome: this.employe.diplome,
-        date_recrutement: this.employe.date_recrutement,
+        datederecrutement: this.employe.date_recrutement,
         valeur_HJ: this.employe.valeur_HJ
       }
       console.log(employemodifier)

@@ -85,8 +85,8 @@ export default {
       this.service_hebergement.type = dataImported.typeService
       this.service_hebergement.durée = dataImported.duree
       this.service_hebergement.prix = dataImported.prix
-      this.service_hebergement.date_debut = dataImported.dateDebut
-      this.service_hebergement.date_fin = dataImported.dateFin
+      this.service_hebergement.date_debut = dataImported.dateDebut.substring(0, 10)
+      this.service_hebergement.date_fin = dataImported.dateFin.substring(0, 10)
       this.service_hebergement.fournisseurServiceInternet = dataImported.fsi
       this.service_hebergement.projet = dataImported.projet
     }).catch(error => console.log(error))

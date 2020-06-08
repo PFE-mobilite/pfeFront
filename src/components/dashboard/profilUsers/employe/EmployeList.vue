@@ -24,11 +24,11 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for="employe in employes" :key="employe">
+                  <tr v-for="(employe,index) in employes" :key="employe + index">
                     <td>{{employe.nom}}</td>
                     <td>{{employe.prenom}}</td>
                     <td>{{employe.email}}</td>
-                    <td>{{employe.datederecrutement}}</td>
+                    <td>{{employe.datederecrutement.substring(0, 10)}}</td>
                     <td>{{employe.diplome}}</td>
                     <td>{{employe.poste}}</td>
                     <td>{{employe.service}}</td>
