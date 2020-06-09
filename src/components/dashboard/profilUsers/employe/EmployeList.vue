@@ -18,8 +18,6 @@
                     <th>Diplome</th>
                     <th>Poste</th>
                     <th>Service</th>
-                    <th>Valeur_HJ</th>
-                    <th>Photo</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -32,8 +30,6 @@
                     <td>{{employe.diplome}}</td>
                     <td>{{employe.poste}}</td>
                     <td>{{employe.service}}</td>
-                    <td>20$/heure</td>
-                    <td>{{employe.id}}</td>
                     <td>
                       <router-link v-bind:to="'/editemploye/' + employe.id" ><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
                       <a href="" @click="deleting(employe.id)"><i class="fas fa-trash-alt text-danger"></i></a>

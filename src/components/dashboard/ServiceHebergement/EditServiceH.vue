@@ -89,6 +89,8 @@ export default {
       this.service_hebergement.date_fin = dataImported.dateFin.substring(0, 10)
       this.service_hebergement.fournisseurServiceInternet = dataImported.fsi
       this.service_hebergement.projet = dataImported.projet
+      this.selectedProjet = dataImported.projet.libelle
+      this.selectedFournisseur = dataImported.fsi.libelle
     }).catch(error => console.log(error))
     axios.get('http://localhost:8080/api/fournisseur_service_internets').then(res => {
       const dataImported = res.data['hydra:member']

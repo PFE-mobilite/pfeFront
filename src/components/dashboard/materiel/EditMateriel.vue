@@ -4,7 +4,7 @@
       <div class="col">
         <div class="card card-add-mat">
           <div class="card-header text-white">
-            Ajouter Materiel
+            Modifier Materiel
           </div>
           <div class="card-body">
             <div class="row">

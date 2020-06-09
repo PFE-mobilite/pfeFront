@@ -20,7 +20,9 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Client</label>
-                <input type="email" class="form-control" placeholder="libelle" v-model="projet.contact.email">
+                <select class="form-control" v-model="selectedClient">
+                  <option v-for="(client,index) in clients" :key="client + index">{{client.entreprise.raisonSociale}}: {{client.email}}</option>
+                </select>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Pays</label>
@@ -175,7 +177,9 @@ export default {
         contact: ''
       },
       id: this.$route.params.id,
-      technos: []
+      technos: [],
+      selectedClient: '',
+      clients: []
     }
   },
   created () {
@@ -196,7 +200,7 @@ export default {
       this.projet.materiel = dataImported.materiel
       this.projet.employe = dataImported.employe
       this.projet.technologie = dataImported.technologie
-      console.log(this.projet)
+      this.selectedClient = this.projet.contact.email
     }).catch(error => console.log(error))
     axios.get('http://127.0.0.1:8000/api/technologies/').then(res => {
       const dataImported = res.data['hydra:member']
@@ -206,6 +210,15 @@ export default {
           this.technos.push(techno)
         }
       }
+    }).catch(error => console.log(error))
+    axios.get('http://127.0.0.1:8000/api/contacts').then(res => {
+      const dataImportedClient = res.data['hydra:member']
+      for (const key in dataImportedClient) {
+        const clientImported = dataImportedClient[key]
+        this.clients.push(clientImported)
+      }
+      console.log('tableau des clients pour les choix')
+      console.log(this.clients)
     }).catch(error => console.log(error))
   }
 }
@@ -251,5 +264,6 @@ export default {
   }
   select{
     background: transparent;
+    color: white;
   }
 </style>

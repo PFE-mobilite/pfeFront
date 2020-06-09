@@ -5,7 +5,7 @@
       <div class="col">
         <div class="card card-add-service-g">
           <div class="card-header text-white">
-            Ajouter Service General
+            Edit Service General
           </div>
           <div class="card-body">
             <div class="row">
@@ -25,7 +25,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4" @click="edit">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="edit">Save</button>
                 </div>
               </div>
             </div>
@@ -92,6 +92,7 @@ export default {
   }
   textarea{
     background: transparent;
+    color: white;
   }
   label{
     color: white;

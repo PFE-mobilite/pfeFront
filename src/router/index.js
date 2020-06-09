@@ -6,6 +6,8 @@ import signup from '../components/authentification/signup'
 import EditEmploye from '../components/dashboard/profilUsers/employe/EditEmployeProfilContainer'
 import ClientList from '../components/dashboard/profilUsers/clients/ClientsList'
 import EmployeList from '../components/dashboard/profilUsers/employe/EmployeList'
+import EmployeTechno from '../components/dashboard/profilUsers/employe/EmployeTechnologie'
+import EmployeChoix from '../components/dashboard/profilUsers/employe/EmployeChoix'
 import NewEmploye from '../components/dashboard/profilUsers/employe/NewEmployeAccount'
 import NewClient from '../components/dashboard/profilUsers/clients/NewClientAccount'
 import EditClient from '../components/dashboard/profilUsers/clients/EditClientProfilContainer'
@@ -42,6 +44,8 @@ import NewServiceCom from '../components/employeAccount/NewServiceCom'
 import EditServiceCom from '../components/employeAccount/EditServiceHebergement'
 import NewMatEmp from '../components/employeAccount/NouveauMateriel'
 import Welcome from '../views/WelcomeDefault'
+import NewTechnologies from '../components/dashboard/technologie/AddTechnologie.vue'
+import EditTechnologies from '../components/dashboard/technologie/EditTechnologie'
 
 Vue.use(VueRouter)
 
@@ -66,9 +70,20 @@ const routes = [
         component: ClientList
       },
       {
-        path: '/employes',
-        name: 'employeList',
-        component: EmployeList
+        path: '/employes-choix',
+        component: EmployeChoix,
+        children: [
+          {
+            path: '/employes',
+            name: 'employeList',
+            component: EmployeList
+          },
+          {
+            path: '/employes-technologies',
+            name: 'employetechnologie',
+            component: EmployeTechno
+          }
+        ]
       },
       {
         path: '/editemploye/:id',
@@ -185,6 +200,16 @@ const routes = [
         path: '/edit-service-internet/:id',
         name: 'editservicehebergemenet',
         component: EditServiceH
+      },
+      {
+        path: '/new-technologie',
+        name: 'addtechnologie',
+        component: NewTechnologies
+      },
+      {
+        path: '/edit-technologie/:id',
+        name: 'edittechnologie',
+        component: EditTechnologies
       }
     ]
   },
