@@ -6,35 +6,7 @@
       <router-link to="/profile-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li></router-link>
       <router-link to="projets-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox  text-light fa-lg mr-3"></i>Projets</a></li></router-link>
       <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-wrench text-light fa-lg mr-3"></i>Settings</a></li>
-      <li class="nav-item">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </li>
+      <li class="nav-item"></li>
     </ul>
   </div>
 </template>
@@ -51,5 +23,6 @@ export default {
 <style scoped>
 .sidebar-1{
   background-color: #2f4050;
+  height: calc(100vh);
 }
 </style>

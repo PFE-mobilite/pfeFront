@@ -80,6 +80,7 @@ export default {
   }
   .sidebar{
     background-color: #2f4050;
+    height: calc(100vh);
   }
   .topnav{
     background-color: #2f4050;

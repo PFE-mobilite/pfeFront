@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                   <label for="">Raison Sociale</label>
-                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raison_social">
+                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raisonSociale">
                 </div>
                 <div class="row d-flex flex-row-reverse">
                   <button type="button" class="btn btn-outline-info mt-3 px-4" @click="onSubmitC">Ajouter</button>
@@ -58,20 +58,33 @@ export default {
         nom: '',
         prenom: '',
         email: '',
-        RaisonSociale: ''
-      }
+        raisonSociale: ''
+      },
+      id_entreprise: ''
     }
   },
   methods: {
     onSubmitC () {
       const formData = {
-        nom: this.employe.nom,
-        prenom: this.employe.prenom,
-        email: this.employe.email,
-        password: 'blibli'
+        raisonSociale: this.client.raisonSociale
       }
       console.log(formData)
-      axios.post('http://localhost:8080/api/?', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/entreprises', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        this.id_entreprise = response.data.id
+        const newContact = {
+          entreprise: this.id_entreprise,
+          nom: this.client.nom,
+          prenom: this.client.prenom,
+          email: this.client.email,
+          password: 'hiiiii'
+        }
+        console.log('contact a ajouter')
+        console.log(newContact)
+        axios.post('http://localhost:8080/api/contacts', newContact, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+          this.id_entreprise = response.data.id
+        }).catch((error) => console.log(error))
+        console.log('+++++++++++Success+++++++')
+      }).catch((error) => console.log(error))
       console.log('+++++++++++Success+++++++')
     }
   }

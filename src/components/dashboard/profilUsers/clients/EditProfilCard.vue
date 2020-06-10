@@ -9,8 +9,10 @@
           <div class="card-body mx-5">
             <div class="row mx-3">
               <div class="col-md-12">
-                <label for="">Raison Social</label>
-                <input type="text" class="form-control" placeholder="Raison social" v-model="client.raison_social">
+                <label for="">Raison Sociale</label>
+                <select class="form-control" v-model="selectedRaisionSocial">
+                  <option v-for="(entreprise,index) in entreprises" :key="entreprise + index">{{entreprise.raisonSociale}}</option>
+                </select>
               </div>
             </div>
             <div class="row mx-3">
@@ -33,7 +35,7 @@
             </div>
             <div class="row mx-3 d-flex flex-row-reverse">
               <div class="col-lg-3 col-md-9 mt-2 px-3">
-                <button type="button" class="btn btn-outline-info  btn-lg btn-block" @click="edit()">Save</button>
+                <button type="button" class="btn btn-outline-info  btn-lg btn-block" @click="save()">Save</button>
               </div>
             </div>
           </div>
@@ -44,6 +46,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions } from 'vuex'
 export default {
   data () {
@@ -53,23 +56,61 @@ export default {
         nom: '',
         prenom: '',
         email: ''
-      }
+      },
+      id: this.$route.params.id,
+      selectedRaisionSocial: '',
+      entreprises: []
     }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/contacts/' + this.id).then(res => {
+      const dataImported = res.data
+      this.client.nom = dataImported.nom
+      this.client.prenom = dataImported.prenom
+      this.client.email = dataImported.email
+      this.selectedRaisionSocial = dataImported.entreprise.raisonSociale
+      this.client.raison_social = this.selectedRaisionSocial
+      this.modifierprofil(this.client)
+    }).catch(error => console.log(error))
+    axios.get('http://localhost:8080/api/entreprises').then(res => {
+      const dataImported = res.data['hydra:member']
+      for (const key in dataImported) {
+        const entreprise = dataImported[key]
+        this.entreprises.push(entreprise)
+      }
+    }).catch(error => console.log(error))
+  },
+  updated () {
+    const clientEnModification = {
+      nom: this.client.nom,
+      prenom: this.client.prenom,
+      email: this.client.email,
+      raison_social: this.selectedRaisionSocial
+    }
+    this.modifierprofil(clientEnModification)
   },
   methods: {
     ...mapActions({
       modifierprofil: 'editclient'
-    })
-  },
-  computed: {
-    edit () {
-      const clientmodifier = {
-        raison_social: this.client.raison_social,
+    }),
+    selectedEntrepriseId (selectedRaisionSocial) {
+      for (const entreprise1 of this.entreprises) {
+        if (entreprise1.raisonSociale === selectedRaisionSocial) {
+          return entreprise1.id
+        }
+      }
+      return null
+    },
+    save () {
+      const entreprise = this.selectedEntrepriseId(this.selectedRaisionSocial)
+      const clientModifier = {
         nom: this.client.nom,
         prenom: this.client.prenom,
-        email: this.client.email
+        email: this.client.email,
+        entreprise
       }
-      return this.modifierprofil(clientmodifier)
+      console.log(clientModifier)
+      axios.put('http://localhost:8080/api/entreprises/' + this.id, clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
     }
   }
 }
@@ -95,6 +136,10 @@ export default {
     background: transparent;
   }
   label{
+    color: white;
+  }
+  select{
+    background: transparent;
     color: white;
   }
 </style>

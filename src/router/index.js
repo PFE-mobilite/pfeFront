@@ -6,7 +6,7 @@ import signup from '../components/authentification/signup'
 import EditEmploye from '../components/dashboard/profilUsers/employe/EditEmployeProfilContainer'
 import ClientList from '../components/dashboard/profilUsers/clients/ClientsList'
 import EmployeList from '../components/dashboard/profilUsers/employe/EmployeList'
-import EmployeTechno from '../components/dashboard/profilUsers/employe/EmployeTechnologie'
+import EmployeTechno from '../components/dashboard/technologie/EmployeTechnologie'
 import EmployeChoix from '../components/dashboard/profilUsers/employe/EmployeChoix'
 import NewEmploye from '../components/dashboard/profilUsers/employe/NewEmployeAccount'
 import NewClient from '../components/dashboard/profilUsers/clients/NewClientAccount'
@@ -87,11 +87,11 @@ const routes = [
       },
       {
         path: '/editemploye/:id',
-        name: 'editclient',
+        name: 'editEmpoloye',
         component: EditEmploye
       },
       {
-        path: '/editclient',
+        path: '/edit-client/:id',
         name: 'edit',
         component: EditClient
       },
