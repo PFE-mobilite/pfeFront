@@ -1,12 +1,12 @@
 <template>
   <div id="dashboard">
-    <nav class="navbar navbar-expand-md navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-light">
       <button class="navbar-toggler ml-auto mb-2 bg-light" type="buttom" data-toggle="collapse" data-target="#mynavbar" @click="collapsed= !collapsed"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse show" id="mynavbar" v-show="collapsed">
         <div class="container-fluid">
           <div class="row ">
             <!--sidebar-->
-            <div class=" col-xl-2 col-lg-2 col-md-3 sidebar  fixed-top">
+            <div class=" col-xl-2 col-lg-2 col-md-2  sidebar  fixed-top">
               <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Mobelite</a>
               <ul class="navbar-nav flex-column mt-4">
                 <router-link to="/recapDisplay"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li></router-link>
@@ -22,7 +22,7 @@
             </div>
             <!--mysidebar-->
             <!--top-nav-->
-            <div class="col-xl-10 col-lg-10  col-md-9 ml-auto topnav fixed-top py-2 top-navbar show">
+            <div class="col-xl-10 col-lg-10  col-md-10 ml-auto topnav fixed-top py-2 top-navbar show">
               <div class="row align-items-center">
                 <div class="col-md-4 ">
                   <h4 class="text-light text-uppercase mb-0">dashboard</h4>
@@ -50,7 +50,7 @@
     <div class="conatiner">
       <div class="row">
         <div class="col"></div>
-        <div class="col-lg-10 col-md-9 col-sm-12">
+        <div class="col-lg-10">
           <router-view></router-view>
         </div>
       </div>

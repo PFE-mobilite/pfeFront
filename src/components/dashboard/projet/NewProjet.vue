@@ -10,144 +10,53 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">libelle</label>
-                <input type="text" class="form-control" placeholder="libelle" >
+                <input type="text" class="form-control" placeholder="libelle" v-model="projet.libelle" >
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Type Projet</label>
-                <input type="text" class="form-control" placeholder="type projet" >
+                <input type="text" class="form-control" placeholder="type projet" v-model="projet.typeProjet" >
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Client</label>
-                <input type="text" class="form-control" placeholder="libelle" >
+                <select class="form-control" v-model="selectedClient">
+                  <option v-for="(client,index) in clients" :key="client + index">{{client.entreprise.raisonSociale}}: {{client.email}}</option>
+                </select>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Pays</label>
-                <input type="text" class="form-control" placeholder="Pays" >
+                <input type="text" class="form-control" placeholder="Pays" v-model="projet.pays">
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Devise</label>
-                <input type="text" class="form-control" placeholder="libelle" >
+                <input type="text" class="form-control" placeholder="libelle" v-model="projet.devise">
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Cout Estimé</label>
-                <input type="text" class="form-control" placeholder="Cout Estime" >
+                <input type="text" class="form-control" placeholder="Cout Estime" v-model="projet.coutEstime">
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 pr-md-1">
+              <div class="col-md-4 pr-md-1">
+                <label for="">Maintenance Mensuelle</label>
+                <input type="number" class="form-control" placeholder="Date debut" v-model="projet.maintenance">
+              </div>
+              <div class="col-md-4 pr-md-1">
                 <label for="">Date debut</label>
-                <input type="date" class="form-control" placeholder="Date debut" >
+                <input type="date" class="form-control" placeholder="Date debut" v-model="projet.dateDebut">
               </div>
-              <div class="col-md-6 px-md-1">
+              <div class="col-md-4 px-md-1">
                 <label for="">Date fin</label>
-                <input type="date" class="form-control" placeholder="Date fin">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 pr-md-1"></div>
-              <div class="col-md-4 pr-md-1"></div>
-              <div class="col-md-5">
-                <label for="">Cout en cours</label>
-                <input type="text" class="form-control" placeholder="1000$" disabled >
+                <input type="date" class="form-control" placeholder="Date fin" v-model="projet.dateFin">
               </div>
             </div>
             <div class="row d-flex flex-row-reverse">
               <div class="col-md-4 mt-4">
-                <button type="button" class="btn btn-outline-info btn-block mt-2">Save</button>
+                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="ajouter">Save</button>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mx-5">
-      <div class="col-5 mx-5 mb-5">
-        <div class="card card-list-employe">
-          <div class="card-header text-capitalize font-weight-bold text-info">
-            Employe sur Projet
-          </div>
-          <div class="card-body">
-              <div class="row align-items-center">
-                <table class="table table-striped text-center ">
-                  <thead>
-                  <tr class="text-muted">
-                    <th>Employe</th>
-                    <th>Technologie</th>
-                    <th></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <td>employe</td>
-                  <td>Symfony</td>
-                  <td>
-                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                  </tbody>
-                </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-5 mx-4 mb-5">
-        <div class="card card-list-materiels">
-          <div class="card-header text-capitalize font-weight-bold text-info">
-            Services et Materiels
-          </div>
-          <div class="card-body mx-1">
-            <h5 class="text-capitalize text-muted">Services Hebergement:</h5>
-            <div class="row align-items-center">
-              <table class="table table-striped text-center ">
-                <thead>
-                <tr class="text-muted">
-                  <th>Service</th>
-                  <th>Fournisseur</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <td>employe</td>
-                <td>Symfony</td>
-                <td>
-                  <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
-                  <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                </td>
-                </tbody>
-              </table>
-            </div>
-            <h5 class="text-capitalize text-muted">materiels:</h5>
-            <div class="row align-items-center">
-              <table class="table table-striped text-center ">
-                <thead>
-                <tr class="text-muted">
-                  <th>Materiel</th>
-                  <th>Fournisseur</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>employe</td>
-                  <td>Symfony</td>
-                  <td>
-                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>employe</td>
-                  <td>Symfony</td>
-                  <td>
-                    <a href=""><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
@@ -155,6 +64,55 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      projet: {
+        libelle: '',
+        dateDebut: '',
+        dateFin: '',
+        cout: '',
+        typeProjet: '',
+        maintenance: 0,
+        devise: '',
+        pays: '',
+        coutEstime: ''
+      },
+      selectedClient: '',
+      clients: []
+    }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/contacts').then(res => {
+      const dataImportedClient = res.data['hydra:member']
+      for (const key in dataImportedClient) {
+        const clientImported = dataImportedClient[key]
+        this.clients.push(clientImported)
+      }
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    ajouter () {
+      const Newprojet = {
+        libelle: this.projet.libelle,
+        dateDebut: this.projet.dateDebut,
+        dateFin: this.projet.dateFin,
+        cout: 0,
+        typeProjet: this.projet.typeProjet,
+        maintenance: parseFloat(this.projet.maintenance),
+        devise: this.projet.devise,
+        coutEstime: this.projet.coutEstime
+      }
+      console.log(Newprojet)
+      axios.post('http://localhost:8080/api/projets', Newprojet, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
+    }
+  }
+}
+</script>
 
 <style scoped>
 

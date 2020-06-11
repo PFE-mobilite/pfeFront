@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-5"></div>
-        <div class="col">
+        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
           <router-view></router-view>
         </div>
       </div>

@@ -37,12 +37,12 @@ import Redirection from '../views/Redirectiondefault'
 import Employe from '../views/Employe'
 import EmployeProfile from '../components/employeAccount/EmployeProfile'
 import AchatDemande from '../components/employeAccount/DemandeAchat'
-import ListComMateriel from '../components/employeAccount/ListComMateriel'
-import EditComMateriel from '../components/employeAccount/EditMateriel'
-import ListServiceHebergement from '../components/employeAccount/ListServiceHebergement'
-import NewServiceCom from '../components/employeAccount/NewServiceCom'
-import EditServiceCom from '../components/employeAccount/EditServiceHebergement'
-import NewMatEmp from '../components/employeAccount/NouveauMateriel'
+import ListComMateriel from '../components/employeAccount/materiel/ListComMateriel'
+import EditComMateriel from '../components/employeAccount/materiel/EditMateriel'
+import ListServiceHebergement from '../components/employeAccount/serviceHebergement/ListServiceHebergement'
+import NewServiceCom from '../components/employeAccount/serviceHebergement/NewServiceCom'
+import EditServiceCom from '../components/employeAccount/serviceHebergement/EditServiceHebergement'
+import NewMatEmp from '../components/employeAccount/materiel/NouveauMateriel'
 import Welcome from '../views/WelcomeDefault'
 import NewTechnologies from '../components/dashboard/technologie/AddTechnologie.vue'
 import EditTechnologies from '../components/dashboard/technologie/EditTechnologie'
@@ -291,7 +291,7 @@ const routes = [
             component: NewMatEmp
           },
           {
-            path: '/employe-edit-mat',
+            path: '/employe-edit-mat/:id',
             name: 'editMateriel',
             component: EditComMateriel
           },
@@ -301,7 +301,7 @@ const routes = [
             component: NewServiceCom
           },
           {
-            path: '/employe-edit-serH',
+            path: '/employe-edit-serH/:id',
             name: 'EditSerH',
             component: EditServiceCom
           }

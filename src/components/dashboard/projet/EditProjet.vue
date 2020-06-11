@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <div class="row">
-      <div class="col mx-5">
+      <div class="col-md-12 px-5">
         <div class="card card-projet">
           <div class="card-header text-white">
             Edit Projet
@@ -66,8 +66,8 @@
         </div>
       </div>
     </div>
-    <div class="row mx-4">
-      <div class="col-5 mx-5 mb-5">
+    <div class="row px-5">
+      <div class="col-lg-6 col-md-12 col-sm-12 px-1 mb-5">
         <div class="card card-list-employe">
           <div class="card-header text-capitalize font-weight-bold text-info">
             Employe sur Projet
@@ -97,12 +97,12 @@
           </div>
         </div>
       </div>
-      <div class="col-5 mx-4 mb-5">
+      <div class="col-lg-6 col-md-12  px-2 mb-5">
         <div class="card card-list-materiels">
           <div class="card-header text-capitalize font-weight-bold text-info">
             Services et Materiels
           </div>
-          <div class="card-body mx-1">
+          <div class="card-body">
             <h5 class="text-capitalize text-muted">Services Hebergement:</h5>
             <div class="row align-items-center">
               <table class="table table-striped text-center ">
