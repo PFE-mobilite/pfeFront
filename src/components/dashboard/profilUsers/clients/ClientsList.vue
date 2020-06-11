@@ -25,7 +25,7 @@
                   <td>{{client.nom}}</td>
                   <td>{{client.prenom}}</td>
                   <td>{{client.email}}</td>
-                  <td>{{client.projet.libelle ? client.projet.libelle : "null"}}</td>
+                  <td>{{client.projet[0] ? client.projet[0].libelle : "null"}}</td>
                   <td>
                     <a :href="'/edit-client/' + client.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>

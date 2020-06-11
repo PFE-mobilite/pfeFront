@@ -22,7 +22,7 @@
                 <tbody>
                 <tr v-for="(project,index) in projets " :key="project + index">
                   <td>{{project.libelle}}</td>
-                  <td>{{project.contact.email}}</td>
+                  <td>{{project.contact ? project.contact.email : "null" }}</td>
                   <td>{{project.typeProjet}}</td>
                   <td>{{project.dateDebut.substring(0, 10)}}</td>
                   <td>{{project.coutEstime}}$</td>

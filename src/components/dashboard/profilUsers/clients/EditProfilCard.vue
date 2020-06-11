@@ -33,6 +33,14 @@
                 <input type="email" class="form-control" placeholder="Email" v-model="client.email">
               </div>
             </div>
+            <div class="row mx-3">
+              <div class="col-md-12">
+                <label for="">Projet</label>
+                <select class="form-control" v-model="selectedProjet">
+                  <option v-for="(projet,index) in projets" :key="projet + index">{{projet.libelle}}</option>
+                </select>
+              </div>
+            </div>
             <div class="row mx-3 d-flex flex-row-reverse">
               <div class="col-lg-3 col-md-9 mt-2 px-3">
                 <button type="button" class="btn btn-outline-info  btn-lg btn-block" @click="save()">Save</button>
@@ -59,7 +67,9 @@ export default {
       },
       id: this.$route.params.id,
       selectedRaisionSocial: '',
-      entreprises: []
+      entreprises: [],
+      projets: [],
+      selectedProjet: ''
     }
   },
   created () {
@@ -78,6 +88,15 @@ export default {
         const entreprise = dataImported[key]
         this.entreprises.push(entreprise)
       }
+    }).catch(error => console.log(error))
+    axios.get('http://localhost:8080/api/projets').then(res => {
+      const dataImported = res.data['hydra:member']
+      for (const key in dataImported) {
+        const projet = dataImported[key]
+        this.projets.push(projet)
+      }
+      console.log('les projets')
+      console.log(this.projets)
     }).catch(error => console.log(error))
   },
   updated () {
@@ -101,13 +120,33 @@ export default {
       }
       return null
     },
+    selectedProjetId (selectedProjet) {
+      console.log('in selected id methode {')
+      for (const projet1 of this.projets) {
+        console.log('projet1.libelle in for loop')
+        console.log(projet1.libelle)
+        console.log('selectedprojet')
+        console.log(selectedProjet)
+        if (projet1.libelle === selectedProjet) {
+          console.log('projet1 libelle')
+          console.log(projet1.libelle)
+          this.selectedProjet = projet1.id
+          return projet1.id
+        }
+      }
+      return null
+    },
     save () {
       const entreprise = this.selectedEntrepriseId(this.selectedRaisionSocial)
+      const projet = this.selectedProjetId(this.selectedProjet)
+      console.log('le projet id')
+      console.log(projet)
       const clientModifier = {
         nom: this.client.nom,
         prenom: this.client.prenom,
         email: this.client.email,
-        entreprise
+        entreprise,
+        projet
       }
       console.log(clientModifier)
       axios.put('http://localhost:8080/api/entreprises/' + this.id, clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))

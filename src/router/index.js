@@ -46,6 +46,10 @@ import NewMatEmp from '../components/employeAccount/NouveauMateriel'
 import Welcome from '../views/WelcomeDefault'
 import NewTechnologies from '../components/dashboard/technologie/AddTechnologie.vue'
 import EditTechnologies from '../components/dashboard/technologie/EditTechnologie'
+import ChoixSG from '../components/dashboard/ServiceGeneral/SgChoix'
+import LignesSGList from '../components/dashboard/ServiceGeneral/LigneSG/LignesSGList'
+import NewLigneSG from '../components/dashboard/ServiceGeneral/LigneSG/NewLigneSG'
+import EditLigneSG from '../components/dashboard/ServiceGeneral/LigneSG/EditLigneSG'
 
 Vue.use(VueRouter)
 
@@ -122,13 +126,32 @@ const routes = [
       },
       {
         path: '/services-generaux',
-        name: 'S.generaux',
-        component: ServiceGeneralList
+        component: ChoixSG,
+        children: [
+          {
+            path: '/services-generaux-details',
+            component: ServiceGeneralList
+          },
+          {
+            path: '/lignes-services-generaux',
+            component: LignesSGList
+          }
+        ]
       },
       {
         path: '/add-service-general',
         name: 'newS.generaux',
         component: NewServiceGeneral
+      },
+      {
+        path: '/add-ligneSG',
+        name: 'new LS.generaux',
+        component: NewLigneSG
+      },
+      {
+        path: '/edit-ligneSG/:id',
+        name: 'edit LS.generaux',
+        component: EditLigneSG
       },
       {
         path: '/edit-service-general/:id',

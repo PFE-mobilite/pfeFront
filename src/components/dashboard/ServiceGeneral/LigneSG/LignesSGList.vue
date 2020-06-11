@@ -4,27 +4,33 @@
       <div class="col">
         <div class="card card-display-all-serG">
           <div class="card-header text-info font-weight-bold">
-            Services Généraux
+            Lignes Services Généraux
           </div>
           <div class="card-body">
             <div class="row align-items-center">
               <table class="table table-striped text-center">
                 <thead>
                 <tr class="text-muted">
-                  <th>Libelle</th>
-                  <th>Description</th>
-                  <th>Type</th>
+                  <th>NumAuto</th>
+                  <th>Date Payement</th>
+                  <th>Quantite</th>
+                  <th>Montant Total</th>
+                  <th>Administrateur</th>
+                  <th>Services SG</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(serviceG,index) in servicesGeneraux " :key="serviceG + index">
-                  <td>{{serviceG.libelle}}</td>
-                  <td>{{serviceG.description}}</td>
-                  <td>{{serviceG.type}}</td>
+                <tr v-for="(ligne,index) in ligneSGeneraux " :key="ligne + index">
+                  <td>{{ligne.numAuto}}</td>
+                  <td>{{ligne.datePayement.substring(0, 10)}}</td>
+                  <td>{{ligne.quantite}}</td>
+                  <td>{{ligne.montantTotal}}</td>
+                  <td>{{ligne.id}}</td>
+                  <td>{{ligne.ServicesSG.libelle}}</td>
                   <td>
-                    <a :href="'/edit-service-general/' + serviceG.id"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href="" @click="onDelete(serviceG.id)"><i class="fas fa-trash-alt text-danger"></i></a>
+                  <router-link :to="'/edit-ligneSG/' + ligne.id"><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
+                  <a href="" @click="onDelete(ligne.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -32,7 +38,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/add-service-general"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/add-ligneSG"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>
@@ -45,16 +51,16 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      servicesGeneraux: []
+      ligneSGeneraux: []
     }
   },
   created () {
-    axios.get('http://localhost:8080/api/services_generauxes').then(res => {
+    axios.get('http://localhost:8080/api/ligne_s_gs').then(res => {
       const dataImported = res.data['hydra:member']
       console.log(dataImported)
       for (const key in dataImported) {
-        const serviceG = dataImported[key]
-        this.servicesGeneraux.push(serviceG)
+        const ligneSG = dataImported[key]
+        this.ligneSGeneraux.push(ligneSG)
       }
       console.log('success and verified')
       console.log(this.servicesGeneraux)
@@ -62,10 +68,7 @@ export default {
   },
   methods: {
     onDelete (id) {
-      console.log('me in delete')
-      console.log('the id is ')
-      console.log(id)
-      axios.delete('http://localhost:8080/api/services_generauxes/' + id).then(res => {
+      axios.delete('http://localhost:8080/api/ligne_s_gs/' + id).then(res => {
         console.log('in deleting')
         console.log(res)
       }).catch(error => console.log(error))

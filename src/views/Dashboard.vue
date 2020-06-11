@@ -152,4 +152,14 @@ export default {
     background-color: #f44336 ;
     border-radius: 50%;
   }
+  @media(max-width: 768px){
+    .sidebar{
+      position: static;
+      height: auto;
+    }
+
+    .top-navbar{
+      position: static;
+    }
+  }
 </style>
