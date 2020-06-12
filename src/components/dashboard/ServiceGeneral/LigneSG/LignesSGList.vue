@@ -26,7 +26,7 @@
                   <td>{{ligne.datePayement.substring(0, 10)}}</td>
                   <td>{{ligne.quantite}}</td>
                   <td>{{ligne.montantTotal}}</td>
-                  <td>{{ligne.id}}</td>
+                  <td>{{ligne.Administrateur.email}}</td>
                   <td>{{ligne.ServicesSG.libelle}}</td>
                   <td>
                   <router-link :to="'/edit-ligneSG/' + ligne.id"><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>

@@ -4,14 +4,14 @@
       <div class="col">
         <div class="card card-add-mat-emp">
           <div class="card-header text-white">
-            Ajouter Commande Materiel
+            Modifier Commande Materiel
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col ml-5 align-items-center mx-5">
                 <div class="row mx-5 mb-1">
                   <label for="">Type</label>
-                  <input type="text" class="form-control" placeholder="Type" v-model="materiel.type">
+                  <input type="text" class="form-control" placeholder="Type" v-model="materiel.typeMateriel">
                 </div>
                 <div class="row mx-5 mb-1">
                   <label for="">Marque</label>
@@ -22,16 +22,20 @@
                   <input type="text" class="form-control" placeholder="Reference" v-model="materiel.reference">
                 </div>
                 <div class="row mx-5 mb-1">
-                  <label for="">Prix</label>
-                  <input type="number" class="form-control" placeholder="Prix" v-model="materiel.prix">
-                </div>
-                <div class="row mx-5 mb-1">
                   <label for="">Prix_achat</label>
-                  <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prix_achat">
+                  <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prixAchat">
                 </div>
                 <div class="row mx-5 mb-1">
                   <label for="">Fournisseur</label>
-                  <input type="text" class="form-control" placeholder="Fournisseur" v-model="materiel.fournisseur">
+                  <select class="form-control" v-model="selectedFournisseur">
+                    <option v-for="(fournisseur,index) in fournisseurs" :key="fournisseur + index">{{fournisseur.libelle}}</option>
+                  </select>
+                </div>
+                <div class="row mx-5 mb-1">
+                  <label for="">Projet associé</label>
+                  <select class="form-control" v-model="selectedProjet">
+                    <option v-for="(projetx,index) in projets" :key="projetx + index">{{projetx.libelle}}</option>
+                  </select>
                 </div>
                 <div class="row mx-4 mb-1">
                   <div class="col-md-8 ml-2">
@@ -40,19 +44,7 @@
                   </div>
                 </div>
                 <div class="row mx-5 mt-3 mb-1">
-                  <button type="button" class="btn btn-outline-info px-4">Ajouter</button>
-                </div>
-              </div>
-              <div class="col-3 ml-5 align-items-center">
-                <div class="row">
-                  <div class="card card-photo-c border-0">
-                    <div class="card-body">
-                      <b-avatar variant="info" size="10rem"></b-avatar>
-                    </div>
-                    <div class="card-footer border-0 bg-coloring">
-                      <button class="btn btn-outline-info btn-block">Ajouter photo</button>
-                    </div>
-                  </div>
+                  <button type="button" class="btn btn-outline-info px-4" @click="onSubmitM">Modifier</button>
                 </div>
               </div>
             </div>
@@ -64,18 +56,78 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       materiel: {
-        type: '',
+        typeMateriel: '',
         marque: '',
         reference: '',
-        prix: '',
-        prix_achat: '',
-        fournisseur: '',
-        description: ''
+        prixAchat: 0,
+        description: '',
+        fournisseurOrigine: '',
+        projetAssocié: ''
+      },
+      selectedFournisseur: '',
+      selectedProjet: '',
+      projets: [],
+      fournisseurs: []
+    }
+  },
+  created () {
+    axios.get('http://localhost:8080/api/projets').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const projet = dataImported[key]
+        this.projets.push(projet)
       }
+    }).catch(error => console.log(error))
+    axios.get('http://localhost:8080/api/fournisseurs').then(res => {
+      const dataImported = res.data['hydra:member']
+      console.log(dataImported)
+      for (const key in dataImported) {
+        const fournisseur = dataImported[key]
+        this.fournisseurs.push(fournisseur)
+      }
+    }).catch(error => console.log(error))
+  },
+  methods: {
+    selectedProjetId (selectedProjet) {
+      for (const projet1 of this.projets) {
+        if (projet1.libelle === selectedProjet) {
+          this.selectedProjet = projet1.id
+          return projet1.id
+        }
+      }
+      return null
+    },
+    selectedFournisseurtId (selectedFournisseur) {
+      for (const fournisseur1 of this.fournisseurs) {
+        if (fournisseur1.libelle === selectedFournisseur) {
+          this.selectedFournisseur = fournisseur1.id
+          return fournisseur1.id
+        }
+      }
+      return null
+    },
+    onSubmitM () {
+      const projet = this.selectedProjetId(this.selectedProjet)
+      const fournisseur = this.selectedFournisseurtId(this.selectedFournisseur)
+      const prix = parseFloat(this.materiel.prixAchat)
+      const newMateriel = {
+        typeMateriel: this.materiel.typeMateriel,
+        marque: this.materiel.marque,
+        reference: this.materiel.reference,
+        prixAchat: prix,
+        description: this.materiel.description,
+        fournisseur,
+        projet
+      }
+      console.log(newMateriel)
+      axios.post('http://localhost:8080/api/materiels', newMateriel, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      console.log('++++++++Success++++++++++')
     }
   }
 }
@@ -105,11 +157,12 @@ export default {
   label{
     color: white;
   }
-  .card-photo-c{
-    margin-top: 1px;
-    background-color: transparent;
+  select{
+    background: transparent;
+    color: white;
   }
-  .bg-coloring{
-    background-color: transparent;
+  textarea{
+    background: transparent;
+    color: white;
   }
 </style>
