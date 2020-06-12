@@ -8,12 +8,12 @@ const routesClient = [
     component: ClientAccount,
     children: [
       {
-        path: '/profile-client',
+        path: '/clientAccount/profile-client',
         name: 'ProfileClient',
         component: ProfileClient
       },
       {
-        path: '/projets-client',
+        path: '/clientAccount/projets-client',
         name: 'ProjectSection',
         component: ProjectSection
       }

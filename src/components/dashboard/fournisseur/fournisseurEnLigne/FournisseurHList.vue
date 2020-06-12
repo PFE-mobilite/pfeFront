@@ -25,7 +25,7 @@
                   <td>{{fournisseurl.email}}</td>
                   <td>{{fournisseurl.pays}}</td>
                   <td>
-                    <a :href="'/edit-fournisseur-ligne/' + fournisseurl.id"><i class="fas fa-eye text-info mr-2"></i></a>
+                    <a :href="'/admin/edit-fournisseur-ligne/' + fournisseurl.id"><i class="fas fa-eye text-info mr-2"></i></a>
                     <a href="" @click="onDelete( fournisseurl.id) "><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/add-fournisseur-ligne"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/admin/add-fournisseur-ligne"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

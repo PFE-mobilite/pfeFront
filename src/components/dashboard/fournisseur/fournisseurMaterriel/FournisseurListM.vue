@@ -25,7 +25,7 @@
                   <td>{{fourisseur.description}}</td>
                   <td>{{fourisseur.logo}}</td>
                   <td>
-                    <router-link :to="'/edit-fournisseur-mat/' + fourisseur.id"><i class="fas fa-edit text-success mr-2"></i></router-link>
+                    <router-link :to="'/admin/edit-fournisseur-mat/' + fourisseur.id"><i class="fas fa-edit text-success mr-2"></i></router-link>
                     <a href="" @click="onDelete(fourisseur.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/new-fournisseur-mat"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/admin/new-fournisseur-mat"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

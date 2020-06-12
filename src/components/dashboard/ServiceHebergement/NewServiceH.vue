@@ -4,7 +4,7 @@
       <div class="col mx-5">
         <div class="card card-edit-serH">
           <div class="card-header text-white">
-            Edit Service
+            Ajouter Service
           </div>
           <div class="card-body mx-5">
             <div class="row">

@@ -27,7 +27,7 @@
                   <td>{{technologie.nom}}</td>
                   <td>{{technologie.projet.libelle}}</td>
                   <td>
-                    <router-link :to="'/edit-technologie/' + technologie.id"><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
+                    <router-link :to="'/admin/edit-technologie/' + technologie.id"><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
                     <a href="" @click="deleting(technologie.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/new-technologie"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/admin/new-technologie"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

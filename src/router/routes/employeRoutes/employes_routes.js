@@ -14,41 +14,41 @@ const routesEmploye = [
     component: Employe,
     children: [
       {
-        path: '/profile-employe',
+        path: '/employeAccount/profile-employe',
         name: 'EmployeProfile',
         component: EmployeProfile
       },
       {
-        path: '/employe-achat-materiel',
+        path: '/employeAccount/employe-achat-materiel',
         component: AchatDemande,
         children: [
           {
-            path: '/employe-achat-materiel-list',
+            path: '/employeAccount/employe-achat-materiel-list',
             name: 'ListComMateriel',
             component: ListComMateriel
           },
           {
-            path: '/employe-achat-ser-list',
+            path: '/employeAccount/employe-achat-ser-list',
             name: 'ListComservice',
             component: ListServiceHebergement
           },
           {
-            path: '/employe-new-mat',
+            path: '/employeAccount/employe-new-mat',
             name: 'newMateriel',
             component: NewMatEmp
           },
           {
-            path: '/employe-edit-mat/:id',
+            path: '/employeAccount/employe-edit-mat/:id',
             name: 'editMateriel',
             component: EditComMateriel
           },
           {
-            path: '/employe-add-serH',
+            path: '/employeAccount/employe-add-serH',
             name: 'newSerH',
             component: NewServiceCom
           },
           {
-            path: '/employe-edit-serH/:id',
+            path: '/employeAccount/employe-edit-serH/:id',
             name: 'EditSerH',
             component: EditServiceCom
           }

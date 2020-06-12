@@ -4,8 +4,8 @@
       <div class="col-10">
         <h1 class="text-muted text-capitalize display-4 py-2">Employes</h1>
         <ol class="breadcrumb bg-white">
-          <li class="breadcrumb-item "><router-link to="/employes"><a href="" class="text-muted">Details Employe</a></router-link></li>
-          <li class="breadcrumb-item "><router-link to="/employes-technologies"><a href="" class="text-muted">Employe & technologie</a></router-link></li>
+          <li class="breadcrumb-item "><router-link to="/admin/employes"><a href="" class="text-muted">Details Employe</a></router-link></li>
+          <li class="breadcrumb-item "><router-link to="/admin/employes-technologies"><a href="" class="text-muted">Employe & technologie</a></router-link></li>
         </ol>
       </div>
     </div>

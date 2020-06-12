@@ -40,173 +40,173 @@ const routesAdmin = [
     component: Dashboard,
     children: [
       {
-        path: '/recapDisplay',
+        path: '/admin/recapDisplay',
         name: 'display',
         component: recapDisplay
       },
       {
-        path: '/clients',
+        path: '/admin/clients',
         name: 'clientslist',
         component: ClientList
       },
       {
-        path: '/employes-choix',
+        path: '/admin/employes-choix',
         component: EmployeChoix,
         children: [
           {
-            path: '/employes',
+            path: '/admin/employes',
             name: 'employeList',
             component: EmployeList
           },
           {
-            path: '/employes-technologies',
+            path: '/admin/employes-technologies',
             name: 'employetechnologie',
             component: EmployeTechno
           }
         ]
       },
       {
-        path: '/editemploye/:id',
+        path: '/admin/edit-employe/:id',
         name: 'editEmpoloye',
         component: EditEmploye
       },
       {
-        path: '/edit-client/:id',
+        path: '/admin/edit-client/:id',
         name: 'edit',
         component: EditClient
       },
       {
-        path: '/newemploye',
+        path: '/admin/new-employe',
         name: 'newAccount',
         component: NewEmploye
       },
       {
-        path: '/newclient',
+        path: '/admin/newclient',
         name: 'newClient',
         component: NewClient
       },
       {
-        path: '/materiels',
+        path: '/admin/materiels',
         name: 'materiels',
         component: MaterielsList
       },
       {
-        path: '/new-materiel',
+        path: '/admin/new-materiel',
         name: 'addmateriels',
         component: NewMateriel
       },
       {
-        path: '/edit-materiel/:id',
+        path: '/admin/edit-materiel/:id',
         name: 'editmateriels',
         component: EditMateriel
       },
       {
-        path: '/services-generaux',
+        path: '/admin/services-generaux',
         component: ChoixSG,
         children: [
           {
-            path: '/services-generaux-details',
+            path: '/admin/services-generaux-details',
             component: ServiceGeneralList
           },
           {
-            path: '/lignes-services-generaux',
+            path: '/admin/lignes-services-generaux',
             component: LignesSGList
           }
         ]
       },
       {
-        path: '/add-service-general',
+        path: '/admin/add-service-general',
         name: 'newS.generaux',
         component: NewServiceGeneral
       },
       {
-        path: '/add-ligneSG',
+        path: '/admin/add-ligneSG',
         name: 'new LS.generaux',
         component: NewLigneSG
       },
       {
-        path: '/edit-ligneSG/:id',
+        path: '/admin/edit-ligneSG/:id',
         name: 'edit LS.generaux',
         component: EditLigneSG
       },
       {
-        path: '/edit-service-general/:id',
+        path: '/admin/edit-service-general/:id',
         name: 'editS.generaux',
         component: EditServiceGeneral
       },
       {
-        path: '/fournisseurs',
+        path: '/admin/fournisseurs',
         component: FournisseurChoix,
         children: [
           {
-            path: '/fournisseur-ligne-list',
+            path: '/admin/fournisseur-ligne-list',
             name: 'fournisseurL',
             component: FournisseurLlist
           },
           {
-            path: '/add-fournisseur-ligne',
+            path: '/admin/add-fournisseur-ligne',
             name: 'newfournisseurL',
             component: NewFournisseurL
           },
           {
-            path: '/edit-fournisseur-ligne/:id',
+            path: '/admin/edit-fournisseur-ligne/:id',
             name: 'editfournisseurL',
             component: EditFournisseurL
           },
           {
-            path: '/fournisseur-mat-list',
+            path: '/admin/fournisseur-mat-list',
             name: 'fournisseurMateriel',
             component: FournisseurMList
           },
           {
-            path: '/new-fournisseur-mat',
+            path: '/admin/new-fournisseur-mat',
             name: 'newfournisseur',
             component: NewFournisseurM
           },
           {
-            path: '/edit-fournisseur-mat/:id',
+            path: '/admin/edit-fournisseur-mat/:id',
             name: 'editfournisseur',
             component: EditFournisseurM
           }
         ]
       },
       {
-        path: '/projets',
+        path: '/admin/projets',
         name: 'projets',
         component: ProjetList
       },
       {
-        path: '/new-projet',
+        path: '/admin/new-projet',
         name: 'addprojets',
         component: NewProjet
       },
       {
-        path: '/edit-projet/:id',
+        path: '/admin/edit-projet/:id',
         name: 'editprojets',
         component: EditProjet
       },
       {
-        path: '/service-hebergement',
+        path: '/admin/service-hebergement',
         name: 'servicehebergemenet',
         component: ServiceHebergement
       },
       {
-        path: '/new-service-internet',
+        path: '/admin/new-service-internet',
         name: 'addservicehebergemenet',
         component: NewServiceH
       },
       {
-        path: '/edit-service-internet/:id',
+        path: '/admin/edit-service-internet/:id',
         name: 'editservicehebergemenet',
         component: EditServiceH
       },
       {
-        path: '/new-technologie',
+        path: '/admin/new-technologie',
         name: 'addtechnologie',
         component: NewTechnologies
       },
       {
-        path: '/edit-technologie/:id',
+        path: '/admin/edit-technologie/:id',
         name: 'edittechnologie',
         component: EditTechnologies
       }

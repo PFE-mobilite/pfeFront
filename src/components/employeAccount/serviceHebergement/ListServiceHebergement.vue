@@ -27,7 +27,7 @@
                   <td>{{service.prix}}$</td>
                   <td>{{service.duree}} mois</td>
                   <td>
-                    <a :href="'/employe-edit-serH/'+ service.id" ><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/employeAccount/employe-edit-serH/'+ service.id" ><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/employe-add-serH"><button type="button" class="btn btn-color  text-white align-content-end ">Ajouter</button></router-link>
+            <router-link to="/employeAccount/employe-add-serH"><button type="button" class="btn btn-color  text-white align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

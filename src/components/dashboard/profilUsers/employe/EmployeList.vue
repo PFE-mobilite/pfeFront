@@ -31,7 +31,7 @@
                     <td>{{employe.poste}}</td>
                     <td>{{employe.service}}</td>
                     <td>
-                      <router-link v-bind:to="'/editemploye/' + employe.id" ><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
+                      <router-link v-bind:to="'/admin/edit-employe/' + employe.id" ><a href=""><i class="fas fa-edit text-success mr-2"></i></a></router-link>
                       <a href="" @click="deleting(employe.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                     </td>
                   </tr>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/newemploye"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/admin/new-employe"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

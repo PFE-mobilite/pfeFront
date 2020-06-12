@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import signup from '../components/authentification/signup'
+import Registration from '../views/Registration'
 import Welcome from '../views/WelcomeDefault'
 import routes1 from './routes/public'
 import routes2 from './routes/private'
@@ -12,14 +12,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'signin',
     component: Welcome
   },
   {
-    path: '/Registration',
+    path: '/registration',
     name: 'signup',
-    component: signup
+    component: Registration
   }
 ].concat(routes1, routes2, routesAdmin, routesEmploye, routesClient)
 

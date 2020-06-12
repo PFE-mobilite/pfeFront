@@ -29,7 +29,7 @@
                   <td>{{materielx.fournisseur ? materielx.fournisseur.libelle  : "null"}}</td>
                   <td>{{materielx.projet ? materielx.projet.libelle  : "non-associée"}}</td>
                   <td>
-                    <a :href="'/edit-materiel/'+ materielx.id"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/admin/edit-materiel/'+ materielx.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/new-materiel"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/admin/new-materiel"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

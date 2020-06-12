@@ -30,7 +30,7 @@
         <nav class="pull-left">
           <ul>
             <li>
-              <router-link :to="{path:'/'}">Home</router-link>
+              <router-link :to="{path:'/admin'}">Home</router-link>
             </li>
             <li>
               <router-link :to="{path:'/register'}">Register</router-link>
@@ -43,5 +43,4 @@
 </template>
 
 <style scoped>
-
 </style>

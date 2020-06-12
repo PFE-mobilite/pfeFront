@@ -23,7 +23,7 @@
                   <td>{{serviceG.description}}</td>
                   <td>{{serviceG.type}}</td>
                   <td>
-                    <a :href="'/edit-service-general/' + serviceG.id"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/admin/edit-service-general/' + serviceG.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href="" @click="onDelete(serviceG.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="card-footer d-flex flex-row-reverse">
-            <router-link to="/add-service-general"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
+            <router-link to="/admin/add-service-general"><button type="button" class="btn btn-info align-content-end ">Ajouter</button></router-link>
           </div>
         </div>
       </div>

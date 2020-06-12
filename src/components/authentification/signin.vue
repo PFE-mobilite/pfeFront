@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-4">
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6">
+      <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1"></div>
+      <div class="col-xl-6 col-lg-5 col-md-8 col-sm-10">
         <div class="card card-1">
           <div class="card-header text-center text-white display-4 ">Login</div>
           <div class="card-body">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <div class="col"></div>
+      <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1"></div>
     </div>
   </div>
 </template>
@@ -62,7 +62,6 @@
 
   ::placeholder {
     color: white;
-    font-size: 1.3em;
   }
 
   .card-1 {

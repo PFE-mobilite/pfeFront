@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid bg">
     <div class="row">
-      <div class="col py-5">
-        <div class="mt-5 pt-5">
-          <login></login>
+      <div class="col pt-5 ">
+        <div class="mt-1">
+          <registing></registing>
         </div>
       </div>
     </div>
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import login from '../components/authentification/signin'
+import registing from '../components/authentification/signup'
 export default {
   components: {
-    login
+    registing
   }
 }
 </script>

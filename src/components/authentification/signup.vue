@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-4">
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6">
+      <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1"></div>
+      <div class="col-xl-6 col-lg-5 col-md-8 col-sm-10">
         <div class="card card-1 ">
           <div class="card-header text-center text-white display-4 ">Nouveau Compte</div>
           <div class="card-body">
@@ -62,11 +62,26 @@
                   <label for="password" class="label">Password</label>
                 </div>
               </div>
+              <div class="form-group py-4 row justify-content-center">
+                <div class="col-8">
+                  <input
+                    id="password-confirmation"
+                    type="password"
+                    class="form-control text-white my-2 p-2 input"
+                    placeholder="Password-confirmation"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                  />
+
+                  <label for="passwordpassword-confirmation" class="label">Password Confirmation</label>
+                </div>
+              </div>
               <div class="form-group row justify-content-center mt-5">
                 <div class="col-8">
                   <button
                     type="submit"
-                    class="btn btn-block p-2 font-weight-bold text-uppercase submit-button"
+                    class="btn btn-block p-2 btn-outline-info text-uppercase submit-button"
                   >
                     SignUp
                   </button>
@@ -76,7 +91,7 @@
           </div>
         </div>
       </div>
-      <div class="col"></div>
+      <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1"></div>
     </div>
   </div>
 </template>
@@ -88,7 +103,6 @@
 
   ::placeholder {
     color: white;
-    font-size: 1.3em;
   }
   .card-1 {
     background: transparent;
@@ -114,13 +128,11 @@
   }
 
   .submit-button {
-    background: #1d6fa5;
     color: #eee;
     transition: all 0.3s;
   }
 
   .submit-button:hover {
-    background: #1d6fa5;
     transform: translateY(-3px);
   }
 
