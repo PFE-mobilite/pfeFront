@@ -6,6 +6,9 @@ const routesClient = [
   {
     path: '/clientAccount',
     component: ClientAccount,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: '/clientAccount/profile-client',

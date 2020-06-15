@@ -10,7 +10,7 @@
               <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Mobelite</a>
               <ul class="navbar-nav flex-column mt-4">
                 <EmployeMiniPresentationCard></EmployeMiniPresentationCard>
-                <router-link to="/employeAccount/profile-employe"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li></router-link>
+                <router-link to="/employeAccount"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li></router-link>
                 <router-link to="/employeAccount/employe-achat-materiel"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox  text-light fa-lg mr-3"></i>Commande</a></li></router-link>
               </ul>
             </div>
@@ -30,7 +30,7 @@
                 </ul>
                 <ul class="navbar-nav">
                   <li class="nav-item mt-2"><span class="m-r-sm text-white">Bienvenue sur le compte Employe Mobelite</span></li>
-                  <li class="nav-item"><a href="#" class="nav-link text-white px-4" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-white"></i>logout</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link text-muted px-4" data-toggle="modal" data-target="#sign-out" @click="logout"><i class="fas fa-sign-out-alt text-white"></i>logout</a></li>
                 </ul>
               </div>
             </div>
@@ -60,6 +60,11 @@ export default {
   },
   components: {
     EmployeMiniPresentationCard
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout').then(() => this.$router.push('/'))
+    }
   }
 }
 </script>

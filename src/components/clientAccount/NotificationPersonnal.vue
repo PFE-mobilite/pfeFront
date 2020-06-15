@@ -6,9 +6,9 @@
           <div class="card-header bg-white ">
           <h5 class="profiled text-muted text-left text-capitalize py-2">Notification</h5>
           </div>
-          <!--<div class="card-body">
-              <NotificationModel v-for="notification in notifications" :noti="notification"></NotificationModel>
-          </div>-->
+          <div class="card-body">
+              <Notification></Notification>
+          </div>
         </div>
       </div>
     </div>
@@ -16,7 +16,11 @@
 </template>
 
 <script>
+import Notification from './NotificationModel'
 export default {
+  components: {
+    Notification
+  },
   computed: {
     notifications () {
       return this.$store.getters.notifications

@@ -38,9 +38,12 @@ const routesAdmin = [
   {
     path: '/admin',
     component: Dashboard,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
-        path: '/admin/recapDisplay',
+        path: '/admin',
         name: 'display',
         component: recapDisplay
       },
@@ -105,7 +108,7 @@ const routesAdmin = [
         component: ChoixSG,
         children: [
           {
-            path: '/admin/services-generaux-details',
+            path: '/admin/services-generaux',
             component: ServiceGeneralList
           },
           {
@@ -154,7 +157,7 @@ const routesAdmin = [
             component: EditFournisseurL
           },
           {
-            path: '/admin/fournisseur-mat-list',
+            path: '/admin/fournisseurs',
             name: 'fournisseurMateriel',
             component: FournisseurMList
           },

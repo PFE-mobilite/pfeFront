@@ -10,17 +10,17 @@
               <div class="form-group py-4 row justify-content-center">
                 <div class="col-8 ">
                   <input
-                    id="email"
+                    id="username"
                     type="email"
                     class="form-control text-white input my-2 p-2"
-                    placeholder="E-Mail Address"
-                    name="email"
+                    placeholder="Username"
+                    name="Username"
                     required
+                    v-model="login.username"
                   />
-                  <label for="email" class=" label">E-Mail Address</label>
+                  <label for="" class=" label">Username</label>
                 </div>
               </div>
-
               <div class="form-group py-4 row justify-content-center">
                 <div class="col-8">
                   <input
@@ -31,8 +31,8 @@
                     name="password"
                     required
                     autocomplete="current-password"
+                    v-model="login.password"
                   />
-
                   <label for="password" class="label">Password</label>
                 </div>
               </div>
@@ -40,7 +40,8 @@
                 <div class="col-8">
                   <button
                     type="submit"
-                    class="btn btn-block p-2 font-weight-bold text-uppercase submit-button"
+                    class="btn btn-block p-2 btn-outline-info text-uppercase submit-button"
+                    @click="loginng"
                   >
                     Login
                   </button>
@@ -56,10 +57,27 @@
 </template>
 
 <script>
+export default {
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    loginng () {
+      const username = this.username
+      const password = this.password
+      this.$store.dispatch('login', { username, password }).then(() => {
+        console.log('loged successfully')
+        this.router.push('/admin')
+      }).catch(err => console.log(err))
+    }
+  }
+}
 </script>
 
 <style scoped>
-
   ::placeholder {
     color: white;
   }
@@ -87,7 +105,6 @@
   }
 
   .submit-button {
-    background: #1d6fa5;
     color: #eee;
     transition: all 0.3s;
   }

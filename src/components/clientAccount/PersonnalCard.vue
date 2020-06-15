@@ -15,17 +15,27 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       clientinto: {
-        id: 1,
-        raison_social: 'Samsung',
-        nom: 'kais',
-        prenom: 'skander',
-        email: 'kaisska@gmail.com'
+        raison_social: '',
+        nom: '',
+        prenom: '',
+        email: ''
       }
     }
+  },
+  created () {
+    axios.get(' http://127.0.0.1:8000/api/contacts/5').then(res => {
+      const dataImported = res.data
+      console.log(dataImported)
+      this.clientinto.nom = dataImported.nom
+      this.clientinto.prenom = dataImported.prenom
+      this.clientinto.email = dataImported.email
+      this.clientinto.raison_social = dataImported.entreprise.raisonSociale
+    }).catch(err => console.log(err))
   }
 }
 </script>

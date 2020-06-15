@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import ProfilClient from './modules/ProfilClient'
 import ProfilEmploye from './modules/ProfilEmploye'
 import Notifications from './modules/Notification'
+import Authentication from './modules/Authenticate'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -15,6 +17,7 @@ export default new Vuex.Store({
   modules: {
     ProfilClient,
     ProfilEmploye,
-    Notifications
+    Notifications,
+    Authentication
   }
 })

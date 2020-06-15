@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index'
 import Registration from '../views/Registration'
-import Welcome from '../views/WelcomeDefault'
+import loginPage from '../views/WelcomeDefault'
 import routes1 from './routes/public'
 import routes2 from './routes/private'
 import routesAdmin from './routes/adminRoutes/admin_routes'
@@ -14,7 +15,7 @@ const routes = [
   {
     path: '/',
     name: 'signin',
-    component: Welcome
+    component: loginPage
   },
   {
     path: '/registration',
@@ -28,5 +29,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      console.log('+-++++++++++++++++-------------------')
+      next()
+      return
+    }
+    next('/')
+  } else {
+    next()
+  }
+})
 export default router

@@ -19,14 +19,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .bg {
-    background-image: url("../assets/ks.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: calc(100vh);
-    witdh: calc(100vh)
-  }
   nav{
     background-color: #0d152c;
   }

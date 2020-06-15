@@ -9,7 +9,8 @@
             <label for="" class="text-muted px-2"><i class="fas fa-user text-muted text-left mr-1"></i>Nom:<input type="text" class="mx-2" style="width: 100px" v-model="clientinto.nom"></label><br>
             <label for="" class="text-muted px-2"><i class="fas fa-user text-muted text-left mr-1"></i>Prenom:<input type="text" class="mx-2" style="width: 100px" v-model="clientinto.prenom"></label><br>
             <label for="" class="text-muted px-2"><i class="fas fa-at text-muted text-left mt-1 mr-1"></i>Email:<input type="text"  class="mx-1" style="width: 170px" v-model="clientinto.email"></label><br>
-            <label for="" class="text-muted px-2"><i class="fas fa-building text-muted text-left mt-1 mr-1"></i>Société:<input type="text"  class="mx-1" style="width: 100px"  v-model="clientinto.raison_social"></label>
+            <label for="" class="text-muted px-2"><i class="fas fa-building text-muted text-left mt-1 mr-1"></i>Société:<input type="text"  class="mx-1" style="width: 100px"  v-model="clientinto.raison_social" disabled></label><br>
+            <button class="btn btn-secondary text-left" @click="modifier">Modifier</button>
           </div>
         </div>
       </div>
@@ -18,16 +19,37 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       clientinto: {
-        id: 1,
-        raison_social: 'Samsung',
-        nom: 'kais',
-        prenom: 'skander',
-        email: 'kaisska@gmail.com'
+        raison_social: '',
+        nom: '',
+        prenom: '',
+        email: ''
       }
+    }
+  },
+  created () {
+    axios.get(' http://127.0.0.1:8000/api/contacts/5').then(res => {
+      const dataImported = res.data
+      console.log(dataImported)
+      this.clientinto.nom = dataImported.nom
+      this.clientinto.prenom = dataImported.prenom
+      this.clientinto.email = dataImported.email
+      this.clientinto.raison_social = dataImported.entreprise.raisonSociale
+    }).catch(err => console.log(err))
+  },
+  methods: {
+    modifier () {
+      const clientModifier = {
+        nom: this.clientinto.nom,
+        prenom: this.clientinto.prenom,
+        email: this.clientinto.email
+      }
+      console.log(clientModifier)
+      axios.put(' http://127.0.0.1:8000/api/contacts/5', clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
     }
   }
 }

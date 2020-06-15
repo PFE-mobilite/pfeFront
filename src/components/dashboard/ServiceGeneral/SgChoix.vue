@@ -4,7 +4,7 @@
       <div class="col-10">
         <h1 class="text-muted text-capitalize display-4 py-2">Service General</h1>
         <ol class="breadcrumb bg-white">
-          <li class="breadcrumb-item "><router-link to="/admin/services-generaux-details"><a href="" class="text-muted">Les Services</a></router-link></li>
+          <li class="breadcrumb-item "><router-link to="/admin/services-generaux"><a href="" class="text-muted">Les Services</a></router-link></li>
           <li class="breadcrumb-item "><router-link to="/admin/lignes-services-generaux"><a href="" class="text-muted">Lignes Services Generaux</a></router-link></li>
         </ol>
       </div>

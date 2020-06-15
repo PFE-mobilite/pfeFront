@@ -64,16 +64,6 @@
             <input type="date" class="form-control" placeholder="date_recrutement" style="width: 250px" v-model="employe.date_recrutement">
           </div>
         </div>
-        <div class="row mt-4">
-          <div class="col mx-0 mt-1">
-            <label for="" class="text-muted text-capitalize">Valeur H/J:</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mx-0 mt-1">
-            <input type="number" class="form-control" placeholder="valeur_HJ" style="width: 250px" v-model="employe.valeur_HJ">
-          </div>
-        </div>
       </div>
     </div>
     <br>
@@ -81,20 +71,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       employe: {
-        nom: 'skander',
-        prenom: 'kais',
-        email: 'kaisska@gmail.com',
-        poste: 'batal',
-        service: 'webservice',
-        diplome: 'licence',
-        date_recrutement: '12/05/2020',
-        valeur_HJ: '20$'
+        nom: '',
+        prenom: '',
+        email: '',
+        poste: '',
+        service: '',
+        diplome: '',
+        date_recrutement: ''
       }
     }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/employes/1').then(res => {
+      const dataImported = res.data
+      this.employe.nom = dataImported.nom
+      this.employe.prenom = dataImported.prenom
+      this.employe.email = dataImported.email
+      this.employe.poste = dataImported.poste
+      this.employe.service = dataImported.service
+      this.employe.diplome = dataImported.diplome
+      this.employe.date_recrutement = dataImported.datederecrutement.substring(0, 10)
+    }).catch(err => console.log(err))
   }
 }
 </script>

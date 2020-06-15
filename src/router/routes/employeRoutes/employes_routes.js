@@ -12,9 +12,12 @@ const routesEmploye = [
   {
     path: '/employeAccount',
     component: Employe,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
-        path: '/employeAccount/profile-employe',
+        path: '/employeAccount',
         name: 'EmployeProfile',
         component: EmployeProfile
       },
@@ -23,7 +26,7 @@ const routesEmploye = [
         component: AchatDemande,
         children: [
           {
-            path: '/employeAccount/employe-achat-materiel-list',
+            path: '/employeAccount/employe-achat-materiel',
             name: 'ListComMateriel',
             component: ListComMateriel
           },

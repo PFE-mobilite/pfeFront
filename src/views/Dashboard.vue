@@ -9,7 +9,7 @@
             <div class=" col-xl-2 col-lg-2 col-md-2  sidebar  fixed-top">
               <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Mobelite</a>
               <ul class="navbar-nav flex-column mt-4">
-                <router-link to="/admin/recapDisplay"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li></router-link>
+                <router-link to="/admin"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 current"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li></router-link>
                 <router-link to="/admin/employes"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Employes</a></li></router-link>
                 <router-link to="/admin/clients"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Clients</a></li></router-link>
                 <router-link to="/admin/projets"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-wrench text-light fa-lg mr-3"></i>Projets</a></li></router-link>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-3">
                   <ul class="navbar-nav">
-                    <li class="nav-item ml-md-auto "><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-white fa-lg"></i> </a> </li>
+                    <li class="nav-item ml-md-auto "><a href="#" class="nav-link" data-toggle="modal" data-target="#sign-out" @click="logout"><i class="fas fa-sign-out-alt text-white fa-lg"></i> </a> </li>
                   </ul>
                 </div>
               </div>
@@ -63,6 +63,14 @@ export default {
   data () {
     return {
       collapsed: false
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout').then(() => {
+        console.log('logout')
+        this.$router.push('/')
+      }).catch(error => console.log(error))
     }
   }
 }

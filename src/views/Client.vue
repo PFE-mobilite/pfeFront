@@ -11,7 +11,7 @@
               <ul class="navbar-nav flex-column mt-4">
                 <EmployeMiniPresentationCard></EmployeMiniPresentationCard>
                 <router-link to="/clientAccount/profile-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li></router-link>
-                <router-link to="/clientAccount/projets-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox  text-light fa-lg mr-3"></i>Commande</a></li></router-link>
+                <router-link to="/clientAccount/projets-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox  text-light fa-lg mr-3"></i>Projets</a></li></router-link>
               </ul>
             </div>
             <!--mysidebar-->
@@ -29,8 +29,8 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 </ul>
                 <ul class="navbar-nav">
-                  <li class="nav-item mt-2"><span class="m-r-sm text-muted">Bienvenue sur le compte Employe Mobelite</span></li>
-                  <li class="nav-item"><a href="#" class="nav-link text-muted px-4" data-toggle="modal" data-target="#sign-out"><i class="fas fa-sign-out-alt text-muted"></i>logout</a></li>
+                  <li class="nav-item mt-2"><span class="m-r-sm text-muted">Bienvenue sur le compte Client Mobelite</span></li>
+                  <li class="nav-item"><a href="#" class="nav-link text-muted px-4" data-toggle="modal" data-target="#sign-out" @click="logout"><i class="fas fa-sign-out-alt text-muted"></i>logout</a></li>
                 </ul>
               </div>
             </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import EmployeMiniPresentationCard from '../components/employeAccount/EmployeMiniPresentationCard'
+import EmployeMiniPresentationCard from '../components/clientAccount/PersonnalCard'
 export default {
   data () {
     return {
@@ -60,6 +60,11 @@ export default {
   },
   components: {
     EmployeMiniPresentationCard
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout').then(() => this.$router.push('/'))
+    }
   }
 }
 </script>

@@ -15,20 +15,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       employecard: {
-        nom: 'skander',
-        prenom: 'kais',
-        email: 'kaisska@gmail.com',
-        poste: 'batal',
-        service: 'webservice',
-        diplome: 'licence',
-        date_recrutement: '12/05/2020',
-        valeur_HJ: '20$'
+        nom: '',
+        prenom: '',
+        email: '',
+        poste: '',
+        service: '',
+        diplome: '',
+        date_recrutement: ''
       }
     }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/employes/1').then(res => {
+      const dataImported = res.data
+      this.employecard.nom = dataImported.nom
+      this.employecard.prenom = dataImported.prenom
+      this.employecard.email = dataImported.email
+      this.employecard.poste = dataImported.poste
+      this.employecard.service = dataImported.service
+      this.employecard.diplome = dataImported.diplome
+      this.employecard.date_recrutement = dataImported.datederecrutement.substring(0, 10)
+    }).catch(err => console.log(err))
   }
 }
 </script>

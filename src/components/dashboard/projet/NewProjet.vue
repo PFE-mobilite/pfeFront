@@ -103,8 +103,8 @@ export default {
         cout: 0,
         typeProjet: this.projet.typeProjet,
         maintenance: parseFloat(this.projet.maintenance),
-        devise: this.projet.devise,
-        coutEstime: this.projet.coutEstime
+        devise: parseFloat(this.projet.devise),
+        coutEstime: parseFloat(this.projet.coutEstime)
       }
       console.log(Newprojet)
       axios.post('http://localhost:8080/api/projets', Newprojet, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))

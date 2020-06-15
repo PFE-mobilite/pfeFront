@@ -59,6 +59,7 @@ export default {
       console.log(formDataSG)
       axios.post('http://localhost:8080/api/services_generauxes', formDataSG, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
       console.log('++++++++Success++++++++++')
+      this.$router.push('/admin/services-generaux-details')
     }
   }
 }
