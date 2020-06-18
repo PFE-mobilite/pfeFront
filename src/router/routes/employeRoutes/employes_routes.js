@@ -13,7 +13,8 @@ const routesEmploye = [
     path: '/employeAccount',
     component: Employe,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      roles: 'ROLE_EMPLOYE'
     },
     children: [
       {

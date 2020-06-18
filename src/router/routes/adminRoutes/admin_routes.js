@@ -39,7 +39,7 @@ const routesAdmin = [
     path: '/admin',
     component: Dashboard,
     meta: {
-      requiresAuth: true
+      requiresAuth: true, roles: 'ROLE_ADMIN'
     },
     children: [
       {

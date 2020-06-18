@@ -32,11 +32,22 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
-      console.log('+-++++++++++++++++-------------------')
+      if (to.matched.some(route => {
+        return route.meta.roles && !route.meta.roles.includes(store.getters.isRoleUser)
+      })
+      ) {
+        if (store.getters.isRoleUser === 'ROLE_ADMIN') {
+          return next('/admin')
+        } else if (store.getters.isRoleUser === 'ROLE_CONTACT') {
+          return next('/clientAccount')
+        } else {
+          return next('/employeAccount')
+        }
+      }
       next()
       return
     }
-    next('/')
+    next({ path: '/' })
   } else {
     next()
   }

@@ -7,7 +7,8 @@ const routesClient = [
     path: '/clientAccount',
     component: ClientAccount,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      roles: 'ROLE_CONTACT'
     },
     children: [
       {

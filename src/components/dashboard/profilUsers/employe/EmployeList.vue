@@ -57,6 +57,9 @@ export default {
     }
   },
   created () {
+    const token = localStorage.getItem('token')
+    console.log('my token is :')
+    console.log(token)
     axios.get('http://localhost:8080/api/employes').then(response => {
       const dataImported = response.data['hydra:member']
       console.log(dataImported)

@@ -78,7 +78,13 @@ export default {
       this.$store.dispatch('login', { username, password })
         .then((res) => {
           console.log(res.data)
-          this.$router.push('/admin')
+          if (this.$store.getters.isRoleUser === 'ROLE_ADMIN') {
+            this.$router.push('/admin')
+          } else if (this.$store.getters.isRoleUser === 'ROLE_CONTACT') {
+            this.$router.push('/clientAccount')
+          } else {
+            this.$router.push('/employeAccount')
+          }
         })
         .catch(err => console.log(err))
     }

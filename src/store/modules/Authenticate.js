@@ -2,7 +2,9 @@ import axios from 'axios'
 const state = {
   status: '',
   token: localStorage.getItem('token') || '',
-  user: {}
+  user: {},
+  role: '',
+  user_id: ''
 }
 const mutations = {
   'AUTH_REQUEST' (state) {
@@ -34,7 +36,7 @@ const actions = {
           const token = resp.data.token
           const user = resp.data.user
           localStorage.setItem('token', token)
-          axios.defaults.headers.common.Authorization = token
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`
           commit('AUTH_SUCCESS', token, user)
           resolve(resp)
         })
@@ -72,7 +74,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit('LOGOUT')
       localStorage.removeItem('token')
-      delete axios.defaults.headers.common.Authorization
       resolve()
     })
   }
@@ -80,7 +81,21 @@ const actions = {
 
 const getters = {
   isLoggedIn: state => !!state.token,
-  authStatus: state => state.status
+  authStatus: state => state.status,
+  isRoleUser: state => {
+    const jwt = state.token
+    const jwtData = jwt.split('.')[1]
+    const base64 = jwtData.replace('-', '+').replace('_', '/')
+    state.role = (JSON.parse(window.atob(base64))).roles[0]
+    return state.role
+  },
+  getUserId: state => {
+    const jwt = state.token
+    const jwtData = jwt.split('.')[1]
+    const base64 = jwtData.replace('-', '+').replace('_', '/')
+    state.user_id = (JSON.parse(window.atob(base64))).id
+    return state.user_id
+  }
 }
 
 export default {
