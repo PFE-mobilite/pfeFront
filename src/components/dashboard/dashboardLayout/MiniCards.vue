@@ -12,19 +12,16 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                      <div class="text-left text-capitalize font-weight-bold text-secondary">Ventes</div>
-                      </div>
-                      <div class="col">
-                      <span class="badge badge-primary mt-1 float-right">Mensuelle</span>
+                      <div class="text-left text-capitalize font-weight-bold text-secondary text-info">Nombre Projets</div>
                       </div>
                     </div>
                   </div>
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h3 class="text-secondary">40 886,200</h3>
-                        <small class="text-secondary">Total income</small>
-                        <small class="text-primary text-left flex-row-reverse ml-2">80%<i class="fas fa-level-up-alt text-primary"></i></small>
+                        <h3 class="text-secondary">{{nombreProjet}}</h3>
+                        <small class="text-secondary">Total</small>
+                        <small class="text-primary text-left flex-row-reverse ml-2">20%<i class="fas fa-level-up-alt text-primary"></i></small>
                       </div>
                     </div>
                   </div>
@@ -35,19 +32,16 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-secondary">Depense</div>
-                      </div>
-                      <div class="col">
-                        <span class="badge badge-danger mt-1 float-right">Mensuelle</span>
+                        <div class="text-left text-capitalize font-weight-bold text-danger">Nombre Client</div>
                       </div>
                     </div>
                   </div>
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h3 class="text-secondary">275,800</h3>
-                        <small class="text-secondary">Total Depense</small>
-                        <small class="text-danger text-left flex-row-reverse ml-2">20%<i class="fas fa-level-up-alt text-danger"></i></small>
+                        <h3 class="text-secondary">{{nombreClient}}</h3>
+                        <small class="text-secondary">Total </small>
+                        <small class="text-danger text-left flex-row-reverse ml-2">40%<i class="fas fa-level-up-alt text-danger"></i></small>
                       </div>
                     </div>
                   </div>
@@ -58,18 +52,15 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-secondary">projets</div>
-                      </div>
-                      <div class="col">
-                        <span class="badge badge-warning mt-1 text-capitalize float-right">annuel</span>
+                        <div class="text-left text-capitalize font-weight-bold text-warning">Depense Materiles</div>
                       </div>
                     </div>
                   </div>
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h3 class="text-secondary">31</h3>
-                        <small class="text-secondary text-capitalize">total projet</small>
+                        <h3 class="text-secondary">{{depenseMateriels['1']}} TND</h3>
+                        <small class="text-secondary text-capitalize">total dépense</small>
                         <small class="text-warning text-left flex-row-reverse ml-2">20%<i class="fa fa-bolt text-warning"></i></small>
                       </div>
                     </div>
@@ -81,19 +72,16 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-secondary">Activités</div>
-                      </div>
-                      <div class="col">
-                        <span class="badge badge-info mt-1 text-capitalize float-right">Mensuelle</span>
+                        <div class="text-left text-capitalize font-weight-bold text-success">Depense Service Hebergement</div>
                       </div>
                     </div>
                   </div>
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h3 class="text-secondary">31</h3>
-                        <small class="text-secondary text-capitalize">total activité</small>
-                        <small class="text-info text-left flex-row-reverse ml-2">60%<i class="fas fa-level-down-alt text-info"></i></small>
+                        <h3 class="text-secondary">{{depenseServiceHerbergement['1']}} TND</h3>
+                        <small class="text-secondary text-capitalize">total dépense</small>
+                        <small class="text-info text-left flex-row-reverse ml-2">60%<i class="fas fa-level-down-alt text-success"></i></small>
                       </div>
                     </div>
                   </div>
@@ -105,6 +93,30 @@
       </div>
     </section>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      nombreProjet: 0,
+      nombreClient: 0,
+      depenseMateriels: 0,
+      depenseServiceHerbergement: 0
+    }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/statistique').then(res => {
+      const dataImported = res.data
+      console.log(dataImported)
+      this.nombreProjet = dataImported.nbrProjet
+      this.nombreClient = dataImported.nbrClient
+      this.depenseMateriels = dataImported.depenseMateriels[0]
+      this.depenseServiceHerbergement = dataImported.depenseSH[0]
+    }).catch(err => console.log(err))
+  }
+}
+</script>
 
 <style>
   .card-common{
