@@ -68,11 +68,11 @@
                 </div>
               </div>
               <div class="col-xl-3 col-sm-6 p-2">
-                <div class="card card-common">
+                <div class="card card-common mr-2">
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-success">Depense Service Hebergement</div>
+                        <div class="text-left text-capitalize font-weight-bold text-success">Depense Hebergement</div>
                       </div>
                     </div>
                   </div>

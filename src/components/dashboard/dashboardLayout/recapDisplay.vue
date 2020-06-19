@@ -3,6 +3,7 @@
     <MiniCards></MiniCards>
     <div class="container-fluid">
       <div class="row">
+        <ChartLigne></ChartLigne>
           <EmployeActivity></EmployeActivity>
           <Tasks></Tasks>
       </div>
@@ -14,11 +15,13 @@
 import MiniCards from './MiniCards'
 import Tasks from './Tasks'
 import EmployeActivity from './accordiontest'
+import ChartLigne from './lineChartVD'
 export default {
   components: {
     MiniCards,
     Tasks,
-    EmployeActivity
+    EmployeActivity,
+    ChartLigne
   }
 }
 </script>

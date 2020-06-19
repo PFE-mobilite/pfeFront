@@ -7,6 +7,10 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import Axios from 'axios'
+import Chartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
+Vue.use(Chartkick.use(Chart))
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios

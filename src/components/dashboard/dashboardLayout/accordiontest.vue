@@ -1,73 +1,32 @@
 <template>
-  <div class="col-xl-6 col-12 mt-4">
-    <h4 class="text-muted mb-4">Recent Customer Activities:</h4>
-      <div role="tablist">
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-2" role="tab">
-            <b-button block v-b-toggle.accordion-1 variant="dark" class="text-left"><img src="../../../assets/admin.jpeg" width="50px" class="mr-3 rounded">John posted new Comment</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-2" role="tab">
-            <b-button block v-b-toggle.accordion-2 variant="dark" class="text-left"><img src="../../../assets/admin.jpeg" width="50px" class="mr-3 rounded">Doe posted new Comment</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-2" role="tab">
-            <b-button block v-b-toggle.accordion-3 variant="dark" class="text-left"><img src="../../../assets/cust3.jpeg" width="50px" class="mr-3 rounded">Doe posted new Comment</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-2" role="tab">
-            <b-button block v-b-toggle.accordion-4 variant="dark" class="text-left"><img src="../../../assets/admin.jpeg" width="50px" class="mr-3 rounded">Doe posted new Comment</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-        <b-card no-body class="mb-1">
-          <b-card-header header-tag="header" class="p-2" role="tab">
-            <b-button block v-b-toggle.accordion-5 variant="dark" class="text-left"><img src="../../../assets/cust1.jpeg" width="50px" class="mr-3 rounded">Doe posted new Comment</b-button>
-          </b-card-header>
-          <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-      </div>
+  <div class="col-xl-6 col-12 mb-5">
+    <h4 class="text-muted p-3 md-3 mb-3">Depense:</h4>
+    <pie-chart suffix="TND" :colors="['#4cf603', '#ea11f1']" :data="[['Depense Interne',depenseInterne],['Depense Externes',depenseExterne]]"></pie-chart>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      text: `
-    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-    richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-    brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-  `
+      depenseInterne: 0,
+      depenseExterne: 0
     }
+  },
+  created () {
+    axios.get('http://127.0.0.1:8000/api/statistique').then(res => {
+      const dataImported = res.data
+      const depenseMaterielsInterne = dataImported.depenseMaterielsInterne[0]
+      const depenseMaterielsExterne = dataImported.depenseMaterielsExtene[0]
+      const depenseSH = dataImported.depenseSH[0]
+      const depenseLigneSG = dataImported.depenseLigneSg[0]
+      this.depenseInterne = depenseMaterielsInterne['1'] + depenseLigneSG['1']
+      this.depenseExterne = depenseMaterielsExterne['1'] + depenseSH['1']
+    }).catch(err => console.log(err))
   }
 }
 </script>
+
+<style>
+</style>
