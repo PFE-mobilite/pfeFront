@@ -28,12 +28,12 @@ export default {
         nom: '',
         prenom: '',
         email: ''
-      }
+      },
+      id: this.$store.getters.getUserId
     }
   },
   created () {
-    const idClient = this.$store.getters.getUserId
-    axios.get(' http://127.0.0.1:8000/api/contacts/' + idClient).then(res => {
+    axios.get(' http://127.0.0.1:8000/api/contacts/' + this.id).then(res => {
       const dataImported = res.data
       console.log(dataImported)
       this.clientinto.nom = dataImported.nom
@@ -50,7 +50,7 @@ export default {
         email: this.clientinto.email
       }
       console.log(clientModifier)
-      axios.put(' http://127.0.0.1:8000/api/contacts/5', clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put(' http://127.0.0.1:8000/api/contacts/' + this.id, clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
     }
   }
 }

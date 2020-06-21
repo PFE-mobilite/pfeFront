@@ -25,7 +25,7 @@
                   <td>{{project.dateDebut.substring(0, 10)}}</td>
                   <td>{{project.coutEstime}}$</td>
                   <td>
-                    <a :href="'/admin/edit-projet/' + project.id"><i class="fas fa-eye text-info mr-2"></i></a>
+                    <a :href="'/clientAccount/projet-info/' +  parseInt(project['@id'].substring(13,14))"><i class="fas fa-eye text-info mr-2"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -50,8 +50,8 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8080/api/projets').then(res => {
-      const dataImported = res.data['hydra:member']
+    axios.get('http://localhost:8080/api/contacts/' + this.id).then(res => {
+      const dataImported = res.data.projet
       console.log(dataImported)
       for (const key in dataImported) {
         const projet = dataImported[key]

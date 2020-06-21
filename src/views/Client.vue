@@ -10,7 +10,7 @@
               <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Mobelite</a>
               <ul class="navbar-nav flex-column mt-4">
                 <EmployeMiniPresentationCard></EmployeMiniPresentationCard>
-                <router-link to="/clientAccount/profile-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li></router-link>
+                <router-link to="/clientAccount"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-user text-light fa-lg mr-3"></i>Profile</a></li></router-link>
                 <router-link to="/clientAccount/projets-client"><li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-toolbox  text-light fa-lg mr-3"></i>Projets</a></li></router-link>
               </ul>
             </div>

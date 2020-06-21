@@ -1,6 +1,7 @@
 import ClientAccount from '../../../views/Client.vue'
 import ProfileClient from '../../../components/clientAccount/ProfileClient'
 import ProjectSection from '../../../components/clientAccount/ProjetSection'
+import ProjectInfo from '../../../components/clientAccount/ProjectInfo'
 
 const routesClient = [
   {
@@ -12,7 +13,7 @@ const routesClient = [
     },
     children: [
       {
-        path: '/clientAccount/profile-client',
+        path: '/clientAccount',
         name: 'ProfileClient',
         component: ProfileClient
       },
@@ -20,6 +21,11 @@ const routesClient = [
         path: '/clientAccount/projets-client',
         name: 'ProjectSection',
         component: ProjectSection
+      },
+      {
+        path: '/clientAccount/projet-info/:id',
+        name: 'ProjectSection',
+        component: ProjectInfo
       }
     ]
   }
