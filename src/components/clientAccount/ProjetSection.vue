@@ -45,7 +45,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      projets: []
+      projets: [],
+      id: this.$store.getters.getUserId
     }
   },
   created () {

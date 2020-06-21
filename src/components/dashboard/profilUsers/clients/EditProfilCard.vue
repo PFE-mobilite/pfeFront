@@ -34,11 +34,11 @@
               </div>
             </div>
             <div class="row mx-3">
-              <div class="col-md-12">
-                <label for="">Projet</label>
-                <select class="form-control" v-model="selectedProjet">
-                  <option v-for="(projet,index) in projets" :key="projet + index">{{projet.libelle}}</option>
-                </select>
+              <div class="col-md-12 mt-2">
+                <label for="">Projets:</label>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item" v-for="(projet,index) in projets" :key="projet + index">{{projet.libelle}}</li>
+                </ol>
               </div>
             </div>
             <div class="row mx-3 d-flex flex-row-reverse">
@@ -68,18 +68,20 @@ export default {
       id: this.$route.params.id,
       selectedRaisionSocial: '',
       entreprises: [],
-      projets: [],
-      selectedProjet: ''
+      projets: []
     }
   },
   created () {
     axios.get('http://localhost:8080/api/contacts/' + this.id).then(res => {
       const dataImported = res.data
+      console.log(dataImported)
       this.client.nom = dataImported.nom
       this.client.prenom = dataImported.prenom
       this.client.email = dataImported.email
       this.selectedRaisionSocial = dataImported.entreprise.raisonSociale
       this.client.raison_social = this.selectedRaisionSocial
+      this.projets = dataImported.projet
+      console.log(this.projets)
       this.modifierprofil(this.client)
     }).catch(error => console.log(error))
     axios.get('http://localhost:8080/api/entreprises').then(res => {
@@ -88,15 +90,6 @@ export default {
         const entreprise = dataImported[key]
         this.entreprises.push(entreprise)
       }
-    }).catch(error => console.log(error))
-    axios.get('http://localhost:8080/api/projets').then(res => {
-      const dataImported = res.data['hydra:member']
-      for (const key in dataImported) {
-        const projet = dataImported[key]
-        this.projets.push(projet)
-      }
-      console.log('les projets')
-      console.log(this.projets)
     }).catch(error => console.log(error))
   },
   updated () {
@@ -138,18 +131,17 @@ export default {
     },
     save () {
       const entreprise = this.selectedEntrepriseId(this.selectedRaisionSocial)
-      const projet = this.selectedProjetId(this.selectedProjet)
       console.log('le projet id')
-      console.log(projet)
       const clientModifier = {
         nom: this.client.nom,
         prenom: this.client.prenom,
         email: this.client.email,
-        entreprise,
-        projet
+        entreprise
       }
       console.log(clientModifier)
-      axios.put('http://localhost:8080/api/entreprises/' + this.id, clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/contacts/' + this.id, clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+      }).catch((error) => console.log(error))
     }
   }
 }
@@ -176,6 +168,11 @@ export default {
   }
   label{
     color: white;
+  }
+  ol{
+    background: transparent;
+    color: white;
+    border: transparent;
   }
   select{
     background: transparent;

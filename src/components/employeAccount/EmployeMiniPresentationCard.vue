@@ -27,11 +27,12 @@ export default {
         service: '',
         diplome: '',
         date_recrutement: ''
-      }
+      },
+      id: this.$store.getters.getUserId
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/employes/1').then(res => {
+    axios.get('http://127.0.0.1:8000/api/employes/' + this.id).then(res => {
       const dataImported = res.data
       this.employecard.nom = dataImported.nom
       this.employecard.prenom = dataImported.prenom

@@ -28,7 +28,7 @@
                   <td>{{client.projet[0] ? client.projet[0].libelle : "null"}}</td>
                   <td>
                     <a :href="'/admin/edit-client/' + client.id"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                    <a href="" @click="deleting(client.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -60,12 +60,11 @@ export default {
         const client = dataImported[key]
         this.clients.push(client)
       }
-      console.log('niggaaaaa')
-      console.log(this.clients)
     }).catch(error => console.log(error))
   },
   methods: {
     deleting (id) {
+      console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
       axios.delete('http://localhost:8080/api/contacts/' + id).then(res => {
         console.log('in deleting')
         console.log(res)

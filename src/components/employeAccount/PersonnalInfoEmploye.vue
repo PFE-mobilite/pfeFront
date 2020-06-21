@@ -64,6 +64,9 @@
             <input type="date" class="form-control" placeholder="date_recrutement" style="width: 250px" v-model="employe.date_recrutement">
           </div>
         </div>
+        <div class="row pt-5 px-5 mb-1 d-flex flex-row-reverse">
+            <button class="btn btn-secondary mt-5" @click="edit">Modifier</button>
+        </div>
       </div>
     </div>
     <br>
@@ -83,11 +86,12 @@ export default {
         service: '',
         diplome: '',
         date_recrutement: ''
-      }
+      },
+      id: this.$store.getters.getUserId
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/employes/1').then(res => {
+    axios.get('http://127.0.0.1:8000/api/employes/' + this.id).then(res => {
       const dataImported = res.data
       this.employe.nom = dataImported.nom
       this.employe.prenom = dataImported.prenom
@@ -97,6 +101,23 @@ export default {
       this.employe.diplome = dataImported.diplome
       this.employe.date_recrutement = dataImported.datederecrutement.substring(0, 10)
     }).catch(err => console.log(err))
+  },
+  methods: {
+    edit () {
+      const empModifier = {
+        nom: this.employe.nom,
+        prenom: this.employe.prenom,
+        email: this.employe.email,
+        poste: this.employe.poste,
+        service: this.employe.service,
+        diplome: this.employe.diplome,
+        datederecrutement: this.employe.date_recrutement
+      }
+      console.log(empModifier)
+      axios.put('http://localhost:8080/api/employes/' + this.id, empModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+      }).catch((error) => console.log(error))
+    }
   }
 }
 </script>

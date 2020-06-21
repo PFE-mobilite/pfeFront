@@ -4,7 +4,7 @@
       <div class="col">
         <div class="card card-add-mat-emp">
           <div class="card-header text-white">
-            Modifier Commande Materiel
+            Ajoutee nouveau Materiel
           </div>
           <div class="card-body">
             <div class="row">
@@ -144,12 +144,13 @@ export default {
     border-radius: 0;
     border-bottom: 1px solid white;
     box-shadow: none;
+    color: white;
   }
   input:focus{
     background: transparent;
     box-shadow: none;
     border-bottom: 1px solid #17a2b8;
-
+    color: white;
   }
   textarea{
     background: transparent;
