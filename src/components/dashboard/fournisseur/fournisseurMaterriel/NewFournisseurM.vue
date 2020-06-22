@@ -2,6 +2,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="fournisseur.libelle" v-bind:action="action"></Alerting>
         <div class="card card-add-fournisseur">
           <div class="card-header text-white">
             Ajouter Fournisseur Materiel
@@ -49,6 +50,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -57,7 +59,10 @@ export default {
         email: '',
         description: '',
         logo: ''
-      }
+      },
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   methods: {
@@ -69,9 +74,18 @@ export default {
         logo: 'blabla'
       }
       console.log(formData2)
-      axios.post('http://localhost:8080/api/fournisseurs', formData2, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/fournisseurs', formData2, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row mx-5">
       <div class="col mx-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="fournisseurLigne.libelle" v-bind:action="action"></Alerting>
         <div class="card card-add-fournisseurL">
           <div class="card-header text-white">
             Ajouter Fournisseur Service En Ligne
@@ -43,6 +44,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -52,7 +54,10 @@ export default {
         adresse: '',
         pays: '',
         recueFacture: ''
-      }
+      },
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   methods: {
@@ -65,9 +70,18 @@ export default {
         recueFacture: this.fournisseurLigne.recueFacture
       }
       console.log(formData)
-      axios.post('http://localhost:8080/api/fournisseur_service_internets', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/fournisseur_service_internets', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

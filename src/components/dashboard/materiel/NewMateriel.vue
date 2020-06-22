@@ -2,6 +2,7 @@
   <div class="container mb-3 mt-3 ">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="materiel.typeMateriel" v-bind:action="action"></Alerting>
         <div class="card card-add-mat">
           <div class="card-header text-white">
             Ajouter Materiel
@@ -65,6 +66,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -77,6 +79,9 @@ export default {
         fournisseurOrigine: '',
         projetAssocié: ''
       },
+      success: false,
+      failed: false,
+      action: 'ajouté',
       selectedFournisseur: '',
       selectedProjet: '',
       projets: [],
@@ -134,9 +139,18 @@ export default {
         projet
       }
       console.log(newMateriel)
-      axios.post('http://localhost:8080/api/materiels', newMateriel, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/materiels', newMateriel, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        this.failed = true
+        console.log(error)
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

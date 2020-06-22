@@ -2,6 +2,7 @@
   <div class="container mb-3 mt-3 ">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="materiel.typeMateriel" v-bind:action="action"></Alerting>
         <div class="card card-add-mat">
           <div class="card-header text-white">
             Modifier Materiel
@@ -51,7 +52,7 @@
                 </div>
                 <div class="row mx-4 mt-3">
                   <div class="col-1">
-                    <button type="button" class="btn btn-outline-info px-4" @click="onSubmitM">Ajouter</button>
+                    <button type="button" class="btn btn-outline-info px-4" @click="onSubmitM">Modifier</button>
                   </div>
                 </div>
               </div>
@@ -65,6 +66,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -81,7 +83,10 @@ export default {
       selectedFournisseur: '',
       selectedProjet: '',
       projets: [],
-      fournisseurs: []
+      fournisseurs: [],
+      success: false,
+      failed: false,
+      action: 'modifié'
     }
   },
   created () {
@@ -146,9 +151,18 @@ export default {
         projet
       }
       console.log(newMateriel)
-      axios.put('http://localhost:8080/api/materiels/' + this.id, newMateriel, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/materiels/' + this.id, newMateriel, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>
