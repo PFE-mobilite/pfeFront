@@ -2,6 +2,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col mx-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="service_hebergement.type" v-bind:action="action"></Alerting>
         <div class="card card-edit-serH">
           <div class="card-header text-white">
             Ajouter Service
@@ -59,6 +60,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -71,6 +73,9 @@ export default {
         fournisseurServiceInternet: '',
         projet: ''
       },
+      success: false,
+      failed: true,
+      action: 'ajouté',
       selectedFournisseur: '',
       selectedProjet: '',
       projets: [],
@@ -128,7 +133,13 @@ export default {
         projet
       }
       console.log(serviceHebergementAjouter)
-      axios.post('http://localhost:8080/api/service_hebergements', serviceHebergementAjouter, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/service_hebergements', serviceHebergementAjouter, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        this.failed = true
+        console.log(error)
+      })
       console.log('++++++++Success++++++++++')
     }
   }

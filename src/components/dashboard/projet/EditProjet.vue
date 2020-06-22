@@ -20,8 +20,8 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Client</label>
-                <select class="form-control" v-model="selectedClient">
-                  <option v-for="(client,index) in clients" :key="client + index">{{client.entreprise.raisonSociale ? client.entreprise.raisonSociale : 'null' }}: {{client.email ? client.email : 'null'}}</option>
+                <select class="form-control" v-model="projet.contact">
+                  <option v-for="(client,index) in clients" :key="client + index">{{client.id}}-{{client.entreprise.raisonSociale ? client.entreprise.raisonSociale : 'null' }}: {{client.email ? client.email : 'null'}}</option>
                 </select>
               </div>
               <div class="col-md-6 pl-md-1">
@@ -229,10 +229,10 @@ export default {
         devise: this.projet.devise,
         coutEstime: parseInt(this.projet.coutEstime),
         pays: this.projet.pays,
-        contact: null
+        contact: parseInt(this.projet.contact.substring(0, 2))
       }
       console.log(projetmodifier)
-      axios.put('http://localhost:8080/api/projets/' + this.id, projetmodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then(res => console.log(res)).catch(err => console.log(err))
+      axios.put('http://localhost:8080/api/projets/' + this.id, projetmodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
     }
   }
 }

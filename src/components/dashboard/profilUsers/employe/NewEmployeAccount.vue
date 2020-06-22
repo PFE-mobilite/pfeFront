@@ -2,6 +2,7 @@
   <div class="container mt-3">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="employe.nom" v-bind:action="action"></Alerting>
         <div class="card card-edit">
           <div class="card-header text-white">
             Ajouter Employe
@@ -49,10 +50,6 @@
                   <label for="">Diplome</label>
                   <input type="text" class="form-control" placeholder="diplome" v-model="employe.diplome">
                 </div>
-                <div class="row">
-                  <label for="">valeur HJ</label>
-                  <input type="number" class="form-control" placeholder="Valeur">
-                </div>
                 <div class="row d-flex flex-row-reverse mt-3">
                   <button type="button" class="btn btn-outline-info" @click="onSubmit">Ajouter</button>
                 </div>
@@ -67,6 +64,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -78,7 +76,10 @@ export default {
         service: '',
         date_recrutement: '',
         diplome: ''
-      }
+      },
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   methods: {
@@ -95,9 +96,18 @@ export default {
         photo: 'blabla'
       }
       console.log(formData)
-      axios.post('http://localhost:8080/api/employes', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/employes', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 

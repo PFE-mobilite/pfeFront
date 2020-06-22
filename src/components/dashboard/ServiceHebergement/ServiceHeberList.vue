@@ -22,8 +22,8 @@
                 <tbody>
                 <tr v-for="(service,index) in servicesHebergement " :key="service + index">
                   <td>{{service.typeService}}</td>
-                  <td>{{service.fsi.libelle}}</td>
-                  <td>{{service.projet.libelle}}</td>
+                  <td>{{service.fsi? service.fsi.libelle : "non-associé"}}</td>
+                  <td>{{service.projet? service.projet.libelle : "non-associé"}}</td>
                   <td>{{service.prix}}$</td>
                   <td>{{service.duree}} mois</td>
                   <td>

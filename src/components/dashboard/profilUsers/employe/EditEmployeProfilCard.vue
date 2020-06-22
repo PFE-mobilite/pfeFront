@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="employe.nom" v-bind:action="action"></Alerting>
         <div class="card card-edit">
           <div class="card-header text-white">
             Edit Profile
@@ -43,11 +44,9 @@
             </div>
             <div class="row">
               <div class="col-md-8">
-                <label for="">Valeur H/J</label>
-                <input type="number" class="form-control" placeholder="Valeur H/J" v-model="employe.valeur_HJ">
               </div>
               <div class="col-md-4 mt-4">
-                  <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit()">Save</button>
+                  <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit()">Modifier</button>
               </div>
             </div>
           </div>
@@ -59,6 +58,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 import { mapActions } from 'vuex'
 export default {
   data () {
@@ -70,10 +70,12 @@ export default {
         poste: '',
         service: '',
         diplome: '',
-        date_recrutement: '',
-        valeur_HJ: ''
+        date_recrutement: ''
       },
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      success: false,
+      failed: false,
+      action: 'modifié'
     }
   },
   created () {
@@ -87,7 +89,17 @@ export default {
       this.employe.service = employeImported.service
       this.employe.diplome = employeImported.diplome
       this.employe.date_recrutement = employeImported.datederecrutement.substring(0, 10)
+      this.modifierEmployeProfil(this.employe)
     }).catch(error => console.log(error))
+  },
+  updated () {
+    const employemodifier = {
+      nom: this.employe.nom,
+      prenom: this.employe.prenom,
+      email: this.employe.email,
+      poste: this.employe.poste
+    }
+    this.modifierEmployeProfil(employemodifier)
   },
   methods: {
     ...mapActions({
@@ -101,14 +113,22 @@ export default {
         poste: this.employe.poste,
         service: this.employe.service,
         diplome: this.employe.diplome,
-        datederecrutement: this.employe.date_recrutement,
-        valeur_HJ: this.employe.valeur_HJ
+        datederecrutement: this.employe.date_recrutement
       }
       console.log(employemodifier)
-      axios.put('http://localhost:8080/api/employes/' + this.id, employemodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/employes/' + this.id, employemodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
       return this.modifierEmployeProfil(employemodifier)
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

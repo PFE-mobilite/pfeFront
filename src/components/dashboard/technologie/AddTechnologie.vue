@@ -2,6 +2,7 @@
   <div class="container mb-3 mt-3 ">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="technologie.nom" v-bind:action="action"></Alerting>
         <div class="card card-add-techno">
           <div class="card-header text-white">
             Ajouter Technologie
@@ -47,6 +48,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -57,7 +59,10 @@ export default {
       projets: [],
       selectedProjet: '',
       employes: [],
-      selectedEmploye: ''
+      selectedEmploye: '',
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   created () {
@@ -111,9 +116,18 @@ export default {
         employe
       }
       console.log(newTechnologie)
-      axios.post('http://localhost:8080/api/technologies', newTechnologie, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/technologies', newTechnologie, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        this.failed = true
+        console.log(error)
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

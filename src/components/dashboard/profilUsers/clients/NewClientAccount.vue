@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="client.nom" v-bind:action="action"></Alerting>
         <div class="card card-edit">
           <div class="card-header text-white">
             Ajouter Client
@@ -51,6 +52,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -60,7 +62,10 @@ export default {
         email: '',
         raisonSociale: ''
       },
-      id_entreprise: ''
+      id_entreprise: '',
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   methods: {
@@ -81,12 +86,19 @@ export default {
         console.log('contact a ajouter')
         console.log(newContact)
         axios.post('http://localhost:8080/api/contacts', newContact, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+          this.success = true
           this.id_entreprise = response.data.id
-        }).catch((error) => console.log(error))
+        }).catch((error) => {
+          this.failed = true
+          console.log(error)
+        })
         console.log('+++++++++++Success+++++++')
       }).catch((error) => console.log(error))
       console.log('+++++++++++Success+++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="serviceGen.libelle" v-bind:action="action"></Alerting>
         <div class="card card-add-service-g">
           <div class="card-header text-white">
             Ajouter Service General
@@ -39,6 +40,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -46,7 +48,10 @@ export default {
         libelle: '',
         type: '',
         description: ''
-      }
+      },
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   methods: {
@@ -57,10 +62,18 @@ export default {
         description: this.serviceGen.description
       }
       console.log(formDataSG)
-      axios.post('http://localhost:8080/api/services_generauxes', formDataSG, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/services_generauxes', formDataSG, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        this.failed = true
+        console.log(error)
+      })
       console.log('++++++++Success++++++++++')
-      this.$router.push('/admin/services-generaux-details')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>
@@ -83,6 +96,7 @@ export default {
   }
   textarea{
     background: transparent;
+    color: white;
   }
   label{
     color: white;

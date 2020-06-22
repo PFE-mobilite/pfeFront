@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="client.nom" v-bind:action="action"></Alerting>
         <div class="card card-edit-client">
           <div class="card-header text-white">
             Edit Profile
@@ -55,6 +56,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 import { mapActions } from 'vuex'
 export default {
   data () {
@@ -68,7 +70,10 @@ export default {
       id: this.$route.params.id,
       selectedRaisionSocial: '',
       entreprises: [],
-      projets: []
+      projets: [],
+      success: false,
+      failed: false,
+      action: 'modifié'
     }
   },
   created () {
@@ -141,8 +146,15 @@ export default {
       console.log(clientModifier)
       axios.put('http://localhost:8080/api/contacts/' + this.id, clientModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
         console.log(response)
-      }).catch((error) => console.log(error))
+        this.success = true
+      }).catch((error) => {
+        this.failed = true
+        console.log(error)
+      })
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

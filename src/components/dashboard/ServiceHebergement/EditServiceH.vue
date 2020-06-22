@@ -2,6 +2,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col mx-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="service_hebergement.type" v-bind:action="action"></Alerting>
         <div class="card card-edit-serH">
           <div class="card-header text-white">
             Edit Service
@@ -47,7 +48,7 @@
             </div>
             <div class="row">
               <div class="col-md-4 mt-4">
-                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit">Save</button>
+                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit">Modifier</button>
               </div>
             </div>
           </div>
@@ -59,6 +60,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -71,6 +73,9 @@ export default {
         fournisseurServiceInternet: '',
         projet: ''
       },
+      success: false,
+      failed: false,
+      action: 'modifié',
       selectedFournisseur: '',
       selectedProjet: '',
       projets: [],
@@ -113,7 +118,6 @@ export default {
     selectedProjetId (selectedProjet) {
       for (const projet1 of this.projets) {
         if (projet1.libelle === selectedProjet) {
-          this.selectedProjet = projet1.id
           return projet1.id
         }
       }
@@ -122,7 +126,6 @@ export default {
     selectedFournisseurtId (selectedFournisseur) {
       for (const fournisseur1 of this.fournisseursLignes) {
         if (fournisseur1.libelle === selectedFournisseur) {
-          this.selectedFournisseur = fournisseur1.id
           return fournisseur1.id
         }
       }
@@ -141,9 +144,18 @@ export default {
         projet
       }
       console.log(serviceEdit)
-      axios.put('http://localhost:8080/api/service_hebergements/' + this.id, serviceEdit, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/service_hebergements/' + this.id, serviceEdit, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>
