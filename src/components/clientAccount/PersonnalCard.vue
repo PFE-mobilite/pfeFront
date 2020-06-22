@@ -4,7 +4,7 @@
       <div class="col">
       <div class="card card-client-into">
         <div class="card-body pt-0 pb-2  text-muted border-bottom">
-          <img src="../../assets/cust3.jpeg" class="text-center rounded-circle avatar1 mb-2"/>
+          <img src="../../assets/cust1.jpeg" class="text-center rounded-circle avatar1 mb-2"/>
           <h6 class="text-white pt-2">{{clientinto.nom}} {{clientinto.prenom}}</h6>
          <h6 class="text-white pb-2">@{{clientinto.raison_social}}</h6>
         </div>

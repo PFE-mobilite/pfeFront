@@ -33,6 +33,7 @@ import NewServiceH from '../../../components/dashboard/ServiceHebergement/NewSer
 import EditServiceH from '../../../components/dashboard/ServiceHebergement/EditServiceH'
 import Dashboard from '../../../views/Dashboard'
 import recapDisplay from '../../../components/dashboard/dashboardLayout/recapDisplay'
+import AdminProfil from '../../../components/dashboard/EditMyProfil'
 
 const routesAdmin = [
   {
@@ -212,6 +213,11 @@ const routesAdmin = [
         path: '/admin/edit-technologie/:id',
         name: 'edittechnologie',
         component: EditTechnologies
+      },
+      {
+        path: '/admin/my-profil',
+        name: 'profil',
+        component: AdminProfil
       }
     ]
   }

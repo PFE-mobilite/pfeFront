@@ -32,7 +32,7 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-danger">Nombre Client</div>
+                        <div class="text-left text-capitalize font-weight-bold text-danger">Nombre Clients</div>
                       </div>
                     </div>
                   </div>
@@ -52,7 +52,7 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-warning">Depense Materiles</div>
+                        <div class="text-left text-capitalize font-weight-bold text-warning">Dépense Matérielle</div>
                       </div>
                     </div>
                   </div>
@@ -72,7 +72,7 @@
                   <div class="card-header">
                     <div class="row">
                       <div class="col">
-                        <div class="text-left text-capitalize font-weight-bold text-success">Depense Hebergement</div>
+                        <div class="text-left text-capitalize font-weight-bold text-success">Dépense S.hébergement</div>
                       </div>
                     </div>
                   </div>

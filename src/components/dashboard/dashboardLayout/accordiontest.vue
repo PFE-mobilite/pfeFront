@@ -1,6 +1,6 @@
 <template>
   <div class="col-xl-6 col-12 mb-5">
-    <h4 class="text-muted p-3 md-3 mb-3">Depense:</h4>
+    <h4 class="text-muted p-3 md-3 mb-3">Dépenses:</h4>
     <pie-chart suffix="TND" :colors="['#4cf603', '#ea11f1']" :data="[['Depense Interne',depenseInterne],['Depense Externes',depenseExterne]]"></pie-chart>
   </div>
 </template>

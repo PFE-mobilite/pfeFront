@@ -21,7 +21,7 @@
               <div class="col-md-6 pr-md-1">
                 <label for="">Client</label>
                 <select class="form-control" v-model="selectedClient">
-                  <option v-for="(client,index) in clients" :key="client + index">{{client.entreprise.raisonSociale}}: {{client.email}}</option>
+                  <option v-for="(client,index) in clients" :key="client + index">{{client.entreprise.raisonSociale ? client.entreprise.raisonSociale : 'null' }}: {{client.email ? client.email : 'null'}}</option>
                 </select>
               </div>
               <div class="col-md-6 pl-md-1">
@@ -59,7 +59,7 @@
             </div>
             <div class="row d-flex flex-row-reverse">
               <div class="col-md-4 mt-4">
-                <button type="button" class="btn btn-outline-info btn-block mt-2">Save</button>
+                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit">Modifier</button>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@
                   <td>{{servh.typeService}}</td>
                   <td>{{servh.prix}}$</td>
                   <td>
-                    <a :href="'/edit-service-internet/' + servh.id"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/admin/edit-service-internet/' + servh.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -140,7 +140,7 @@
                   <td>{{mat.typeMateriel}}</td>
                   <td>{{mat.prixAchat}}$</td>
                   <td>
-                    <a :href="'/edit-materiel/' + mat.id"><i class="fas fa-edit text-success mr-2"></i></a>
+                    <a :href="'/admin/edit-materiel/' + mat.id"><i class="fas fa-edit text-success mr-2"></i></a>
                     <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
@@ -160,13 +160,11 @@ export default {
   data () {
     return {
       projet: {
-        id: '',
         libelle: '',
         dateDebut: '',
         dateFin: '',
         cout: '',
         typeProjet: '',
-        maintenance: '',
         devise: '',
         pays: '',
         coutEstime: '',
@@ -183,7 +181,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/projets/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/projets/' + this.id).then(res => {
       const dataImported = res.data
       this.projet.id = dataImported.id
       this.projet.libelle = dataImported.libelle
@@ -193,7 +191,6 @@ export default {
       this.projet.typeProjet = dataImported.typeProjet
       this.projet.devise = dataImported.devise
       this.projet.coutEstime = dataImported.coutEstime
-      this.projet.maintenance = dataImported.maintenance
       this.projet.pays = dataImported.pays
       this.projet.contact = dataImported.contact
       this.projet.serviceH = dataImported.serviceH
@@ -202,7 +199,7 @@ export default {
       this.projet.technologie = dataImported.technologie
       this.selectedClient = this.projet.contact.email
     }).catch(error => console.log(error))
-    axios.get('http://127.0.0.1:8000/api/technologies/').then(res => {
+    axios.get('http://localhost:8080/api/technologies/').then(res => {
       const dataImported = res.data['hydra:member']
       for (const key in dataImported) {
         const techno = dataImported[key]
@@ -211,7 +208,7 @@ export default {
         }
       }
     }).catch(error => console.log(error))
-    axios.get('http://127.0.0.1:8000/api/contacts').then(res => {
+    axios.get('http://localhost:8080/api/contacts').then(res => {
       const dataImportedClient = res.data['hydra:member']
       for (const key in dataImportedClient) {
         const clientImported = dataImportedClient[key]
@@ -220,6 +217,23 @@ export default {
       console.log('tableau des clients pour les choix')
       console.log(this.clients)
     }).catch(error => console.log(error))
+  },
+  methods: {
+    edit () {
+      const projetmodifier = {
+        libelle: this.projet.libelle,
+        dateDebut: this.projet.dateDebut,
+        dateFin: this.projet.dateFin,
+        cout: this.projet.cout,
+        typeProjet: this.projet.typeProjet,
+        devise: this.projet.devise,
+        coutEstime: parseInt(this.projet.coutEstime),
+        pays: this.projet.pays,
+        contact: null
+      }
+      console.log(projetmodifier)
+      axios.put('http://localhost:8080/api/projets/' + this.id, projetmodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then(res => console.log(res)).catch(err => console.log(err))
+    }
   }
 }
 </script>

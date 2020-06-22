@@ -40,15 +40,11 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 pr-md-1">
-                <label for="">Maintenance Mensuelle</label>
-                <input type="number" class="form-control" placeholder="Date debut" v-model="projet.maintenance">
-              </div>
-              <div class="col-md-4 pr-md-1">
+              <div class="col-md-6 pr-md-1">
                 <label for="">Date debut</label>
                 <input type="date" class="form-control" placeholder="Date debut" v-model="projet.dateDebut">
               </div>
-              <div class="col-md-4 px-md-1">
+              <div class="col-md-6 px-md-1">
                 <label for="">Date fin</label>
                 <input type="date" class="form-control" placeholder="Date fin" v-model="projet.dateFin">
               </div>
@@ -102,9 +98,10 @@ export default {
         dateFin: this.projet.dateFin,
         cout: 0,
         typeProjet: this.projet.typeProjet,
-        maintenance: parseFloat(this.projet.maintenance),
-        devise: parseFloat(this.projet.devise),
-        coutEstime: parseFloat(this.projet.coutEstime)
+        devise: this.projet.devise,
+        coutEstime: parseFloat(this.projet.coutEstime),
+        contact: null,
+        pays: this.projet.pays
       }
       console.log(Newprojet)
       axios.post('http://localhost:8080/api/projets', Newprojet, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))

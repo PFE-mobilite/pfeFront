@@ -4,7 +4,7 @@
       <div class="col mx-5">
         <div class="card card-edit-serH">
           <div class="card-header text-white">
-            Edit Service
+            Ajouter Service Hebergement
           </div>
           <div class="card-body mx-5">
             <div class="row">
@@ -35,7 +35,7 @@
               <div class="col-md-3 pr-md-1">
                 <label for="">Projet</label>
                 <select class="form-control" v-model="selectedProjet">
-                  <option v-for="(projetx,index) in projets" :key="projetx + index">{{projetx.libelle}}</option>
+                  <option v-for="(projetx,index) in projets" :key="projetx + index">{{projetx.libelle ? projetx.libelle : 'non-associée'}}</option>
                 </select>
               </div>
               <div class="col-md-4 pr-md-1">
