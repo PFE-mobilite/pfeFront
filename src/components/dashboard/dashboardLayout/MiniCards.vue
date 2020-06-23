@@ -106,7 +106,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/statistique').then(res => {
+    axios.get('http://localhost:8080/api/statistique').then(res => {
       const dataImported = res.data
       console.log(dataImported)
       this.nombreProjet = dataImported.nbrProjet

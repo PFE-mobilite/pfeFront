@@ -128,7 +128,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/projets/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/projets/' + this.id).then(res => {
       const dataImported = res.data
       this.projet.id = dataImported.id
       this.projet.libelle = dataImported.libelle

@@ -29,7 +29,7 @@ export default {
   },
   created () {
     const idClient = this.$store.getters.getUserId
-    axios.get(' http://127.0.0.1:8000/api/contacts/' + idClient).then(res => {
+    axios.get(' http://localhost:8080/api/contacts/' + idClient).then(res => {
       const dataImported = res.data
       console.log(dataImported)
       this.clientinto.nom = dataImported.nom

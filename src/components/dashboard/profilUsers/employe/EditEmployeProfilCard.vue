@@ -79,7 +79,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/employes/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/employes/' + this.id).then(res => {
       console.log(res.data)
       const employeImported = res.data
       this.employe.nom = employeImported.nom

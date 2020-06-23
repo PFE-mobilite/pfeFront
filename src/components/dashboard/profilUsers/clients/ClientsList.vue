@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     deleting (id) {
-      console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
       axios.delete('http://localhost:8080/api/contacts/' + id).then(res => {
         console.log('in deleting')
         console.log(res)

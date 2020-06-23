@@ -56,7 +56,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/services_generauxes/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/services_generauxes/' + this.id).then(res => {
       console.log(res.data)
       const dataImported = res.data
       this.serviceGen.libelle = dataImported.libelle

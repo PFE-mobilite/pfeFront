@@ -142,6 +142,9 @@ export default {
       })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

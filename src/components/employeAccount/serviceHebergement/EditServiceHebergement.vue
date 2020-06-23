@@ -79,7 +79,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/service_hebergements/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/service_hebergements/' + this.id).then(res => {
       const dataImported = res.data
       console.log(dataImported.typeService)
       this.service_hebergement.type = dataImported.typeService

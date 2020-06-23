@@ -9,8 +9,10 @@ import store from './store'
 import Axios from 'axios'
 import Chartkick from 'vue-chartkick'
 import Chart from 'chart.js'
+import Vuelidate from 'vuelidate'
 
 Vue.use(Chartkick.use(Chart))
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios

@@ -87,7 +87,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8000/api/contacts').then(res => {
+    axios.get('http://localhost:8080/api/contacts').then(res => {
       const dataImportedClient = res.data['hydra:member']
       for (const key in dataImportedClient) {
         const clientImported = dataImportedClient[key]

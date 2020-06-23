@@ -33,7 +33,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8080//api/contacts/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/contacts/' + this.id).then(res => {
       const dataImported = res.data
       console.log(dataImported)
       this.clientinto.nom = dataImported.nom

@@ -83,7 +83,7 @@ export default {
     }
   },
   created () {
-    axios.get(' http://127.0.0.1:8000/api/statistiquePC/' + this.id).then(res => {
+    axios.get('http://localhost:8080/api/statistiquePC/' + this.id).then(res => {
       const dataImported = res.data
       console.log('stats')
       console.log(dataImported)
