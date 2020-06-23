@@ -52,12 +52,16 @@
           </div>
         </div>
       </div>
-      <div class="row px-5">
-        <div class="col-6 px-5">
-          <pie-chart :donut="true" :colors="['#ea11f1','#12abe7']" :data="[['nombre Materiels totals',this.nbrMateriels],['nombre ServiceHebergement',this.nbrSH]]"></pie-chart>
-        </div>
-        <div class="col-6 px-5">
-          <pie-chart suffix="TND" :donut="true" :colors="['#ea11f1','#4cf603']" :data="[['Cout Materiels totals',this.coutMateriels],['Cout ServiceHebergement',this.coutSH]]"></pie-chart>
+      <div class="row">
+        <div class="container-fluid">
+          <div class="row pl-5">
+            <div class="col-lg-6 col-md-10 ">
+              <pie-chart :donut="true" :colors="['#ea11f1','#12abe7']" :data="[['nombre Materiels totals',this.nbrMateriels],['nombre ServiceHebergement',this.nbrSH]]"></pie-chart>
+            </div>
+            <div class="col-lg-6 col-md-10 ">
+              <pie-chart suffix="TND" :donut="true" :colors="['#ea11f1','#4cf603']" :data="[['Cout Materiels totals',this.coutMateriels],['Cout ServiceHebergement',this.coutSH]]"></pie-chart>
+            </div>
+          </div>
         </div>
       </div>
     </div>

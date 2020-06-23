@@ -65,7 +65,8 @@
           </div>
         </div>
         <div class="row pt-5 px-5 mb-1 d-flex flex-row-reverse">
-            <button class="btn btn-secondary mt-5" @click="edit">Modifier</button>
+          <button class="btn btn-secondary mt-5" @click="edit">Modifier</button>
+          <Alerting class="pt-1" v-bind:success="success" v-bind:failed="failed" v-bind:msg="employe.nom" v-bind:action="action"></Alerting>
         </div>
       </div>
     </div>
@@ -75,6 +76,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -87,7 +89,10 @@ export default {
         diplome: '',
         date_recrutement: ''
       },
-      id: this.$store.getters.getUserId
+      id: this.$store.getters.getUserId,
+      success: false,
+      failed: false,
+      action: 'modifié'
     }
   },
   created () {
@@ -116,8 +121,15 @@ export default {
       console.log(empModifier)
       axios.put('http://localhost:8080/api/employes/' + this.id, empModifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
         console.log(response)
-      }).catch((error) => console.log(error))
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

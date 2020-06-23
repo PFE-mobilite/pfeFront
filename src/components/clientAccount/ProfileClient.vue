@@ -5,9 +5,9 @@
         <h1 class="text-muted text-capitalize display-4 py-2">profile</h1>
       </div>
     </div>
-    <div class="row py-5">
-      <div class="col-lg-4 col-md-12  col-sm-12 mx-4"><PersonnalInfoCard></PersonnalInfoCard></div>
-      <div class="col-lg-7 col-md-12 col-sm-12   mx-4"><PersonnalData></PersonnalData></div>
+    <div class="row py-4">
+      <div class="col-lg-4 col-md-12  col-sm-12  py-1 mx-4"><PersonnalInfoCard></PersonnalInfoCard></div>
+      <div class="col-lg-7 col-md-12 col-sm-12 py-1  mx-4"><PersonnalData></PersonnalData></div>
       <div class="col-md-1 mx-4"></div>
     </div>
   </div>

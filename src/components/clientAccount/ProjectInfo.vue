@@ -4,7 +4,7 @@
       <div class="col-md-12 px-5">
         <div class="card card-projet">
           <div class="card-header text-white">
-            Edit Projet
+             Projet
           </div>
           <div class="card-body mx-5">
             <div class="row">
