@@ -2,6 +2,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-12 px-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="projet.libelle" v-bind:action="action"></Alerting>
         <div class="card card-projet">
           <div class="card-header text-white">
             Edit Projet
@@ -156,6 +157,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -177,7 +179,10 @@ export default {
       id: this.$route.params.id,
       technos: [],
       selectedClient: '',
-      clients: []
+      clients: [],
+      success: false,
+      failed: false,
+      action: 'modifié'
     }
   },
   created () {
@@ -219,7 +224,15 @@ export default {
     }).catch(error => console.log(error))
   },
   methods: {
+    contactExtraction () {
+      if (this.projet.contact === null) {
+        return null
+      } else {
+        return parseInt(this.projet.contact.substring(0, 2))
+      }
+    },
     edit () {
+      const contact = this.contactExtraction()
       const projetmodifier = {
         libelle: this.projet.libelle,
         dateDebut: this.projet.dateDebut,
@@ -229,11 +242,20 @@ export default {
         devise: this.projet.devise,
         coutEstime: parseInt(this.projet.coutEstime),
         pays: this.projet.pays,
-        contact: parseInt(this.projet.contact.substring(0, 2))
+        contact
       }
       console.log(projetmodifier)
-      axios.put('http://localhost:8080/api/projets/' + this.id, projetmodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/projets/' + this.id, projetmodifier, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

@@ -2,6 +2,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col mx-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="projet.libelle" v-bind:action="action"></Alerting>
         <div class="card card-projet">
           <div class="card-header text-white">
             Ajouter Projet
@@ -51,7 +52,7 @@
             </div>
             <div class="row d-flex flex-row-reverse">
               <div class="col-md-4 mt-4">
-                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="ajouter">Save</button>
+                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="ajouter">Ajouter</button>
               </div>
             </div>
           </div>
@@ -63,6 +64,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -78,7 +80,10 @@ export default {
         coutEstime: ''
       },
       selectedClient: '',
-      clients: []
+      clients: [],
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   created () {
@@ -104,9 +109,18 @@ export default {
         pays: this.projet.pays
       }
       console.log(Newprojet)
-      axios.post('http://localhost:8080/api/projets', Newprojet, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/projets', Newprojet, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

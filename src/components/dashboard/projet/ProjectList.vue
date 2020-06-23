@@ -28,7 +28,7 @@
                   <td>{{project.coutEstime}}$</td>
                   <td>
                     <a :href="'/admin/edit-projet/' + project.id"><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                    <a href="" @click="onDelete(project.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -63,7 +63,16 @@ export default {
       console.log('success and verified')
       console.log(this.projets)
     }).catch(error => console.log(error))
+  },
+  methods: {
+    onDelete (id) {
+      axios.delete('http://localhost:8080/api/projets/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
   }
+
 }
 </script>
 

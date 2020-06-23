@@ -2,9 +2,10 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col mx-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="ligneSg.num_auto" v-bind:action="action"></Alerting>
         <div class="card card-add-service-g">
           <div class="card-header text-white">
-            Ajouter Ligne Service General
+            Modifier Ligne Service General
           </div>
           <div class="card-body mx-5">
             <div class="row">
@@ -43,7 +44,7 @@
             </div>
             <div class="row d-flex flex-row-reverse">
               <div class="col-md-4 mt-4">
-                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="onAdd">Save</button>
+                <button type="button" class="btn btn-outline-info btn-block mt-2" @click="onAdd">Modifier</button>
               </div>
             </div>
           </div>
@@ -55,6 +56,7 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 export default {
   data () {
     return {
@@ -68,7 +70,10 @@ export default {
       selectedAdministrateur: '',
       serviceSG: [],
       selecedServiceSG: '',
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      success: false,
+      failed: false,
+      action: 'modifié'
     }
   },
   created () {
@@ -78,8 +83,10 @@ export default {
       this.ligneSg.date_payement = dataImportedLSG.datePayement.substring(0, 10)
       this.ligneSg.quantite = dataImportedLSG.quantite
       this.ligneSg.montant_total = dataImportedLSG.montantTotal
-      this.selectedAdministrateur = dataImportedLSG.ServicesSG.libelle
-      this.selecedServiceSG = dataImportedLSG.Administrateur.nom
+      this.selecedServiceSG = dataImportedLSG.ServicesSG.libelle
+      this.selectedAdministrateur = dataImportedLSG.Administrateur.nom
+      console.log('SG IS: ')
+      console.log(this.selecedServiceSG)
     }).catch(error => console.log(error))
     axios.get('http://localhost:8080/api/administrateurs').then(res => {
       const dataImported = res.data['hydra:member']
@@ -126,9 +133,18 @@ export default {
         ServicesSG
       }
       console.log(ligneAdded)
-      axios.put('http://localhost:8080/api/ligne_s_gs/' + this.id, ligneAdded, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.put('http://localhost:8080/api/ligne_s_gs/' + this.id, ligneAdded, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>
