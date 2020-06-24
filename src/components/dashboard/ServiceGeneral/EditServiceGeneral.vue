@@ -13,20 +13,29 @@
               <div class="col ml-5 align-items-center mx-5">
                 <div class="row mx-5">
                   <label for="">libelle</label>
-                  <input type="text" class="form-control" placeholder="libelle" v-model="serviceGen.libelle">
+                  <input type="text" class="form-control" placeholder="libelle" v-model="serviceGen.libelle"
+                         @blur="$v.serviceGen.libelle.$touch()"
+                         :class="{inputInvalide: $v.serviceGen.libelle.$error}">
+                  <p v-if="$v.serviceGen.libelle.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row mx-5">
                   <label for="">Type</label>
-                  <input type="text" class="form-control" placeholder="Type" v-model="serviceGen.type" >
+                  <input type="text" class="form-control" placeholder="Type" v-model="serviceGen.type"
+                         @blur="$v.serviceGen.type.$touch()"
+                         :class="{inputInvalide: $v.serviceGen.type.$error}">
+                  <p v-if="$v.serviceGen.type.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row mx-4">
                   <div class="col-md-8 ml-2">
                     <label for="">Description</label>
-                    <textarea rows="4" cols="10" class="form-control" placeholder="description" v-model="serviceGen.description"></textarea>
+                    <textarea rows="4" cols="10" class="form-control" placeholder="description" v-model="serviceGen.description"
+                              @blur="$v.serviceGen.description.$touch()"
+                              :class="{textareaInvalid: $v.serviceGen.description.$error}">
+                      <p v-if="$v.serviceGen.description.$error" class="text-danger">Ce champs ne doit pas étre vide</p></textarea>
                   </div>
                 </div>
                 <div class="row mx-5 mt-3">
-                  <button type="button" class="btn btn-outline-info px-4" @click="edit">Modifier</button>
+                  <button type="button" class="btn btn-outline-info px-4" :disabled="$v.$invalid" @click="edit">Modifier</button>
                 </div>
               </div>
             </div>
@@ -41,6 +50,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../Alertshowing/Alerting'
+import { required } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -84,7 +94,21 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    serviceGen: {
+      libelle: {
+        required
+      },
+      type: {
+        required
+      },
+      description: {
+        required
+      }
+    }
   }
+
 }
 </script>
 
@@ -95,6 +119,20 @@ export default {
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
+  }
+  .textareaInvalid{
+    background: transparent;
+    border-color: red;
+  }
+  .textareaInvalid:focus{
+    background: transparent;
+    border-color: red;
   }
   input{
     background: transparent;
@@ -108,14 +146,11 @@ export default {
     background: transparent;
     color: white;
   }
-  label{
+  textarea:focus{
+    background: transparent;
     color: white;
   }
-  .card-photo-c{
-    margin-top: 1px;
-    background-color: transparent;
-  }
-  .bg-f{
-    background-color: transparent;
+  label{
+    color: white;
   }
 </style>

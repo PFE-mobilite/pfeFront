@@ -11,11 +11,17 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">libelle</label>
-                <input type="text" class="form-control" placeholder="libelle" v-model="projet.libelle" >
+                <input type="text" class="form-control" placeholder="libelle" v-model="projet.libelle"
+                       @blur="$v.projet.libelle.$touch()"
+                       :class="{inputInvalide: $v.projet.libelle.$error}">
+                <p v-if="$v.projet.libelle.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Type Projet</label>
-                <input type="text" class="form-control" placeholder="type projet" v-model="projet.typeProjet">
+                <input type="text" class="form-control" placeholder="type projet" v-model="projet.typeProjet"
+                       @blur="$v.projet.typeProjet.$touch()"
+                       :class="{inputInvalide: $v.projet.typeProjet.$error}">
+                <p v-if="$v.projet.typeProjet.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
@@ -27,27 +33,41 @@
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Pays</label>
-                <input type="text" class="form-control" placeholder="Pays" v-model="projet.pays">
+                <input type="text" class="form-control" placeholder="Pays" v-model="projet.pays"
+                       @blur="$v.projet.pays.$touch()"
+                       :class="{inputInvalide: $v.projet.pays.$error}">
+                <p v-if="$v.projet.pays.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Devise</label>
-                <input type="text" class="form-control" placeholder="libelle" v-model="projet.devise">
+                <input type="text" class="form-control" placeholder="libelle" v-model="projet.devise"
+                       @blur="$v.projet.devise.$touch()"
+                       :class="{inputInvalide: $v.projet.devise.$error}">
+                <p v-if="$v.projet.devise.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Cout Estimé</label>
-                <input type="text" class="form-control" placeholder="Cout Estime" v-model="projet.coutEstime" >
+                <input type="text" class="form-control" placeholder="Cout Estime" v-model="projet.coutEstime" @blur="$v.projet.coutEstime.$touch()"
+                       :class="{inputInvalide: $v.projet.coutEstime.$error}">
+                <p v-if="!$v.projet.coutEstime.numeric" class="text-danger">Ce champs doit etre un chiffre</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Date debut</label>
-                <input type="date" class="form-control" placeholder="Date debut" v-model="projet.dateDebut">
+                <input type="date" class="form-control" placeholder="Date debut" v-model="projet.dateDebut"
+                       @blur="$v.projet.dateDebut.$touch()"
+                       :class="{inputInvalide: $v.projet.dateDebut.$error}">
+                <p v-if="$v.projet.dateDebut.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
               <div class="col-md-6 px-md-1">
                 <label for="">Date fin</label>
-                <input type="date" class="form-control" placeholder="Date fin" v-model="projet.dateFin">
+                <input type="date" class="form-control" placeholder="Date fin" v-model="projet.dateFin"
+                       @blur="$v.projet.dateFin.$touch()"
+                       :class="{inputInvalide: $v.projet.dateFin.$error}">
+                <p v-if="$v.projet.dateFin.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
@@ -158,6 +178,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../Alertshowing/Alerting'
+import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -256,7 +277,38 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    projet: {
+      libelle: {
+        required
+      },
+      dateDebut: {
+        required
+      },
+      dateFin: {
+        required
+      },
+      cout: {
+        required,
+        numeric
+      },
+      typeProjet: {
+        required
+      },
+      devise: {
+        required
+      },
+      pays: {
+        required
+      },
+      coutEstime: {
+        required,
+        numeric
+      }
+    }
   }
+
 }
 </script>
 
@@ -269,7 +321,12 @@ export default {
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
   }
-
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
+  }
   .card-list-employe{
     margin-top: 50px;
     background: white;

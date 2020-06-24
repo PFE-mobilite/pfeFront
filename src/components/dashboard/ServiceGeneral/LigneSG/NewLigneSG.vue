@@ -11,21 +11,33 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">numAuto</label>
-                <input type="text" class="form-control" placeholder="libelle" v-model="ligneSg.num_auto">
+                <input type="number" class="form-control" placeholder="libelle" v-model.number="ligneSg.num_auto"
+                       @blur="$v.ligneSg.num_auto.$touch()"
+                       :class="{inputInvalide: $v.ligneSg.num_auto.$error}">
+                <p v-if="$v.ligneSg.num_auto.$error" class="text-danger">Ce champs doit etre un chiffre</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Date Payement</label>
-                <input type="date" class="form-control" placeholder="Date Payement" v-model="ligneSg.date_payement" >
+                <input type="date" class="form-control" placeholder="Date Payement" v-model="ligneSg.date_payement"
+                       @blur="$v.ligneSg.date_payement.$touch()"
+                       :class="{inputInvalide: $v.ligneSg.date_payement.$error}">
+                <p v-if="$v.ligneSg.date_payement.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Quantité:</label>
-                <input type="number" class="form-control" placeholder="Quantité" v-model="ligneSg.quantite">
+                <input type="number" class="form-control" placeholder="Quantité" v-model.number="ligneSg.quantite"
+                       @blur="$v.ligneSg.quantite.$touch()"
+                       :class="{inputInvalide: $v.ligneSg.quantite.$error}">
+                <p v-if="!$v.ligneSg.quantite.numeric" class="text-danger">Ce champs doit etre un chiffre</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Montant Total</label>
-                <input type="number" class="form-control" placeholder="Montant Total" v-model="ligneSg.montant_total">
+                <input type="number" class="form-control" placeholder="Montant Total" v-model.number="ligneSg.montant_total"
+                       @blur="$v.ligneSg.montant_total.$touch()"
+                       :class="{inputInvalide: $v.ligneSg.montant_total.$error}">
+                <p v-if="$v.ligneSg.montant_total.$error" class="text-danger">Ce champs doit etre un chiffre</p>
               </div>
             </div>
             <div class="row">
@@ -57,6 +69,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../../Alertshowing/Alerting'
+import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -134,7 +147,27 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    ligneSg: {
+      num_auto: {
+        required,
+        numeric
+      },
+      date_payement: {
+        required
+      },
+      quantite: {
+        required,
+        numeric
+      },
+      montant_total: {
+        numeric,
+        required
+      }
+    }
   }
+
 }
 </script>
 
@@ -145,6 +178,12 @@ export default {
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   input{
     background: transparent;
