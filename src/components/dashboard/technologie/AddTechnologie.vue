@@ -13,17 +13,23 @@
                 <div class="row mx-4">
                   <div class="col-md-6 pr-md-1">
                     <label for="">Technologie</label>
-                    <input type="text" class="form-control" placeholder="Technologie" v-model="technologie.nom">
+                    <input type="text" class="form-control" placeholder="Technologie" v-model="technologie.nom"
+                           @blur="$v.technologie.nom.$touch()"
+                           :class="{inputInvalide: $v.technologie.nom.$error}">
+                    <p v-if="$v.technologie.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                   </div>
                   <div class="col-md-6 px-md-1">
                     <label for="">Version</label>
-                    <input type="text" class="form-control" placeholder="Version" v-model="technologie.version">
+                    <input type="text" class="form-control" placeholder="Version" v-model="technologie.version"
+                           @blur="$v.technologie.version.$touch()"
+                           :class="{inputInvalide: $v.technologie.version.$error}">
+                    <p v-if="$v.technologie.version.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                   </div>
                 </div>
                 <div class="row mx-4">
                   <div class="col-md-6 pr-md-1">
                     <label for="">Projet associé</label>
-                    <select class="form-control" v-model="selectedProjet">
+                    <select class="form-control" v-model="selectedProjet" >
                       <option v-for="(projetx,index) in projets" :key="projetx + index">{{projetx.libelle}}</option>
                     </select>
                   </div>
@@ -49,6 +55,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../Alertshowing/Alerting'
+import { required } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -128,7 +135,24 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    technologie: {
+      nom: {
+        required
+      },
+      version: {
+        required
+      },
+      selectedEmploye: {
+        required
+      },
+      selectedProjet: {
+        required
+      }
+    }
   }
+
 }
 </script>
 
@@ -147,6 +171,12 @@ export default {
   input:focus{
     background: transparent;
     color: white;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   textarea{
     background: transparent;

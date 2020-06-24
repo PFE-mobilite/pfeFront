@@ -24,22 +24,34 @@
               <div class="col ml-5 align-items-center mr-5">
                 <div class="row">
                   <label for="">Nom</label>
-                  <input type="text" class="form-control" placeholder="Nom" v-model="client.nom">
+                  <input type="text" class="form-control" placeholder="Nom" v-model="client.nom"
+                         @blur="$v.client.nom.$touch()"
+                         :class="{inputInvalide: $v.client.nom.$error}">
+                  <p v-if="$v.client.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row">
                   <label for="">Prenom</label>
-                  <input type="text" class="form-control" placeholder="Prenom" v-model="client.prenom">
+                  <input type="text" class="form-control" placeholder="Prenom" v-model="client.prenom"
+                         @blur="$v.client.prenom.$touch()"
+                         :class="{inputInvalide: $v.client.prenom.$error}">
+                  <p v-if="$v.client.prenom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row">
                   <label for="">Email</label>
-                  <input type="email" class="form-control" placeholder="Email" v-model="client.email">
+                  <input type="email" class="form-control" placeholder="Email" v-model="client.email"
+                         @blur="$v.client.email.$touch()"
+                         :class="{inputInvalide: $v.client.email.$error}">
+                  <p v-if="!$v.client.email.email" class="text-danger">Format email erroné</p>
                 </div>
                 <div class="row">
                   <label for="">Raison Sociale</label>
-                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raisonSociale">
+                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raisonSociale"
+                         @blur="$v.client.raisonSociale.$touch()"
+                         :class="{inputInvalide: $v.client.raisonSociale.$error}">
+                  <p v-if="$v.client.raisonSociale.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row d-flex flex-row-reverse">
-                  <button type="button" class="btn btn-outline-info mt-3 px-4" @click="onSubmitC">Ajouter</button>
+                  <button type="button" class="btn btn-outline-info mt-3 px-4" :disabled="$v.$invalid" @click="onSubmitC">Ajouter</button>
                 </div>
               </div>
             </div>
@@ -53,6 +65,8 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../../Alertshowing/Alerting'
+import { required, email } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
@@ -99,7 +113,25 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    client: {
+      nom: {
+        required
+      },
+      prenom: {
+        required
+      },
+      email: {
+        required,
+        email
+      },
+      raisonSociale: {
+        required
+      }
+    }
   }
+
 }
 </script>
 
@@ -114,6 +146,12 @@ export default {
   input{
     background: transparent;
     color: white;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   input:focus{
     background: transparent;

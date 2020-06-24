@@ -19,19 +19,28 @@
             <div class="row mx-3">
               <div class="col-md-12">
                 <label for="">Nom Representant</label>
-                <input type="text" class="form-control" placeholder="Nom Representant" v-model="client.nom">
+                <input type="text" class="form-control" placeholder="Nom" v-model="client.nom"
+                       @blur="$v.client.nom.$touch()"
+                       :class="{inputInvalide: $v.client.nom.$error}">
+                <p v-if="$v.client.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row mx-3">
               <div class="col-md-12">
                 <label for="">Prenom Representant</label>
-                <input type="text" class="form-control" placeholder="Prenom Representant" v-model="client.prenom">
+                <input type="text" class="form-control" placeholder="Prenom" v-model="client.prenom"
+                       @blur="$v.client.prenom.$touch()"
+                       :class="{inputInvalide: $v.client.prenom.$error}">
+                <p v-if="$v.client.prenom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row mx-3">
               <div class="col-md-12">
                 <label for="">Adresse Email</label>
-                <input type="email" class="form-control" placeholder="Email" v-model="client.email">
+                <input type="email" class="form-control" placeholder="Email" v-model="client.email"
+                       @blur="$v.client.email.$touch()"
+                       :class="{inputInvalide: $v.client.email.$error}">
+                <p v-if="!$v.client.email.email" class="text-danger">Format email erroné</p>
               </div>
             </div>
             <div class="row mx-3">
@@ -44,7 +53,7 @@
             </div>
             <div class="row mx-3 d-flex flex-row-reverse">
               <div class="col-lg-3 col-md-9 mt-2 px-3">
-                <button type="button" class="btn btn-outline-info  btn-lg btn-block" @click="save()">Save</button>
+                <button type="button" class="btn btn-outline-info py-2 btn-block"  @click="save()">Modifier</button>
               </div>
             </div>
           </div>
@@ -58,6 +67,8 @@
 import axios from 'axios'
 import Alerting from '../../../Alertshowing/Alerting'
 import { mapActions } from 'vuex'
+import { required, email } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
@@ -155,6 +166,23 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    client: {
+      nom: {
+        required
+      },
+      prenom: {
+        required
+      },
+      email: {
+        required,
+        email
+      },
+      raisonSociale: {
+        required
+      }
+    }
   }
 }
 </script>
@@ -180,6 +208,12 @@ export default {
   }
   label{
     color: white;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   ol{
     background: transparent;

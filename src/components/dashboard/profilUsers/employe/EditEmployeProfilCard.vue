@@ -11,42 +11,63 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Nom</label>
-                <input type="text" class="form-control" placeholder="Nom" v-model="employe.nom">
+                <input type="text" class="form-control" placeholder="Nom" v-model="employe.nom"
+                       @blur="$v.employe.nom.$touch()"
+                       :class="{inputInvalide: $v.employe.nom.$error}">
+                <p v-if="$v.employe.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Prenom</label>
-                <input type="text" class="form-control" placeholder="Prenom" v-model="employe.prenom">
+                <input type="text" class="form-control" placeholder="Prenom" v-model="employe.prenom"
+                       @blur="$v.employe.prenom.$touch()"
+                       :class="{inputInvalide: $v.employe.prenom.$error}">
+                <p v-if="$v.employe.prenom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-5 pr-md-1">
                 <label for="">Email</label>
-                <input type="email" class="form-control" placeholder="Email" v-model="employe.email">
+                <input type="email" class="form-control" placeholder="Email" v-model="employe.email"
+                       @input="$v.employe.email.$touch()"
+                       :class="{inputInvalide: $v.employe.email.$error}">
+                <p v-if="!$v.employe.email.email" class="text-danger">Format email erroné</p>
               </div>
               <div class="col-md-3 pr-md-1">
                 <label for="">Poste</label>
-                <input type="text" class="form-control" placeholder="Poste" v-model="employe.poste">
+                <input type="text" class="form-control" placeholder="Poste" v-model="employe.poste"
+                       @blur="$v.employe.poste.$touch()"
+                       :class="{inputInvalide: $v.employe.poste.$error}">
+                <p v-if="$v.employe.poste.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
               <div class="col-md-4 pr-md-1">
                 <label for="">Servie</label>
-                <input type="text" class="form-control" placeholder="Service" v-model="employe.service">
+                <input type="text" class="form-control" placeholder="Service" v-model="employe.service"
+                       @blur="$v.employe.service.$touch()"
+                       :class="{inputInvalide: $v.employe.service.$error}">
+                <p v-if="$v.employe.service.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Diplome</label>
-                <input type="text" class="form-control" placeholder="Diplome" v-model="employe.diplome">
+                <input type="text" class="form-control" placeholder="Diplome" v-model="employe.diplome"
+                       @blur="$v.employe.diplome.$touch()"
+                       :class="{inputInvalide: $v.employe.diplome.$error}">
+                <p v-if="$v.employe.diplome.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
               <div class="col-md-6 px-md-1">
                 <label for="">Date de recrutement</label>
-                <input type="date" class="form-control" placeholder="Date de recrutement" v-model="employe.date_recrutement">
+                <input type="date" class="form-control" placeholder="Date de recrutement" v-model="employe.date_recrutement"
+                       @blur="$v.employe.date_recrutement.$touch()"
+                       :class="{inputInvalide: $v.employe.date_recrutement.$error}">
+                <p v-if="$v.employe.date_recrutement.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-8">
               </div>
               <div class="col-md-4 mt-4">
-                  <button type="button" class="btn btn-outline-info btn-block mt-2" @click="edit()">Modifier</button>
+                  <button type="button" :disabled="$v.$invalid" class="btn btn-outline-info btn-block mt-2" @click="edit()">Modifier</button>
               </div>
             </div>
           </div>
@@ -60,6 +81,7 @@
 import axios from 'axios'
 import Alerting from '../../../Alertshowing/Alerting'
 import { mapActions } from 'vuex'
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -129,6 +151,32 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    employe: {
+      nom: {
+        required
+      },
+      prenom: {
+        required
+      },
+      email: {
+        required,
+        email
+      },
+      poste: {
+        required
+      },
+      service: {
+        required
+      },
+      date_recrutement: {
+        required
+      },
+      diplome: {
+        required
+      }
+    }
   }
 }
 </script>
@@ -148,6 +196,12 @@ export default {
   input:focus{
     background: transparent;
     color: white;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   textarea{
     background: transparent;

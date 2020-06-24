@@ -13,11 +13,17 @@
                 <div class="row mx-4">
                   <div class="col-md-6 pr-md-1">
                     <label for="">Technologie</label>
-                    <input type="text" class="form-control" placeholder="Technologie" v-model="technologie.nom">
+                    <input type="text" class="form-control" placeholder="Technologie" v-model="technologie.nom"
+                           @blur="$v.technologie.nom.$touch()"
+                           :class="{inputInvalide: $v.technologie.nom.$error}">
+                    <p v-if="$v.technologie.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                   </div>
                   <div class="col-md-6 px-md-1">
                     <label for="">Version</label>
-                    <input type="text" class="form-control" placeholder="Version" v-model="technologie.version">
+                    <input type="text" class="form-control" placeholder="Version" v-model="technologie.version"
+                           @blur="$v.technologie.version.$touch()"
+                           :class="{inputInvalide: $v.technologie.version.$error}">
+                    <p v-if="$v.technologie.version.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                   </div>
                 </div>
                 <div class="row mx-4">
@@ -35,7 +41,7 @@
                   </div>
                 </div>
                 <div class="row mx-4 mt-4 d-flex flex-row-reverse">
-                  <button type="button" class="btn btn-outline-info px-4" @click="onSubmittech">Save</button>
+                  <button type="button" class="btn btn-outline-info px-4" @click="onSubmittech">Modifier</button>
                 </div>
               </div>
             </div>
@@ -49,6 +55,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../Alertshowing/Alerting'
+import { required } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -136,6 +143,22 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    technologie: {
+      nom: {
+        required
+      },
+      version: {
+        required
+      },
+      selectedEmploye: {
+        required
+      },
+      selectedProjet: {
+        required
+      }
+    }
   }
 }
 </script>
@@ -147,6 +170,12 @@ export default {
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   input{
     background: transparent;

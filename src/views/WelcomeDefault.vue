@@ -15,36 +15,38 @@
                       <div class="form-group py-4 row justify-content-center">
                         <div class="col-8 ">
                           <input
-                            id="username"
+                            id="email"
                             type="email"
-                            class="form-control  input my-2 p-2"
-                            placeholder="Username"
-                            name="Username"
-                            required
+                            class="form-control  input my-2 p-2" :class="{inputInvalid: $v.username.$error}"
+                            placeholder="Email"
+                            name="email"
+                            @input="$v.username.$touch()"
                             v-model="username"
                           />
-                          <label for="" class=" label">Username</label>
+                          <label  for="" class="label" :class="{labelInvalid: $v.username.$error}">Email</label>
                         </div>
                       </div>
                       <div class="form-group py-4 row justify-content-center">
                         <div class="col-8">
                           <input
-                            id="password"
+                            id="mot de passe"
                             type="password"
-                            class="form-control  my-2 p-2 input"
-                            placeholder="Password"
-                            name="password"
-                            required
+                            class="form-control text-capitalize  my-2 p-2 input"
+                            :class="{inputInvalid: $v.password.$error}"
+                            placeholder="Mot De Passe"
+                            name="mot de passe"
+                            @input="$v.password.$touch()"
                             autocomplete="current-password"
                             v-model="password"
                           />
-                          <label for="password" class="label">Password</label>
+                          <label for="mot de passe" class="label text-capitalize" :class="{labelInvalid: $v.password.$error}">mot de passe</label>
                         </div>
                       </div>
                       <div class="form-group row justify-content-center mt-5">
                         <div class="col-8">
                           <button
                             class="btn btn-block p-2 bg-bt text-uppercase submit-button"
+                            :disabled="$v.$invalid"
                             @click="loginng"
                           >
                             Login
@@ -65,6 +67,7 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 import Alerting from '../components/Alertshowing/Alerting'
 export default {
   data () {
@@ -101,6 +104,15 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    username: {
+      required,
+      email
+    },
+    password: {
+      required
+    }
   }
 }
 
@@ -127,20 +139,35 @@ export default {
     -moz-box-shadow: 0px 0px 6px 11px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 6px 11px rgba(0,0,0,0.75);
   }
-
-  .input {
+  .input{
     color : #455ffe;
+    background: transparent;
     border-color: transparent;
-    border-bottom: 2px solid #eeeeee ;
+    border-bottom: 2px solid #455ffe ;
     border-radius: 0;
     transition:  all .8s ;
   }
-
   .input:focus {
     color: #455ffe;
     border-color: transparent;
+    background: transparent;
     box-shadow: none;
     border-bottom: 2px solid #455ffe;
+  }
+  .inputInvalid {
+    color : red;
+    border-color: transparent;
+    background: transparent;
+    border-bottom: 2px solid red ;
+    border-radius: 0;
+    transition:  all .8s ;
+  }
+  .inputInvalid:focus {
+    color: red;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 2px solid red;
   }
 
   .submit-button {
@@ -161,6 +188,14 @@ export default {
   }
   .label {
     color: #455ffe;
+    display: block;
+    margin-top: -70px;
+    margin-left: 4px;
+    font-size: 13px;
+    transition: all 0.3s;
+  }
+  .labelInvalid {
+    color: red;
     display: block;
     margin-top: -70px;
     margin-left: 4px;

@@ -4,25 +4,39 @@
       <div class="col">
         <div class="card card-edit">
           <div class="card-header text-white">
-            Ajouter Employe
+            Modifier l'administrateur :
           </div>
           <div class="card-body mx-5">
             <div class="row">
               <div class="col ml-5 align-items-center mr-5">
                 <div class="row">
                   <label for="">Nom</label>
-                  <input type="text" class="form-control" placeholder="Nom" v-model="admin.nom">
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Nom"
+                         v-model="admin.nom"
+                         @input="$v.admin.nom.$touch()"
+                         :class="{inputInvalide: $v.admin.nom.$error}">
+                  <p v-if="$v.admin.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row">
                   <label for="">Prenom</label>
-                  <input type="text" class="form-control" placeholder="Prenom" v-model="admin.prenom">
+                  <input type="text" class="form-control" placeholder="Prenom" v-model="admin.prenom"
+                         @input="$v.admin.prenom.$touch()"
+                         :class="{inputInvalide: $v.admin.prenom.$error}">
+                  <p v-if="$v.admin.prenom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
                 </div>
                 <div class="row">
                   <label for="">Email</label>
-                  <input type="email" class="form-control" placeholder="Email" v-model="admin.email">
+                  <input type="email" class="form-control" placeholder="Email"
+                         @input="$v.admin.email.$touch()"
+                         :class="{inputInvalide: $v.admin.email.$error}"
+                         v-model="admin.email">
+                  <p v-if="!$v.admin.email.required" class="text-danger">Ce champs ne doit pas étre vide</p>
+                  <p v-if="!$v.admin.email.email" class="text-danger">Format email erroné</p>
                 </div>
                 <div class="row d-flex flex-row-reverse mt-3">
-                  <button type="button" class="btn btn-outline-info" @click="onSubmit">Modifier</button>
+                  <button type="button" class="btn btn-outline-info" :disabled="$v.$invalid" @click="onSubmit">Modifier</button>
                 </div>
               </div>
             </div>
@@ -35,6 +49,7 @@
 
 <script>
 import axios from 'axios'
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -66,6 +81,20 @@ export default {
       axios.put('http://localhost:8080/api/administrateurs/' + this.id, formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
       console.log('++++++++Success++++++++++')
     }
+  },
+  validations: {
+    admin: {
+      nom: {
+        required
+      },
+      prenom: {
+        required
+      },
+      email: {
+        required,
+        email
+      }
+    }
   }
 }
 
@@ -79,6 +108,12 @@ export default {
   input{
     background: transparent;
     color: white;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   input:focus{
     background: transparent;
