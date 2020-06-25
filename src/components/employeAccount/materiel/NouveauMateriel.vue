@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container mb-2">
     <div class="row">
       <div class="col">
         <div class="card card-add-mat-emp">
           <div class="card-header text-white">
-            Ajoutee nouveau Materiel
+            Ajouter nouveau Materiel
           </div>
           <div class="card-body">
             <div class="row">

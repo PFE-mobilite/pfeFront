@@ -17,12 +17,10 @@ export default {
   created () {
     axios.get('http://localhost:8080/api/statistique').then(res => {
       const dataImported = res.data
-      const depenseMaterielsInterne = dataImported.depenseMaterielsInterne[0]
-      const depenseMaterielsExterne = dataImported.depenseMaterielsExtene[0]
-      const depenseSH = dataImported.depenseSH[0]
-      const depenseLigneSG = dataImported.depenseLigneSg[0]
-      this.depenseInterne = depenseMaterielsInterne['1'] + depenseLigneSG['1']
-      this.depenseExterne = depenseMaterielsExterne['1'] + depenseSH['1']
+      console.log('importedstatistuqe')
+      console.log(dataImported)
+      this.depenseInterne = dataImported.depenseInterne
+      this.depenseExterne = dataImported.depenseExterne
     }).catch(err => console.log(err))
   }
 }

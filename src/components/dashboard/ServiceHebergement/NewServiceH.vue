@@ -11,27 +11,42 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Type</label>
-                <input type="text" class="form-control" placeholder="Type" v-model="service_hebergement.type">
+                <input type="text" class="form-control" placeholder="Type" v-model="service_hebergement.type"
+                       @blur="$v.service_hebergement.type.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.type.$error}">
+                <p v-if="$v.service_hebergement.type.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Durée en Mois</label>
-                <input type="number" class="form-control" placeholder="Durée" v-model="service_hebergement.durée">
+                <input type="text" class="form-control" placeholder="Durée" v-model="service_hebergement.durée"
+                       @blur="$v.service_hebergement.durée.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.durée.$error}">
+                <p v-if="!$v.service_hebergement.durée.numeric" class="text-danger">Ce champs doit  etre un chiffre</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Date debut</label>
-                <input type="date" class="form-control" placeholder="Date debut" v-model="service_hebergement.date_debut" >
+                <input type="date" class="form-control" placeholder="Date debut" v-model="service_hebergement.date_debut"
+                       @blur="$v.service_hebergement.date_debut.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.date_debut.$error}">
+                <p v-if="$v.service_hebergement.date_debut.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
               </div>
               <div class="col-md-6 px-md-1">
                 <label for="">Date fin</label>
-                <input type="date" class="form-control" placeholder="Date fin" v-model="service_hebergement.date_fin">
+                <input type="date" class="form-control" placeholder="Date fin" v-model="service_hebergement.date_fin"
+                       @blur="$v.service_hebergement.date_fin.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.date_fin.$error}">
+                <p v-if="$v.service_hebergement.date_fin.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-5 pr-md-1">
                 <label for="">Prix</label>
-                <input type="number" class="form-control" placeholder="Prix" v-model="service_hebergement.prix">
+                <input type="text" class="form-control" placeholder="Prix" v-model="service_hebergement.prix"
+                       @blur="$v.service_hebergement.prix.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.prix.$error}">
+                <p v-if="!$v.service_hebergement.prix.numeric" class="text-danger">Ce champs doit  etre un chiffre</p>
               </div>
               <div class="col-md-3 pr-md-1">
                 <label for="">Projet</label>
@@ -61,6 +76,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../Alertshowing/Alerting'
+import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -74,7 +90,7 @@ export default {
         projet: ''
       },
       success: false,
-      failed: true,
+      failed: false,
       action: 'ajouté',
       selectedFournisseur: '',
       selectedProjet: '',
@@ -145,6 +161,27 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    service_hebergement: {
+      type: {
+        required
+      },
+      prix: {
+        required,
+        numeric
+      },
+      date_debut: {
+        required
+      },
+      date_fin: {
+        required
+      },
+      durée: {
+        required,
+        numeric
+      }
+    }
   }
 }
 </script>
@@ -157,6 +194,12 @@ export default {
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   input{
     background: transparent;

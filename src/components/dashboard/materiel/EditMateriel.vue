@@ -13,21 +13,33 @@
                 <div class="row mx-4">
                   <div class="col-md-6 pr-md-1">
                     <label for="">Type</label>
-                    <input type="text" class="form-control" placeholder="Type" v-model="materiel.typeMateriel">
+                    <input type="text" class="form-control" placeholder="Type" v-model="materiel.typeMateriel"
+                           @blur="$v.materiel.typeMateriel.$touch()"
+                           :class="{inputInvalide: $v.materiel.typeMateriel.$error}">
+                    <p v-if="$v.materiel.typeMateriel.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
                   </div>
                   <div class="col-md-6 px-md-1">
                     <label for="">Marque</label>
-                    <input type="text" class="form-control" placeholder="Marque" v-model="materiel.marque">
+                    <input type="text" class="form-control" placeholder="Marque" v-model="materiel.marque"
+                           @blur="$v.materiel.marque.$touch()"
+                           :class="{inputInvalide: $v.materiel.marque.$error}">
+                    <p v-if="$v.materiel.marque.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
                   </div>
                 </div>
                 <div class="row mx-4">
                   <div class="col-md-6 pr-md-1">
                     <label for="">Reference</label>
-                    <input type="text" class="form-control" placeholder="Reference" v-model="materiel.reference">
+                    <input type="text" class="form-control" placeholder="Reference" v-model="materiel.reference"
+                           @blur="$v.materiel.reference.$touch()"
+                           :class="{inputInvalide: $v.materiel.reference.$error}">
+                    <p v-if="$v.materiel.reference.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
                   </div>
                   <div class="col-md-6 px-md-1">
                     <label for="">Prix_achat</label>
-                    <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prixAchat">
+                    <input type="number" class="form-control" placeholder="Prix_achat" v-model="materiel.prixAchat"
+                           @blur="$v.materiel.prixAchat.$touch()"
+                           :class="{inputInvalide: $v.materiel.prixAchat.$error}">
+                    <p v-if="!$v.materiel.prixAchat.numeric" class="text-danger">Ce champs doit  etre un chiffre</p>
                   </div>
                 </div>
                 <div class="row mx-4">
@@ -47,7 +59,11 @@
                 <div class="row mx-4">
                   <div class="col-md-7 pr-md-1">
                     <label for="">Description</label>
-                    <textarea rows="4" cols="10" class="form-control" placeholder="description" v-model="materiel.description"></textarea>
+                    <textarea rows="4" cols="10" class="form-control" placeholder="description" v-model="materiel.description"
+                              @blur="$v.materiel.description.$touch()"
+                              :class="{textareaInvalid: $v.materiel.description.$error}">
+                      <p v-if="$v.materiel.description.$error" class="text-danger">Ce champs ne doit pas  etre vide</p>
+                    </textarea>
                   </div>
                 </div>
                 <div class="row mx-4 mt-3">
@@ -67,6 +83,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../../Alertshowing/Alerting'
+import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -163,7 +180,28 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    materiel: {
+      typeMateriel: {
+        required
+      },
+      marque: {
+        required
+      },
+      reference: {
+        required
+      },
+      prixAchat: {
+        required,
+        numeric
+      },
+      description: {
+        required
+      }
+    }
   }
+
 }
 </script>
 
@@ -174,6 +212,18 @@ export default {
     -webkit-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 15px 29px 5px 0px rgba(0,0,0,0.75);
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
+  }
+  .textareaInvalid{
+    border-color: red;
+  }
+  .textareaInvalid:focus{
+    border-color: red;
   }
   input{
     background: transparent;

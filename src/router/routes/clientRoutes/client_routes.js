@@ -24,7 +24,7 @@ const routesClient = [
       },
       {
         path: '/clientAccount/projet-info/:id',
-        name: 'ProjectSection',
+        name: 'ProjectView',
         component: ProjectInfo
       }
     ]

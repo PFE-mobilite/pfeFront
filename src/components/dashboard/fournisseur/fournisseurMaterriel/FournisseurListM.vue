@@ -14,7 +14,6 @@
                   <th>Libellé</th>
                   <th>Email</th>
                   <th>Description</th>
-                  <th>Logo</th>
                   <th></th>
                 </tr>
                 </thead>
@@ -23,7 +22,6 @@
                   <td>{{fourisseur.libelle}}</td>
                   <td>{{fourisseur.email}}</td>
                   <td>{{fourisseur.description}}</td>
-                  <td>{{fourisseur.logo}}</td>
                   <td>
                     <router-link :to="'/admin/edit-fournisseur-mat/' + fourisseur.id"><i class="fas fa-edit text-success mr-2"></i></router-link>
                     <a href="" @click="onDelete(fourisseur.id)"><i class="fas fa-trash-alt text-danger"></i></a>

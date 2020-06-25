@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="card card-display-all-matCommande">
-          <div class="card-header text-muted text-capitalize font-weight-bold">
-            Dernières commandes
+          <div class="card-header text-info text-capitalize font-weight-bold">
+            Materiels
           </div>
           <div class="card-body">
             <div class="row align-items-center">

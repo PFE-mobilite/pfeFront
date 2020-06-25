@@ -59,7 +59,7 @@
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h3 class="text-secondary">{{depenseMateriels['1']}} TND</h3>
+                        <h3 class="text-secondary">{{depenseMateriels}} TND</h3>
                         <small class="text-secondary text-capitalize">total dépense</small>
                         <small class="text-warning text-left flex-row-reverse ml-2">20%<i class="fa fa-bolt text-warning"></i></small>
                       </div>
@@ -79,7 +79,7 @@
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h3 class="text-secondary">{{depenseServiceHerbergement['1']}} TND</h3>
+                        <h3 class="text-secondary">{{depenseServiceHerbergement}} TND</h3>
                         <small class="text-secondary text-capitalize">total dépense</small>
                         <small class="text-info text-left flex-row-reverse ml-2">60%<i class="fas fa-level-down-alt text-success"></i></small>
                       </div>
@@ -111,8 +111,8 @@ export default {
       console.log(dataImported)
       this.nombreProjet = dataImported.nbrProjet
       this.nombreClient = dataImported.nbrClient
-      this.depenseMateriels = dataImported.depenseMateriels[0]
-      this.depenseServiceHerbergement = dataImported.depenseSH[0]
+      this.depenseMateriels = dataImported.depenseMateriels
+      this.depenseServiceHerbergement = dataImported.depenseSH
     }).catch(err => console.log(err))
   }
 }
