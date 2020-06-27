@@ -66,10 +66,12 @@
                 </div>
                 <div class="row">
                   <label for="">Diplome</label>
-                  <input type="text" class="form-control" placeholder="diplome" v-model="employe.diplome"
-                         @blur="$v.employe.diplome.$touch()"
-                         :class="{inputInvalide: $v.employe.diplome.$error}">
-                  <p v-if="$v.employe.diplome.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
+                  <select name="" id="" class="form-control" v-model="employe.diplome">
+                    <option value="diplôme licence">diplôme licence</option>
+                    <option value="diplôme d'ingénieur">diplôme d'ingénieur</option>
+                    <option value="diplôme master">diplôme master</option>
+                    <option value="diplôme doctorat">diplôme doctorat</option>
+                  </select>
                 </div>
                 <div class="row d-flex flex-row-reverse mt-3">
                   <button type="button" class="btn btn-outline-info" :disabled="$v.$invalid" @click="onSubmit">Ajouter</button>
@@ -193,5 +195,9 @@ export default {
   }
   .bg-f{
     background-color: transparent;
+  }
+  select{
+    background: transparent;
+    color: white;
   }
 </style>

@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="bla" v-bind:action="action"></Alerting>
         <div class="card card-display-all">
           <div class="card-header text-info font-weight-bold">
             Clients
@@ -46,10 +47,15 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../../Alertshowing/Alerting'
 export default {
   data () {
     return {
-      clients: []
+      clients: [],
+      success: false,
+      failed: false,
+      action: 'modifié',
+      bla: 'noo'
     }
   },
   created () {
@@ -67,8 +73,16 @@ export default {
       axios.delete('http://localhost:8080/api/contacts/' + id).then(res => {
         console.log('in deleting')
         console.log(res)
-      }).catch(error => console.log(error))
+      }).catch(error => {
+        console.log('hiiiiiiiiiiiiiiiiiiiiiiiii')
+        this.failed = true
+        alert('hell no')
+        console.log(error)
+      })
     }
+  },
+  components: {
+    Alerting
   }
 }
 </script>

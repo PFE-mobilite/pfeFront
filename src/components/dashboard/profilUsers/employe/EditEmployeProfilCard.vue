@@ -50,10 +50,12 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Diplome</label>
-                <input type="text" class="form-control" placeholder="Diplome" v-model="employe.diplome"
-                       @blur="$v.employe.diplome.$touch()"
-                       :class="{inputInvalide: $v.employe.diplome.$error}">
-                <p v-if="$v.employe.diplome.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
+                <select name="" id="" class="form-control" v-model="employe.diplome">
+                  <option value="diplôme licence">diplôme licence</option>
+                  <option value="diplôme d'ingénieur">diplôme d'ingénieur</option>
+                  <option value="diplôme master">diplôme master</option>
+                  <option value="diplôme doctorat">diplôme doctorat</option>
+                </select>
               </div>
               <div class="col-md-6 px-md-1">
                 <label for="">Date de recrutement</label>
@@ -207,6 +209,10 @@ export default {
     background: transparent;
   }
   label{
+    color: white;
+  }
+  select{
+    background: transparent;
     color: white;
   }
 </style>

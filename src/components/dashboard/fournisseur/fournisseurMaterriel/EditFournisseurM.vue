@@ -28,18 +28,6 @@
                   <button type="button" class="btn btn-outline-info px-4" @click="edit">Modifier</button>
                 </div>
               </div>
-              <div class="col-3 ml-5 align-items-center">
-                <div class="row">
-                  <div class="card card-photo-c border-0">
-                    <div class="card-body">
-                      <b-avatar variant="info" size="10rem"></b-avatar>
-                    </div>
-                    <div class="card-footer border-0 bg-f">
-                      <button class="btn btn-outline-info btn-block">Edit photo</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
