@@ -23,6 +23,13 @@
               </div>
               <div class="col ml-5 align-items-center mr-5">
                 <div class="row">
+                  <label for="">Raison Sociale</label>
+                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raisonSociale"
+                         @blur="$v.client.raisonSociale.$touch()"
+                         :class="{inputInvalide: $v.client.raisonSociale.$error}">
+                  <p v-if="$v.client.raisonSociale.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
+                </div>
+                <div class="row">
                   <label for="">Nom</label>
                   <input type="text" class="form-control" placeholder="Nom" v-model="client.nom"
                          @blur="$v.client.nom.$touch()"
@@ -43,12 +50,14 @@
                          :class="{inputInvalide: $v.client.email.$error}">
                   <p v-if="!$v.client.email.email" class="text-danger">Format email erroné</p>
                 </div>
+                <div class="row" v-if="!randomizedPassword">
+                  <label for="">Mot de passe</label>
+                  <input type="text" class="form-control" placeholder="mot de passe" v-model="client.password">
+                </div>
                 <div class="row">
-                  <label for="">Raison Sociale</label>
-                  <input type="text" class="form-control" placeholder="Raison Sociale" v-model="client.raisonSociale"
-                         @blur="$v.client.raisonSociale.$touch()"
-                         :class="{inputInvalide: $v.client.raisonSociale.$error}">
-                  <p v-if="$v.client.raisonSociale.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
+                  <label class="mt-1">
+                    <input type="radio" name="options" id="option2" autocomplete="off" :checked="randomizedPassword" @click="randomizedPassword = !randomizedPassword"> Générer mot de passe
+                  </label>
                 </div>
                 <div class="row d-flex flex-row-reverse">
                   <button type="button" class="btn btn-outline-info mt-3 px-4" :disabled="$v.$invalid" @click="onSubmitC">Ajouter</button>
@@ -74,15 +83,30 @@ export default {
         nom: '',
         prenom: '',
         email: '',
-        raisonSociale: ''
+        raisonSociale: '',
+        password: ''
       },
       id_entreprise: '',
       success: false,
       failed: false,
-      action: 'ajouté'
+      action: 'ajouté',
+      randomizedPassword: false
     }
   },
   methods: {
+    randomizPassword () {
+      if (this.randomizedPassword) {
+        var generator = require('generate-password')
+        var password1 = generator.generate({
+          length: 10,
+          numbers: true
+        })
+        this.password = password1
+        return this.password
+      } else {
+        return this.password
+      }
+    },
     onSubmitC () {
       const formData = {
         raisonSociale: this.client.raisonSociale
@@ -90,12 +114,13 @@ export default {
       console.log(formData)
       axios.post('http://localhost:8080/api/entreprises', formData, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
         this.id_entreprise = response.data.id
+        const password = this.randomizPassword()
         const newContact = {
           entreprise: this.id_entreprise,
           nom: this.client.nom,
           prenom: this.client.prenom,
           email: this.client.email,
-          password: 'hiiiii'
+          password
         }
         console.log('contact a ajouter')
         console.log(newContact)

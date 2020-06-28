@@ -73,6 +73,15 @@
                     <option value="diplôme doctorat">diplôme doctorat</option>
                   </select>
                 </div>
+                <div class="row" v-if="!randomizedPassword">
+                  <label for="">Mot de passe</label>
+                  <input type="text" class="form-control" placeholder="mot de passe" v-model="employe.password">
+                </div>
+                <div class="row">
+                <label class="mt-1">
+                  <input type="radio" name="options" id="option2" autocomplete="off" :checked="randomizedPassword" @click="randomizedPassword = !randomizedPassword"> Générer mot de passe
+                </label>
+                </div>
                 <div class="row d-flex flex-row-reverse mt-3">
                   <button type="button" class="btn btn-outline-info" :disabled="$v.$invalid" @click="onSubmit">Ajouter</button>
                 </div>
@@ -99,15 +108,31 @@ export default {
         poste: '',
         service: '',
         date_recrutement: '',
-        diplome: ''
+        diplome: '',
+        password: ''
       },
       success: false,
       failed: false,
-      action: 'ajouté'
+      action: 'ajouté',
+      randomizedPassword: false
     }
   },
   methods: {
+    randomizPassword () {
+      if (this.randomizedPassword) {
+        var generator = require('generate-password')
+        var password1 = generator.generate({
+          length: 10,
+          numbers: true
+        })
+        this.password = password1
+        return this.password
+      } else {
+        return this.password
+      }
+    },
     onSubmit () {
+      const password = this.randomizPassword()
       const formData = {
         nom: this.employe.nom,
         prenom: this.employe.prenom,
@@ -116,7 +141,7 @@ export default {
         service: this.employe.service,
         datederecrutement: this.employe.date_recrutement,
         diplome: this.employe.diplome,
-        password: 'blibli',
+        password,
         photo: 'blabla'
       }
       console.log(formData)
