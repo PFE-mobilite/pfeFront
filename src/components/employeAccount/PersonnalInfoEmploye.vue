@@ -9,7 +9,10 @@
             <label for="" class="text-muted">Nom:</label>
           </div>
           <div class="col px-0 ml-2 mt-1">
-            <input type="text" class="form-control" placeholder="Nom"  v-model="employe.nom">
+            <input type="text" class="form-control" placeholder="Nom"  v-model="employe.nom"
+                   @blur="$v.employe.nom.$touch()"
+                   :class="{inputInvalid: $v.employe.nom.$error}">
+            <p v-if="$v.employe.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
           </div>
         </div>
         <div class="row my-3">
@@ -17,7 +20,10 @@
             <label for="" class="text-muted">Prenom:</label>
           </div>
           <div class="col px-0 ml-1 mt-1">
-            <input type="text" class="form-control" placeholder="Prenom"  v-model="employe.prenom">
+            <input type="text" class="form-control" placeholder="Prenom"  v-model="employe.prenom"
+                   @blur="$v.employe.prenom.$touch()"
+                   :class="{inputInvalid: $v.employe.prenom.$error}">
+            <p v-if="$v.employe.prenom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
           </div>
         </div>
         <div class="row my-3">
@@ -25,7 +31,10 @@
             <label for="" class="text-muted">Email:</label>
           </div>
           <div class="col px-0 ml-1 mt-1">
-            <input type="text" class="form-control" placeholder="Email"  style="width: 250px" v-model="employe.email">
+            <input type="text" class="form-control" placeholder="Email"  style="width: 250px" v-model="employe.email"
+                   @blur="$v.employe.email.$touch()"
+                   :class="{inputInvalid: $v.employe.email.$error}">
+            <p v-if="!$v.employe.email.email" class="text-danger">Format email erroné</p>
           </div>
         </div>
       </div>
@@ -35,7 +44,10 @@
             <label for="" class="text-muted">Poste:</label>
           </div>
           <div class="col px-0 ml-1 mt-1">
-            <input type="text" class="form-control" placeholder="Poste"  v-model="employe.poste">
+            <input type="text" class="form-control" placeholder="Poste"  v-model="employe.poste"
+                   @blur="$v.employe.poste.$touch()"
+                   :class="{inputInvalid: $v.employe.poste.$error}">
+            <p v-if="$v.employe.poste.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
           </div>
         </div>
         <div class="row my-3">
@@ -43,7 +55,10 @@
             <label for="" class="text-muted">Service:</label>
           </div>
           <div class="col px-0 ml-1 mt-1">
-            <input type="text" class="form-control" placeholder="service"  v-model="employe.service">
+            <input type="text" class="form-control" placeholder="service"  v-model="employe.service"
+                   @blur="$v.employe.service.$touch()"
+                   :class="{inputInvalid: $v.employe.service.$error}">
+            <p v-if="$v.employe.service.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
           </div>
         </div>
         <div class="row my-3">
@@ -51,7 +66,12 @@
             <label for="" class="text-muted ">Diplome:</label>
           </div>
           <div class="col px-0 ml-1 mt-1">
-            <input type="text" class="form-control" placeholder="diplome"  v-model="employe.diplome">
+            <select name="" id="" class="form-control" v-model="employe.diplome">
+              <option value="diplôme licence">diplôme licence</option>
+              <option value="diplôme d'ingénieur">diplôme d'ingénieur</option>
+              <option value="diplôme master">diplôme master</option>
+              <option value="diplôme doctorat">diplôme doctorat</option>
+            </select>
           </div>
         </div>
         <div class="row mt-4">
@@ -77,6 +97,7 @@
 <script>
 import axios from 'axios'
 import Alerting from '../Alertshowing/Alerting'
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -130,7 +151,34 @@ export default {
   },
   components: {
     Alerting
+  },
+  validations: {
+    employe: {
+      nom: {
+        required
+      },
+      prenom: {
+        required
+      },
+      email: {
+        required,
+        email
+      },
+      poste: {
+        required
+      },
+      service: {
+        required
+      },
+      diplome: {
+        required
+      },
+      date_recrutement: {
+        required
+      }
+    }
   }
+
 }
 </script>
 
@@ -156,9 +204,33 @@ export default {
     box-shadow: none;
     border-bottom: 2px solid #2f4050 ;
   }
-
+  .inputInvalid {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid red;
+    font-size: 1.5rem;
+    color: #6c757d;
+    box-shadow: none;
+    width: 200px;
+  }
+  .inputInvalid:focus {
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 2px solid red ;
+  }
   label{
     font-size: 1.25rem;
     color: #6c757d;
+  }
+  select{
+    background: transparent;
+    font-size: 1.5rem;
+  }
+  select:focus{
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 1.5rem;
   }
 </style>

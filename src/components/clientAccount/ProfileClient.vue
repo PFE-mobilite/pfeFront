@@ -7,8 +7,8 @@
     </div>
     <div class="row py-4">
       <div class="col-lg-4 col-md-12  col-sm-12  py-1 mx-4"><PersonnalInfoCard></PersonnalInfoCard></div>
-      <div class="col-lg-7 col-md-12 col-sm-12 py-1  mx-4"><PersonnalData></PersonnalData></div>
-      <div class="col-md-1 mx-4"></div>
+      <div class="col-lg-7 col-md-12 col-sm-12 py-1  mx-1"><PersonnalData></PersonnalData></div>
+      <div class="col-md mx-1"></div>
     </div>
   </div>
 </template>

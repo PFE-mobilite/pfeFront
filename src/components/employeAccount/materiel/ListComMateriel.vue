@@ -30,7 +30,7 @@
                   <td>{{materielx.projet ? materielx.projet.libelle  : "non-associée"}}</td>
                   <td>
                     <a :href="'/employeAccount/employe-edit-mat/' + materielx.id "><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                    <a href="" @click="onDelete(materielx.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -69,6 +69,14 @@ export default {
       }
     }
     ).catch(error => console.log(error))
+  },
+  methods: {
+    onDelete (id) {
+      axios.delete('http://localhost:8080/api/materiels/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
   }
 }
 </script>

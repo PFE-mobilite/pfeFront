@@ -6,7 +6,14 @@
           <h5 class="profiled text-muted text-left text-capitalize py-2">detail profile</h5>
           <img class="card-img-top" src="../../assets/cust1.jpeg" alt="Card image cap">
           <div class="card-body">
-            <label for="" class="text-muted px-2"><i class="fas fa-user text-muted text-left mr-1"></i>Nom:<input type="text" class="mx-2" style="width: 100px" v-model="clientinto.nom"></label><br>
+            <label for="" class="text-muted px-2">
+              <i class="fas fa-user text-muted text-left mr-1"></i>Nom:
+              <input type="text" class="mx-2" style="width: 100px" v-model="clientinto.nom"
+                     @blur="$v.clientinto.nom.$touch()"
+                     :class="{inputInvalide: $v.clientinto.nom.$error}">
+              <p v-if="$v.clientinto.nom.$error" class="text-danger">Ce champs ne doit pas étre vide</p>
+            </label>
+            <br>
             <label for="" class="text-muted px-2"><i class="fas fa-user text-muted text-left mr-1"></i>Prenom:<input type="text" class="mx-2" style="width: 100px" v-model="clientinto.prenom"></label><br>
             <label for="" class="text-muted px-2"><i class="fas fa-at text-muted text-left mt-1 mr-1"></i>Email:<input type="text"  class="mx-1" style="width: 170px" v-model="clientinto.email"></label><br>
             <label for="" class="text-muted px-2"><i class="fas fa-building text-muted text-left mt-1 mr-1"></i>Société:<input type="text"  class="mx-1" style="width: 100px"  v-model="clientinto.raison_social" disabled></label><br>
@@ -20,6 +27,7 @@
 
 <script>
 import axios from 'axios'
+import { required, email } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
@@ -54,6 +62,20 @@ export default {
         console.log(response)
       }).catch((error) => console.log(error))
     }
+  },
+  validations: {
+    clientinto: {
+      nom: {
+        required
+      },
+      prenom: {
+        required
+      },
+      email: {
+        required,
+        email
+      }
+    }
   }
 }
 </script>
@@ -61,6 +83,7 @@ export default {
 <style scoped>
   input{
     background: transparent;
+    border-color: #777777;
     border: none;
     border-radius: 0;
     font-size: 1.25rem;
@@ -72,6 +95,13 @@ export default {
     border: none;
     border-radius: 0;
     font-size: 1.25rem;
+    box-shadow: none;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   label{
     font-size: 1.25rem;

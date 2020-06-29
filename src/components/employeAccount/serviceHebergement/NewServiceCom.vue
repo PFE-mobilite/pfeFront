@@ -1,7 +1,8 @@
 <template>
   <div class="container mt-4">
     <div class="row">
-      <div class="col mx-5">
+      <div class="col px-5">
+        <Alerting v-bind:success="success" v-bind:failed="failed" v-bind:msg="service_hebergement.type" v-bind:action="action"></Alerting>
         <div class="card card-edit-serH">
           <div class="card-header text-white">
             Ajouter Service Hebergement
@@ -10,27 +11,42 @@
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Type</label>
-                <input type="text" class="form-control" placeholder="Type" v-model="service_hebergement.type">
+                <input type="text" class="form-control" placeholder="Type" v-model="service_hebergement.type"
+                       @blur="$v.service_hebergement.type.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.type.$error}">
+                <p v-if="$v.service_hebergement.type.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
               </div>
               <div class="col-md-6 pl-md-1">
                 <label for="">Durée en Mois</label>
-                <input type="number" class="form-control" placeholder="Durée" v-model="service_hebergement.durée">
+                <input type="text" class="form-control" placeholder="Durée" v-model="service_hebergement.duree"
+                       @blur="$v.service_hebergement.duree.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.duree.$error}">
+                <p v-if="!$v.service_hebergement.duree.numeric" class="text-danger">Ce champs doit  etre un chiffre positif</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-md-1">
                 <label for="">Date debut</label>
-                <input type="date" class="form-control" placeholder="Date debut" v-model="service_hebergement.date_debut" >
+                <input type="date" class="form-control" placeholder="Date debut" v-model="service_hebergement.date_debut"
+                       @blur="$v.service_hebergement.date_debut.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.date_debut.$error}">
+                <p v-if="$v.service_hebergement.date_debut.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
               </div>
               <div class="col-md-6 px-md-1">
                 <label for="">Date fin</label>
-                <input type="date" class="form-control" placeholder="Date fin" v-model="service_hebergement.date_fin">
+                <input type="date" class="form-control" placeholder="Date fin" v-model="service_hebergement.date_fin"
+                       @blur="$v.service_hebergement.date_fin.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.date_fin.$error}">
+                <p v-if="$v.service_hebergement.date_fin.$error" class="text-danger">Ce champs ne doit pas etre vide</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-5 pr-md-1">
                 <label for="">Prix</label>
-                <input type="number" class="form-control" placeholder="Prix" v-model="service_hebergement.prix">
+                <input type="text" class="form-control" placeholder="Prix" v-model="service_hebergement.prix"
+                       @blur="$v.service_hebergement.prix.$touch()"
+                       :class="{inputInvalide: $v.service_hebergement.prix.$error}">
+                <p v-if="!$v.service_hebergement.prix.numeric" class="text-danger">Ce champs doit  etre un chiffre positif</p>
               </div>
               <div class="col-md-3 pr-md-1">
                 <label for="">Projet</label>
@@ -59,12 +75,14 @@
 
 <script>
 import axios from 'axios'
+import Alerting from '../../Alertshowing/Alerting'
+import { required, numeric } from 'vuelidate/lib/validators'
 export default {
   data () {
     return {
       service_hebergement: {
         type: '',
-        durée: '',
+        duree: '',
         prix: '',
         date_debut: '',
         date_fin: '',
@@ -75,7 +93,10 @@ export default {
       selectedProjet: '',
       projets: [],
       fournisseursLignes: [],
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      success: false,
+      failed: false,
+      action: 'ajouté'
     }
   },
   created () {
@@ -120,7 +141,7 @@ export default {
       const fournisseur = this.selectedFournisseurtId(this.selectedFournisseur)
       const serviceHebergementAjouter = {
         typeService: this.service_hebergement.type,
-        duree: parseInt(this.service_hebergement.durée),
+        duree: parseInt(this.service_hebergement.duree),
         prix: parseInt(this.service_hebergement.prix),
         dateDebut: this.service_hebergement.date_debut,
         dateFin: this.service_hebergement.date_fin,
@@ -128,8 +149,38 @@ export default {
         projet
       }
       console.log(serviceHebergementAjouter)
-      axios.post('http://localhost:8080/api/service_hebergements', serviceHebergementAjouter, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => console.log(response)).catch((error) => console.log(error))
+      axios.post('http://localhost:8080/api/service_hebergements', serviceHebergementAjouter, { headers: { 'X-Requested-With': 'XMLHttpRequested' } }).then((response) => {
+        console.log(response)
+        this.success = true
+      }).catch((error) => {
+        console.log(error)
+        this.failed = true
+      })
       console.log('++++++++Success++++++++++')
+    }
+  },
+  components: {
+    Alerting
+  },
+  validations: {
+    service_hebergement: {
+      type: {
+        required
+      },
+      prix: {
+        required,
+        numeric
+      },
+      date_debut: {
+        required
+      },
+      date_fin: {
+        required
+      },
+      duree: {
+        required,
+        numeric
+      }
     }
   }
 }
@@ -151,6 +202,12 @@ export default {
   input:focus{
     background: transparent;
     color: white;
+  }
+  .inputInvalide{
+    border-color: red;
+  }
+  .inputInvalide:focus{
+    border-color: red;
   }
   textarea{
     background: transparent;

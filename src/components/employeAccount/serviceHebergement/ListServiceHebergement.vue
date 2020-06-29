@@ -22,13 +22,13 @@
                 <tbody>
                 <tr v-for="(service,index) in servicesHebergement " :key="service + index">
                   <td>{{service.typeService}}</td>
-                  <td>{{service.fsi.libelle}}</td>
-                  <td>{{service.projet.libelle}}</td>
+                  <td>{{service.fsi? service.fsi.libelle : "non-associé"}}</td>
+                  <td>{{service.projet? service.projet.libelle : "non-associé"}}</td>
                   <td>{{service.prix}}$</td>
                   <td>{{service.duree}} mois</td>
                   <td>
                     <a :href="'/employeAccount/employe-edit-serH/'+ service.id" ><i class="fas fa-edit text-success mr-2"></i></a>
-                    <a href=""><i class="fas fa-trash-alt text-danger"></i></a>
+                    <a href="" @click="onDelete( service.id)"><i class="fas fa-trash-alt text-danger"></i></a>
                   </td>
                 </tr>
                 </tbody>
@@ -63,6 +63,14 @@ export default {
       console.log('success and verified')
       console.log(this.servicesHebergement)
     }).catch(error => console.log(error))
+  },
+  methods: {
+    onDelete (id) {
+      axios.delete('http://localhost:8080/api/service_hebergements/' + id).then(res => {
+        console.log('in deleting')
+        console.log(res)
+      }).catch(error => console.log(error))
+    }
   }
 }
 </script>
